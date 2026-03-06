@@ -80,9 +80,6 @@ const ProjectsSection = memo(() => {
               key={project.title}
               className="card-anime p-6 md:p-8 relative overflow-hidden"
             >
-              <div className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${project.level === "S-RANK" ? "rank-s" : "rank-a"}`}>
-                {project.level}
-              </div>
 
               <div className="flex items-start gap-3 mb-5">
                 <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 shrink-0 mt-1">

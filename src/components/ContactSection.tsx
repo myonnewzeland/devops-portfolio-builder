@@ -428,7 +428,7 @@ const ContactSection = memo(() => {
 
   return (
     <section
-      className="py-24 px-6 bg-surface-elevated"
+      className="py-16 md:py-24 px-6 bg-surface-elevated"
       id="contact"
       aria-label="Contact Luis Fernando"
     >
@@ -439,37 +439,30 @@ const ContactSection = memo(() => {
           <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
             連絡先 // Contact
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text neon-underline inline-block pb-2">
-            LET'S TALK ABOUT YOUR<br className="hidden sm:block" /> PLATFORM RELIABILITY
+          <h2 className="text-2xl md:text-4xl font-display font-bold gradient-text neon-underline inline-block pb-2">
+            LET'S TALK RELIABILITY
           </h2>
 
-          {/* Persuasive sub-copy — 3 value props scannable at a glance */}
-          <div className="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6">
+          {/* Value props — row on desktop, compact 2-col grid on mobile */}
+          <div className="mt-5 grid grid-cols-2 sm:flex sm:flex-row gap-2 sm:gap-6">
             {[
-              { icon: Zap,     text: "35–50% cloud cost reduction" },
-              { icon: Clock,   text: "99.9% uptime SLOs · < 15 min MTTR" },
-              { icon: MapPin,  text: "Open to NZ · Remote · Visa sponsorship" },
+              { icon: Zap,    text: "35–50% cost savings" },
+              { icon: Clock,  text: "99.9% uptime" },
+              { icon: MapPin, text: "NZ · Remote · Visa OK" },
             ].map(({ icon: Icon, text }) => (
               <span
                 key={text}
-                className="inline-flex items-center gap-2 font-body text-sm text-card-foreground"
+                className="inline-flex items-center gap-1.5 font-body text-xs sm:text-sm text-card-foreground"
               >
-                <Icon
-                  size={14}
-                  className="text-docker-blue shrink-0"
-                  aria-hidden="true"
-                />
+                <Icon size={13} className="text-docker-blue shrink-0" aria-hidden="true" />
                 {text}
               </span>
             ))}
           </div>
 
-          <p className="text-sm font-body text-muted-foreground max-w-2xl mt-4 leading-relaxed">
-            I help engineering teams cut cloud spend, hit uptime SLOs, and reduce incident response time —
-            with measurable results, not hand-waving.{" "}
-            <span className="text-foreground">
-              Open to Senior DevOps / SRE / FinOps roles with or without visa sponsorship.
-            </span>
+          <p className="text-sm font-body text-muted-foreground max-w-xl mt-3 leading-relaxed">
+            Open to Senior DevOps / SRE / FinOps roles in NZ and remote,
+            with or without visa sponsorship.
           </p>
         </AnimateSection>
 
