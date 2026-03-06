@@ -41,8 +41,8 @@ const HeroSection = () => {
               className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-8 animate-fade-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
-              5+ años construyendo sistemas distribuidos a gran escala. 
-              Observabilidad, automatización y confiabilidad son mi jutsu.
+              5+ years building large-scale distributed systems. 
+              Observability, automation and reliability are my jutsu.
             </p>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>

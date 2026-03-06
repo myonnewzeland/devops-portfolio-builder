@@ -2,12 +2,12 @@ const experiences = [
   {
     company: "IBM México",
     role: "Site Reliability Engineer / Senior Cloud & DevOps",
-    period: "Ene 2023 – Ene 2026",
+    period: "Jan 2023 – Jan 2026",
     highlights: [
-      "Stacks de observabilidad (Prometheus, Grafana, Datadog) para sistemas distribuidos a gran escala",
-      "CI/CD con Terraform, Ansible — despliegues canary/blue-green, rollback automático",
-      "Liderazgo de incidentes end-to-end: banca y energía, 99.9% uptime",
-      "Reducción de ciclos de despliegue 60% y MTTR ~40%",
+      "Observability stacks (Prometheus, Grafana, Datadog) for large-scale distributed systems",
+      "CI/CD with Terraform, Ansible — canary/blue-green deployments, automated rollback",
+      "End-to-end incident leadership: banking & energy, 99.9% uptime",
+      "Reduced deployment cycles by 60% and MTTR by ~40%",
     ],
     clients: ["Citi", "Banorte", "NextEra Energy"],
     level: "S-RANK",
@@ -17,18 +17,18 @@ const experiences = [
     role: "Infrastructure & SRE Consultant (GCP)",
     period: "Mar 2024 – Feb 2025",
     highlights: [
-      "Arquitectura de plataformas GCP de alta disponibilidad para IA y datos",
-      "Networking, IAM, seguridad y planificación de failover",
+      "High-availability GCP platform architecture for AI and data workloads",
+      "Networking, IAM, security and failover planning",
     ],
     level: "A-RANK",
   },
   {
     company: "Remotics.io",
     role: "Systems Administrator / SRE",
-    period: "Ago 2022 – Ene 2023",
+    period: "Aug 2022 – Jan 2023",
     highlights: [
-      "Entornos Linux de producción con disaster recovery automatizado",
-      "AWS (RDS, S3, EC2, CloudFront) + monitoreo con Datadog y Grafana",
+      "Production Linux environments with automated disaster recovery",
+      "AWS (RDS, S3, EC2, CloudFront) + monitoring with Datadog and Grafana",
     ],
     level: "A-RANK",
   },
@@ -37,8 +37,8 @@ const experiences = [
     role: "Technical Lead / Systems Administrator",
     period: "2019 – 2022",
     highlights: [
-      "Infraestructura end-to-end: servidores, redes, VPNs, monitoreo",
-      "Modernización con Docker — velocidad de entrega +60%",
+      "End-to-end infrastructure: servers, networks, VPNs, monitoring",
+      "Modernization with Docker — delivery speed +60%",
     ],
     level: "B-RANK",
   },
@@ -52,7 +52,7 @@ const ExperienceSection = () => {
           経験 // Experience
         </p>
         <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          MISIONES COMPLETADAS
+          COMPLETED MISSIONS
         </h2>
 
         <div className="space-y-8 mt-8">
