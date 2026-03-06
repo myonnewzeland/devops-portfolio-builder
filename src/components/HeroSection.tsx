@@ -1,20 +1,11 @@
 import { memo } from "react";
-import { Mail, Linkedin, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin, Phone } from "lucide-react";
 
 const HeroSection = memo(() => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/*
-        Hero background:
-        - Native lazy loading (fetchpriority="low" for background)
-        - Using CSS background-image via inline style is unavoidable for full-bleed
-          but we defer the actual img load with a hidden <img> that hints the browser
-      */}
       <picture>
-        <source
-          srcSet="/assets/hero-bg.webp"
-          type="image/webp"
-        />
+        <source srcSet="/assets/hero-bg.webp" type="image/webp" />
         <img
           src="/assets/hero-bg.jpg"
           alt=""
@@ -29,7 +20,6 @@ const HeroSection = memo(() => {
 
       <div className="relative z-10 container max-w-5xl px-6 py-20">
         <div className="flex flex-col md:flex-row items-center gap-10">
-          {/* Avatar — above-the-fold: eager load, high priority */}
           <div className="shrink-0 animate-fade-up">
             <div className="relative">
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-docker-blue animate-pulse-glow">
@@ -52,10 +42,9 @@ const HeroSection = memo(() => {
             </div>
           </div>
 
-          {/* Info */}
           <div className="text-center md:text-left">
             <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 animate-fade-up uppercase">
-              Site Reliability Engineer
+              DevOps Engineer | FinOps | Cloud Infrastructure
             </p>
             <h1
               className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-3 gradient-text animate-fade-up"
@@ -64,19 +53,37 @@ const HeroSection = memo(() => {
               LUIS FERNANDO
             </h1>
             <p
-              className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-8 animate-fade-up leading-relaxed"
+              className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-2 animate-fade-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
-              5+ years building large-scale distributed systems.{" "}
-              Observability, automation and reliability are my jutsu.
+              DevOps Engineer & FinOps practitioner with 5+ years building
+              large-scale distributed systems for Fortune 500 clients.
+              Observability, automation, cost governance and reliability are my
+              jutsu.
+            </p>
+            <p
+              className="text-xs font-body text-muted-foreground mb-6 animate-fade-up"
+              style={{ animationDelay: "0.25s" }}
+            >
+              Working Holiday Visa — full work rights until March 2027 |
+              Available immediately
             </p>
 
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            <div
+              className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up"
+              style={{ animationDelay: "0.3s" }}
+            >
               <a
                 href="mailto:yamoshi454@gmail.com"
                 className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
               >
                 <Mail size={16} /> Email
+              </a>
+              <a
+                href="tel:+64275324147"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
+              >
+                <Phone size={16} /> +64 27 532 4147
               </a>
               <a
                 href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183"

@@ -36,10 +36,13 @@ const CertsSection = memo(() => {
                 <span className="text-docker-blue">✦</span> Oracle Cloud Foundations
               </li>
               <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> IBM Cloud & DevOps
+                <span className="text-docker-blue">✦</span> IBM Cloud & DevOps Essentials
               </li>
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> Linux Essentials (LPI)
+              </li>
+              <li className="flex gap-2">
+                <span className="text-docker-blue">✦</span> Cisco Cyber Threat Management
               </li>
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> SMCE – Scrum Master
