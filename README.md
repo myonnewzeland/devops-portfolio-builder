@@ -2,7 +2,7 @@
 
 Portfolio personal de **Luis Fernando Navarrete Estrada** — Site Reliability Engineer con 5+ años en sistemas distribuidos, observabilidad y automatización de infraestructura.
 
-**Live:** https://luisfernando.dev
+**Live:** https://portafolio.luam.ovh
 
 ---
 
