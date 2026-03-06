@@ -21,6 +21,9 @@ dist-ssr
 .serena/
 memory-bank/
 
+# bun lockfile — use package-lock.json (npm) for deployment compatibility
+bun.lockb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
