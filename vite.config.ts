@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, type PluginOption } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
@@ -6,129 +6,139 @@ import compression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-    hmr: {
-      overlay: false,
-    },
-  },
+export default defineConfig(({ mode }) => {
+  const isProd = mode === "production";
+  const isDev = mode === "development";
 
-  plugins: [
+  const plugins: PluginOption[] = [
     react(),
-    mode === "development" && componentTagger(),
+  ];
 
+  if (isDev) {
+    plugins.push(componentTagger());
+  }
+
+  if (isProd) {
     // Gzip compression for production assets
-    mode === "production" &&
+    plugins.push(
       compression({
         algorithm: "gzip",
         ext: ".gz",
-        threshold: 1024, // only files > 1KB
+        threshold: 1024,
         deleteOriginFile: false,
-      }),
+      })
+    );
 
-    // Brotli compression (better than gzip, supported by modern CDNs)
-    mode === "production" &&
+    // Brotli compression (better ratio, supported by Cloudflare CDN)
+    plugins.push(
       compression({
         algorithm: "brotliCompress",
         ext: ".br",
         threshold: 1024,
         deleteOriginFile: false,
-      }),
+      })
+    );
 
-    // Bundle visualizer — generates stats.html after build
-    mode === "production" &&
+    // Bundle visualizer — generates dist/stats.html after build
+    plugins.push(
       visualizer({
         filename: "dist/stats.html",
         open: false,
         gzipSize: true,
         brotliSize: true,
         template: "treemap",
-      }),
-  ].filter(Boolean),
+      }) as unknown as PluginOption
+    );
+  }
 
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+  return {
+    server: {
+      host: "::",
+      port: 8080,
+      hmr: {
+        overlay: false,
+      },
     },
-  },
 
-  build: {
-    // Target modern browsers for smaller output (no legacy polyfills)
-    target: "es2020",
+    plugins,
 
-    // Increase warning threshold to 600KB (reasonable for a portfolio)
-    chunkSizeWarningLimit: 600,
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    },
 
-    rollupOptions: {
-      output: {
-        // Manual chunk splitting — keeps vendor code separate for long-term caching
-        manualChunks: {
-          // React core — changes rarely, high cache hit rate
-          "vendor-react": ["react", "react-dom", "react-router-dom"],
+    build: {
+      // Target modern browsers — no legacy polyfills needed
+      target: "es2020",
 
-          // Radix UI primitives — large but stable
-          "vendor-radix": [
-            "@radix-ui/react-accordion",
-            "@radix-ui/react-alert-dialog",
-            "@radix-ui/react-avatar",
-            "@radix-ui/react-checkbox",
-            "@radix-ui/react-collapsible",
-            "@radix-ui/react-context-menu",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-hover-card",
-            "@radix-ui/react-label",
-            "@radix-ui/react-menubar",
-            "@radix-ui/react-navigation-menu",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-progress",
-            "@radix-ui/react-radio-group",
-            "@radix-ui/react-scroll-area",
-            "@radix-ui/react-select",
-            "@radix-ui/react-separator",
-            "@radix-ui/react-slider",
-            "@radix-ui/react-slot",
-            "@radix-ui/react-switch",
-            "@radix-ui/react-tabs",
-            "@radix-ui/react-toast",
-            "@radix-ui/react-toggle",
-            "@radix-ui/react-toggle-group",
-            "@radix-ui/react-tooltip",
-          ],
+      // Reasonable threshold for a portfolio with shadcn/ui
+      chunkSizeWarningLimit: 600,
 
-          // Icons — tree-shaken at module level by SWC, but bundled separately
-          "vendor-icons": ["lucide-react"],
+      rollupOptions: {
+        output: {
+          // Vendor splitting — stable chunks with high CDN cache hit rate
+          manualChunks: {
+            "vendor-react": ["react", "react-dom", "react-router-dom"],
 
-          // Data & forms
-          "vendor-data": [
-            "@tanstack/react-query",
-            "react-hook-form",
-            "@hookform/resolvers",
-            "zod",
-          ],
+            "vendor-radix": [
+              "@radix-ui/react-accordion",
+              "@radix-ui/react-alert-dialog",
+              "@radix-ui/react-avatar",
+              "@radix-ui/react-checkbox",
+              "@radix-ui/react-collapsible",
+              "@radix-ui/react-context-menu",
+              "@radix-ui/react-dialog",
+              "@radix-ui/react-dropdown-menu",
+              "@radix-ui/react-hover-card",
+              "@radix-ui/react-label",
+              "@radix-ui/react-menubar",
+              "@radix-ui/react-navigation-menu",
+              "@radix-ui/react-popover",
+              "@radix-ui/react-progress",
+              "@radix-ui/react-radio-group",
+              "@radix-ui/react-scroll-area",
+              "@radix-ui/react-select",
+              "@radix-ui/react-separator",
+              "@radix-ui/react-slider",
+              "@radix-ui/react-slot",
+              "@radix-ui/react-switch",
+              "@radix-ui/react-tabs",
+              "@radix-ui/react-toast",
+              "@radix-ui/react-toggle",
+              "@radix-ui/react-toggle-group",
+              "@radix-ui/react-tooltip",
+            ],
 
-          // UI utilities
-          "vendor-ui": [
-            "clsx",
-            "class-variance-authority",
-            "tailwind-merge",
-            "next-themes",
-            "sonner",
-            "vaul",
-          ],
+            "vendor-icons": ["lucide-react"],
+
+            "vendor-data": [
+              "@tanstack/react-query",
+              "react-hook-form",
+              "@hookform/resolvers",
+              "zod",
+            ],
+
+            "vendor-ui": [
+              "clsx",
+              "class-variance-authority",
+              "tailwind-merge",
+              "next-themes",
+              "sonner",
+              "vaul",
+            ],
+          },
+        },
+      },
+
+      // Drop console.* and debugger in production
+      minify: "terser",
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
         },
       },
     },
-
-    // Drop console.* and debugger in production — no log leakage
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
-  },
-}));
+  };
+});
