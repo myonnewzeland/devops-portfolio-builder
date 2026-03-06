@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
+        display: ["Orbitron", "sans-serif"],
+        body: ["Rajdhani", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
-        body: ["Space Grotesk", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,10 +52,11 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        terminal: {
-          green: "hsl(var(--terminal-green))",
-          dim: "hsl(var(--terminal-dim))",
-          glow: "hsl(var(--terminal-glow))",
+        neon: {
+          pink: "hsl(var(--neon-pink))",
+          cyan: "hsl(var(--neon-cyan))",
+          purple: "hsl(var(--neon-purple))",
+          yellow: "hsl(var(--neon-yellow))",
         },
         surface: {
           elevated: "hsl(var(--surface-elevated))",
@@ -66,18 +68,28 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "blink": {
+        blink: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
         },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(30px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(320 100% 60% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(320 100% 60% / 0.5), 0 0 60px hsl(185 100% 50% / 0.2)" },
         },
       },
       animation: {
         blink: "blink 1s step-end infinite",
-        "fade-up": "fade-up 0.6s ease-out forwards",
+        "fade-up": "fade-up 0.7s ease-out forwards",
+        float: "float 3s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
       },
     },
   },

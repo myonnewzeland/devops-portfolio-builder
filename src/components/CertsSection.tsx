@@ -2,38 +2,46 @@ import { Award, GraduationCap, Languages } from "lucide-react";
 
 const CertsSection = () => {
   return (
-    <section className="py-20 px-6" id="certs">
+    <section className="py-24 px-6" id="certs">
       <div className="container max-w-4xl">
-        <h2 className="font-mono text-sm text-primary tracking-widest uppercase mb-2">
-          <span className="text-muted-foreground">$</span> ls certifications/
+        <p className="font-display text-xs tracking-[0.3em] text-neon-cyan text-glow-cyan mb-2 uppercase">
+          資格 // Certifications
+        </p>
+        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
+          LOGROS DESBLOQUEADOS
         </h2>
-        <h3 className="text-3xl font-bold text-foreground mb-12">Educación & Certificaciones</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-lg border border-border bg-card card-hover">
-            <GraduationCap size={20} className="text-primary mb-3" />
-            <h4 className="font-mono text-sm font-semibold text-foreground mb-2">Educación</h4>
-            <p className="text-sm text-card-foreground">B.Sc. Ingeniería en Sistemas</p>
-            <p className="text-xs text-muted-foreground">UVEG, México (2024)</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="card-anime p-6">
+            <div className="p-2 rounded-md bg-neon-pink/10 border border-neon-pink/30 w-fit mb-4">
+              <GraduationCap size={20} className="text-neon-pink" />
+            </div>
+            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">Educación</h4>
+            <p className="text-sm font-body text-card-foreground">B.Sc. Ingeniería en Sistemas</p>
+            <p className="text-xs font-body text-muted-foreground">UVEG, México (2024)</p>
           </div>
 
-          <div className="p-6 rounded-lg border border-border bg-card card-hover">
-            <Award size={20} className="text-primary mb-3" />
-            <h4 className="font-mono text-sm font-semibold text-foreground mb-2">Certificaciones</h4>
-            <ul className="space-y-1 text-sm text-card-foreground">
-              <li>Oracle Cloud Foundations</li>
-              <li>IBM Cloud & DevOps Essentials</li>
-              <li>Linux Essentials (LPI)</li>
-              <li>SMCE – Scrum Master</li>
+          <div className="card-anime p-6">
+            <div className="p-2 rounded-md bg-neon-cyan/10 border border-neon-cyan/30 w-fit mb-4">
+              <Award size={20} className="text-neon-cyan" />
+            </div>
+            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">Certificaciones</h4>
+            <ul className="space-y-1.5 text-sm font-body text-card-foreground">
+              <li className="flex gap-2"><span className="text-neon-cyan">✦</span> Oracle Cloud Foundations</li>
+              <li className="flex gap-2"><span className="text-neon-cyan">✦</span> IBM Cloud & DevOps</li>
+              <li className="flex gap-2"><span className="text-neon-cyan">✦</span> Linux Essentials (LPI)</li>
+              <li className="flex gap-2"><span className="text-neon-cyan">✦</span> SMCE – Scrum Master</li>
             </ul>
           </div>
 
-          <div className="p-6 rounded-lg border border-border bg-card card-hover">
-            <Languages size={20} className="text-primary mb-3" />
-            <h4 className="font-mono text-sm font-semibold text-foreground mb-2">Idiomas</h4>
-            <ul className="space-y-1 text-sm text-card-foreground">
-              <li>Español – Nativo</li>
-              <li>Inglés – Avanzado / Profesional</li>
+          <div className="card-anime p-6">
+            <div className="p-2 rounded-md bg-neon-purple/10 border border-neon-purple/30 w-fit mb-4">
+              <Languages size={20} className="text-neon-purple" />
+            </div>
+            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">Idiomas</h4>
+            <ul className="space-y-1.5 text-sm font-body text-card-foreground">
+              <li className="flex gap-2"><span className="text-neon-pink">★</span> Español – Nativo</li>
+              <li className="flex gap-2"><span className="text-neon-cyan">★</span> Inglés – Avanzado</li>
             </ul>
           </div>
         </div>
