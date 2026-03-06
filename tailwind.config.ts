@@ -52,11 +52,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        neon: {
-          pink: "hsl(var(--neon-pink))",
-          cyan: "hsl(var(--neon-cyan))",
-          purple: "hsl(var(--neon-purple))",
-          yellow: "hsl(var(--neon-yellow))",
+        docker: {
+          blue: "hsl(var(--docker-blue))",
+          dark: "hsl(var(--docker-dark))",
+        },
+        k8s: {
+          blue: "hsl(var(--k8s-blue))",
         },
         surface: {
           elevated: "hsl(var(--surface-elevated))",
@@ -81,8 +82,8 @@ export default {
           "50%": { transform: "translateY(-10px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(320 100% 60% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(320 100% 60% / 0.5), 0 0 60px hsl(185 100% 50% / 0.2)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(210 93% 54% / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(210 93% 54% / 0.5), 0 0 60px hsl(221 76% 55% / 0.2)" },
         },
       },
       animation: {
