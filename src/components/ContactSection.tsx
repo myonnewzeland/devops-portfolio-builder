@@ -1,5 +1,5 @@
 import { memo, useState, useCallback, useId } from "react";
-import { AnimateCard } from "./AnimateOnScroll";
+import { AnimateSection } from "./AnimateOnScroll";
 import {
   Send,
   Loader2,
@@ -408,7 +408,7 @@ const ContactSection = memo(() => {
       <div className="container max-w-5xl">
 
         {/* ── Form card — full width ─────────────────────────────────────────── */}
-        <AnimateCard className="card-anime relative overflow-hidden mt-0">
+        <AnimateSection className="card-anime relative overflow-hidden mt-0">
             {/* Decorative top bar */}
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-50 pointer-events-none" />
 
@@ -433,7 +433,7 @@ const ContactSection = memo(() => {
 
             {/* Bottom accent bar */}
             <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-30 pointer-events-none" />
-          </AnimateCard>
+          </AnimateSection>
 
         </div>
     </section>
