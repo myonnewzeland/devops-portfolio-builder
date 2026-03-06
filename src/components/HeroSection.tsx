@@ -17,10 +17,10 @@ const HeroSection = () => {
           {/* Avatar */}
           <div className="shrink-0 animate-fade-up">
             <div className="relative">
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-neon-pink animate-pulse-glow">
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-docker-blue animate-pulse-glow">
                 <img src={avatar} alt="SRE Robot Avatar" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 anime-badge-pink font-display text-[10px] tracking-wider">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 rank-s font-display text-[10px] tracking-wider">
                 SRE LVL 99
               </div>
             </div>
@@ -28,7 +28,7 @@ const HeroSection = () => {
 
           {/* Info */}
           <div className="text-center md:text-left">
-            <p className="font-display text-xs tracking-[0.3em] text-neon-cyan text-glow-cyan mb-3 animate-fade-up uppercase">
+            <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 animate-fade-up uppercase">
               Site Reliability Engineer
             </p>
             <h1
@@ -48,7 +48,7 @@ const HeroSection = () => {
             <div className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               <a
                 href="mailto:yamoshi454@gmail.com"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-neon-pink"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
               >
                 <Mail size={16} /> Email
               </a>
@@ -56,7 +56,7 @@ const HeroSection = () => {
                 href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-neon-cyan"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-k8s-blue"
               >
                 <Linkedin size={16} /> LinkedIn
               </a>

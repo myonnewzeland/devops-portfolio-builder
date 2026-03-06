@@ -1,4 +1,4 @@
-import { ExternalLink, GitBranch, Shield, Cloud, Activity, Server } from "lucide-react";
+import { ExternalLink, GitBranch, Cloud, Activity, Server } from "lucide-react";
 
 const projects = [
   {
@@ -29,7 +29,7 @@ const ProjectsSection = () => {
   return (
     <section className="py-24 px-6" id="projects">
       <div className="container max-w-5xl">
-        <p className="font-display text-xs tracking-[0.3em] text-neon-pink text-glow-pink mb-2 uppercase">
+        <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
           プロジェクト // Projects
         </p>
         <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
@@ -40,14 +40,14 @@ const ProjectsSection = () => {
           {projects.map((project) => (
             <div key={project.title} className="card-anime p-6 md:p-8 relative overflow-hidden">
               {/* Rank */}
-              <div className="absolute top-4 right-4 font-display text-[10px] tracking-widest anime-badge-pink">
+              <div className="absolute top-4 right-4 font-display text-[10px] tracking-widest rank-s">
                 {project.level}
               </div>
 
               {/* Header */}
               <div className="flex items-start gap-3 mb-5">
-                <div className="p-2 rounded-md bg-neon-cyan/10 border border-neon-cyan/30 shrink-0 mt-1">
-                  <Cloud size={20} className="text-neon-cyan" />
+                <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 shrink-0 mt-1">
+                  <Cloud size={20} className="text-docker-blue" />
                 </div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-display font-bold text-foreground tracking-wide">
@@ -57,7 +57,7 @@ const ProjectsSection = () => {
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-body text-neon-cyan hover:text-neon-pink transition-colors mt-1"
+                    className="inline-flex items-center gap-1.5 text-sm font-body text-k8s-blue hover:text-docker-blue transition-colors mt-1"
                   >
                     <GitBranch size={14} /> View repository <ExternalLink size={12} />
                   </a>
@@ -71,26 +71,26 @@ const ProjectsSection = () => {
               {/* Architecture & Highlights grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <h4 className="font-display text-[10px] tracking-[0.2em] text-neon-cyan uppercase mb-3 flex items-center gap-2">
+                  <h4 className="font-display text-[10px] tracking-[0.2em] text-docker-blue uppercase mb-3 flex items-center gap-2">
                     <Server size={14} /> Architecture
                   </h4>
                   <ul className="space-y-1.5">
                     {project.architecture.map((item, i) => (
                       <li key={i} className="text-sm font-body text-card-foreground flex gap-2">
-                        <span className="text-neon-cyan shrink-0">▹</span>
+                        <span className="text-docker-blue shrink-0">▹</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-display text-[10px] tracking-[0.2em] text-neon-pink uppercase mb-3 flex items-center gap-2">
+                  <h4 className="font-display text-[10px] tracking-[0.2em] text-k8s-blue uppercase mb-3 flex items-center gap-2">
                     <Activity size={14} /> Highlights
                   </h4>
                   <ul className="space-y-1.5">
                     {project.highlights.map((item, i) => (
                       <li key={i} className="text-sm font-body text-card-foreground flex gap-2">
-                        <span className="text-neon-pink shrink-0">▹</span>
+                        <span className="text-k8s-blue shrink-0">▹</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -101,12 +101,12 @@ const ProjectsSection = () => {
               {/* Tech tags */}
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t) => (
-                  <span key={t} className="anime-badge">{t}</span>
+                  <span key={t} className="badge-docker">{t}</span>
                 ))}
               </div>
 
               {/* Decorative bottom line */}
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan opacity-30" />
+              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-30" />
             </div>
           ))}
         </div>
