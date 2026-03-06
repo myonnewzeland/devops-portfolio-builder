@@ -19,10 +19,10 @@ const HeroSection = memo(() => {
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
 
       <div className="relative z-10 container max-w-5xl px-6 py-20">
-        <div className="flex flex-col md:flex-row items-center gap-10">
+        <div className="flex flex-col items-center gap-10 text-center">
           <div className="shrink-0 animate-fade-up">
-            <div className="relative">
-              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-docker-blue animate-pulse-glow">
+            <div className="relative animate-levitate">
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-docker-blue avatar-glow-ring">
                 <picture>
                   <source srcSet="/assets/avatar.webp" type="image/webp" />
                   <img
@@ -42,7 +42,7 @@ const HeroSection = memo(() => {
             </div>
           </div>
 
-          <div className="text-center md:text-left">
+          <div>
             <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 animate-fade-up uppercase">
               DevOps Engineer | FinOps | Cloud Infrastructure
             </p>
@@ -53,7 +53,7 @@ const HeroSection = memo(() => {
               LUIS FERNANDO
             </h1>
             <p
-              className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-2 animate-fade-up leading-relaxed"
+              className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mx-auto mb-2 animate-fade-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
               DevOps Engineer & FinOps practitioner with 5+ years building
@@ -70,7 +70,7 @@ const HeroSection = memo(() => {
             </p>
 
             <div
-              className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up"
+              className="flex flex-wrap justify-center gap-3 animate-fade-up"
               style={{ animationDelay: "0.3s" }}
             >
               <a

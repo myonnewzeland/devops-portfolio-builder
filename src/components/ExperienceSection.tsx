@@ -7,18 +7,11 @@ const experiences = [
     role: "DevOps Engineer / SRE & FinOps",
     period: "Jan 2023 – Jan 2026",
     highlights: [
-      "Banorte – FinOps Governance: Designed end-to-end FinOps operating model for multi-cloud (AWS, Azure, GCP); built FOCUS-aligned data architecture with normalised billing across three clouds for unified USD reporting.",
-      "Built real-time billing pipelines in BigQuery with automated alerts (Python, Bash), reducing manual reporting by 80%.",
-      "Delivered 35–50% sustained cost savings through automated right-sizing, Savings Plans/RI/Spot governance and commitment optimisation.",
-      "Defined enterprise tagging policy and accountability structures so every dollar of cloud spend had an owner.",
+      "FinOps Governance: Designed end-to-end FinOps operating model for multi-cloud (AWS, Azure, GCP); delivered 35–50% sustained cost savings through automated right-sizing, Savings Plans/RI/Spot governance.",
       "Observability stacks (Prometheus, Grafana, Datadog, CloudWatch, Kibana/Loki) for large-scale distributed systems; designed SLI/SLOs and reduced alert fatigue.",
-      "Automated ops with Terraform, Ansible and CI/CD (GitHub Actions, Azure DevOps, TeamCity, Harness.io) — golden configs, zero-touch provisioning and self-healing across 100+ cloud resources.",
-      "Led high-severity incidents end-to-end for banking & energy platforms — runbooks, SOPs, post-mortems — MTTR reduced ~40%.",
-      "Citi / Campari: Hardened microservices on Kubernetes/OpenShift and AWS ECS — canary, blue/green, automated rollbacks — cut deployment cycles by 60%.",
-      "Replaced Redis with DragonflyDB; optimised Spring Boot containers for cold start and memory on latency-sensitive APIs.",
-      "NextEra Energy: Sustained 99.9% SLI for mission-critical energy infrastructure on Amazon ECS and Kubernetes; Lambda automation for health checks.",
-      "Citi: Managed production OpenShift clusters (99.9% uptime); led migration from DeploymentConfig to standard K8s Deployments with GitOps.",
-      "Mentored teammates on SRE mindset; led training on AI-assisted development (watsonx, Copilot); conducted technical interviews.",
+      "Automated ops with Terraform, Ansible and CI/CD (GitHub Actions, Azure DevOps, TeamCity, Harness.io) — golden configs, zero-touch provisioning across 100+ cloud resources.",
+      "Led high-severity incidents end-to-end for banking & energy platforms — runbooks, SOPs, post-mortems — sustained 99.9% uptime.",
+      "Hardened microservices on Kubernetes/OpenShift and AWS ECS — canary, blue/green, automated rollbacks — cut deployment cycles by 60% and MTTR by 40%.",
     ],
     clients: ["Citi", "Banorte", "Campari", "NextEra Energy", "Santander"],
     level: "S-RANK",
@@ -91,7 +84,7 @@ const ExperienceSection = memo(() => {
           {experiences.map((exp) => (
             <AnimateCard
               key={exp.company}
-              className="card-anime p-6 relative overflow-hidden"
+              className="card-anime p-6 relative overflow-hidden border-l-2 border-l-docker-blue"
             >
               <div
                 className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${exp.rankClass}`}
