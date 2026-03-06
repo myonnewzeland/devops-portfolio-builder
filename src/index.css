@@ -199,20 +199,20 @@
   /* Docker container pattern — stacked blocks + connection nodes */
   .circuit-pattern {
     background-image:
-      /* Container block outlines (horizontal rectangles like Docker containers) */
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.07) 20px, transparent 20px),
-      linear-gradient(90deg, transparent 60px, hsl(var(--docker-blue) / 0.07) 61px, transparent 62px),
-      linear-gradient(hsl(var(--docker-blue) / 0.06) 12px, transparent 12px),
-      linear-gradient(transparent 28px, hsl(var(--docker-blue) / 0.06) 29px, transparent 30px),
+      /* Container block outlines */
+      linear-gradient(90deg, hsl(var(--docker-blue) / 0.15) 20px, transparent 20px),
+      linear-gradient(90deg, transparent 60px, hsl(var(--docker-blue) / 0.12) 61px, transparent 62px),
+      linear-gradient(hsl(var(--docker-blue) / 0.12) 12px, transparent 12px),
+      linear-gradient(transparent 28px, hsl(var(--docker-blue) / 0.10) 29px, transparent 30px),
       /* Connection nodes (ports) */
-      radial-gradient(circle at 10px 6px, hsl(var(--docker-blue) / 0.15) 2.5px, transparent 2.5px),
-      radial-gradient(circle at 40px 20px, hsl(var(--k8s-blue) / 0.10) 2px, transparent 2px),
-      radial-gradient(circle at 70px 35px, hsl(var(--docker-blue) / 0.08) 1.5px, transparent 1.5px),
-      /* Orchestration grid lines */
-      linear-gradient(90deg, hsl(var(--k8s-blue) / 0.04) 1px, transparent 1px),
-      linear-gradient(hsl(var(--k8s-blue) / 0.04) 1px, transparent 1px),
-      /* Diagonal network links */
-      linear-gradient(45deg, transparent 47%, hsl(var(--docker-blue) / 0.04) 49%, hsl(var(--docker-blue) / 0.04) 51%, transparent 53%);
+      radial-gradient(circle at 10px 6px, hsl(var(--docker-blue) / 0.30) 3px, transparent 3px),
+      radial-gradient(circle at 40px 20px, hsl(var(--k8s-blue) / 0.20) 2.5px, transparent 2.5px),
+      radial-gradient(circle at 70px 35px, hsl(var(--docker-blue) / 0.18) 2px, transparent 2px),
+      /* Grid lines */
+      linear-gradient(90deg, hsl(var(--k8s-blue) / 0.08) 1px, transparent 1px),
+      linear-gradient(hsl(var(--k8s-blue) / 0.08) 1px, transparent 1px),
+      /* Diagonal links */
+      linear-gradient(45deg, transparent 47%, hsl(var(--docker-blue) / 0.08) 49%, hsl(var(--docker-blue) / 0.08) 51%, transparent 53%);
     background-size:
       80px 40px, 80px 40px, 80px 40px, 80px 40px,
       80px 40px, 80px 40px, 80px 40px,

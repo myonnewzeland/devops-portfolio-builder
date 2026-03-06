@@ -4,7 +4,7 @@ const CyberBackground = memo(() => {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       {/* Circuit board pattern */}
-      <div className="absolute inset-0 circuit-pattern opacity-[0.5]" />
+      <div className="absolute inset-0 circuit-pattern opacity-[1]" />
       {/* Animated grid */}
       <div className="absolute inset-0 cyber-grid opacity-[0.04]" />
 
