@@ -21,32 +21,66 @@ import {
   SiNodedotjs,
   SiSpringboot,
   SiNvidia,
+  SiGooglecloud,
+  SiRedhatopenshift,
+  SiOpentelemetry,
+  SiTailscale,
+  
+  SiFastly,
+  SiBunnydotnet,
+  SiCaddy,
+  SiGooglebigquery,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
 
 const iconMap: Record<string, IconType> = {
+  // Cloud & Distributed
+  GCP: SiGooglecloud,
   Kubernetes: SiKubernetes,
+  OpenShift: SiRedhatopenshift,
   Docker: SiDocker,
+
+  // Observability
+  Prometheus: SiPrometheus,
+  Grafana: SiGrafana,
+  Datadog: SiDatadog,
+  OpenTelemetry: SiOpentelemetry,
+
+  // IaC & CI/CD
   Terraform: SiTerraform,
   Ansible: SiAnsible,
   "GitHub Actions": SiGithubactions,
   Jenkins: SiJenkins,
-  Prometheus: SiPrometheus,
-  Grafana: SiGrafana,
-  Datadog: SiDatadog,
+
+  // Networking
+  "Tailscale/WireGuard": SiTailscale,
+  Cloudflare: SiCloudflare,
+  "Bunny CDN": SiBunnydotnet,
+  Fastly: SiFastly,
+
+  // Scripting & Dev
   Python: SiPython,
   Bash: SiGnubash,
+  "Node.js": SiNodedotjs,
+  "Java Spring Boot": SiSpringboot,
+
+  // Databases
   PostgreSQL: SiPostgresql,
   MySQL: SiMysql,
+  BigQuery: SiGooglebigquery,
   Redis: SiRedis,
-  Cloudflare: SiCloudflare,
+
+  // Linux & Sysadmin
   Ubuntu: SiUbuntu,
   Debian: SiDebian,
   RHEL: SiRedhat,
   Linux: SiLinux,
-  "Node.js": SiNodedotjs,
-  "Java Spring Boot": SiSpringboot,
+
+  // Edge / IoT
   "NVIDIA Jetson": SiNvidia,
+  "Docker on Edge": SiDocker,
+  "Caddy + MagicDNS": SiCaddy,
+  "Jenkins Edge CI/CD": SiJenkins,
 };
 
 interface TechIconProps {
