@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
+import TechIcon from "./TechIcon";
 import {
   Server,
   Activity,
@@ -122,10 +123,19 @@ const SkillsSection = memo(() => {
                 {group.skills.slice(0, MAX_BADGES).map((skill) => (
                   <span
                     key={skill}
-                    className={
+                    className={`inline-flex items-center gap-1.5 ${
                       group.color === "docker" ? "badge-docker" : "badge-k8s"
-                    }
+                    }`}
                   >
+                    <TechIcon
+                      name={skill}
+                      size={12}
+                      className={
+                        group.color === "docker"
+                          ? "text-docker-blue"
+                          : "text-k8s-blue"
+                      }
+                    />
                     {skill}
                   </span>
                 ))}

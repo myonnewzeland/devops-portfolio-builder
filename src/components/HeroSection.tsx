@@ -75,26 +75,26 @@ const HeroSection = memo(() => {
             >
               <a
                 href="mailto:yamoshi454@gmail.com"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
+                className="flex items-center gap-2 px-5 py-3 md:px-4 md:py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
               >
-                <Mail size={16} /> Email
+                <Mail size={18} /> Email
               </a>
               <a
                 href="tel:+64275324147"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
+                className="flex items-center gap-2 px-5 py-3 md:px-4 md:py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
               >
-                <Phone size={16} /> +64 27 532 4147
+                <Phone size={18} /> +64 27 532 4147
               </a>
               <a
                 href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-k8s-blue"
+                className="flex items-center gap-2 px-5 py-3 md:px-4 md:py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-k8s-blue"
               >
-                <Linkedin size={16} /> LinkedIn
+                <Linkedin size={18} /> LinkedIn
               </a>
-              <span className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-card text-sm font-body text-muted-foreground">
-                <MapPin size={16} /> Auckland, NZ
+              <span className="flex items-center gap-2 px-5 py-3 md:px-4 md:py-2.5 rounded-lg border border-border bg-card text-sm font-body text-muted-foreground">
+                <MapPin size={18} /> Auckland, NZ
               </span>
             </div>
           </div>

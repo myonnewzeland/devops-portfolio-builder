@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "#skills", label: "Skills", id: "skills" },
@@ -56,13 +57,13 @@ const Navbar = () => {
         <a href="#" className="font-display text-sm tracking-wider text-docker-blue text-glow-docker">
           LF
         </a>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onMouseEnter={() => handleMouseEnter(link.href)}
-              className={`relative font-display text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-docker-blue after:transition-transform after:duration-300 ${
+              className={`relative font-display text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 hidden md:inline-block after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-docker-blue after:transition-transform after:duration-300 ${
                 activeSection === link.id
                   ? "text-docker-blue after:scale-x-100 after:origin-left"
                   : "text-muted-foreground hover:text-docker-blue after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left"
@@ -71,6 +72,7 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

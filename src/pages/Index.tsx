@@ -6,6 +6,7 @@ import SectionSkeleton from "@/components/SectionSkeleton";
 
 // Below-the-fold sections — loaded lazily after hero is visible
 const SkillsSection = lazy(() => import("@/components/SkillsSection"));
+const ClientLogos = lazy(() => import("@/components/ClientLogos"));
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const CertsSection = lazy(() => import("@/components/CertsSection"));
@@ -20,6 +21,10 @@ const Index = () => {
       <HeroSection />
 
       {/* Below-the-fold — lazy loaded */}
+      <Suspense fallback={<div className="py-8" />}>
+        <ClientLogos />
+      </Suspense>
+
       <div className="section-divider mx-auto max-w-4xl" />
       <Suspense fallback={<SectionSkeleton />}>
         <SkillsSection />
