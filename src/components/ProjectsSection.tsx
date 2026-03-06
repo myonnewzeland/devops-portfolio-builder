@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { ExternalLink, GitBranch, Cloud, Activity, Server, Package } from "lucide-react";
+import { ExternalLink, GitBranch, Cloud, Activity, Server, Package, Layout } from "lucide-react";
 
 const projects = [
   {
@@ -25,6 +25,23 @@ const projects = [
     tech: ["Terraform", "AWS", "Podman", "Caddy", "CloudWatch", "Ghost CMS"],
     level: "S-RANK",
     icon: Cloud,
+  },
+  {
+    title: "DevOps Portfolio Builder",
+    repo: "https://github.com/myonnewzeland/devops-portfolio-builder",
+    description:
+      "Anime/cyberpunk-themed portfolio site for DevOps & SRE engineers. Built with React, TypeScript and Tailwind CSS — featuring Docker & Kubernetes brand colors, framer-motion scroll animations, lazy-loaded sections and a responsive sticky navbar.",
+    architecture: null,
+    highlights: [
+      "React + TypeScript + Vite for fast builds",
+      "Framer Motion scroll animations with staggered cards",
+      "Docker Blue & Kubernetes Blue design system",
+      "Lazy-loaded sections with Suspense & prefetch on hover",
+      "Fully responsive cyberpunk aesthetic",
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    level: "A-RANK",
+    icon: Layout,
   },
   {
     title: "Loc-OS Linux — Open Source Maintainer",
