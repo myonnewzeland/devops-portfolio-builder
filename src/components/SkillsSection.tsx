@@ -38,7 +38,7 @@ const skillGroups = [
   {
     icon: Shield,
     title: "Networking",
-    skills: ["VPC Design", "DNS", "Load Balancing", "Tailscale/WireGuard", "Cloudflare", "Firewalls"],
+    skills: ["VPC Design", "DNS", "Load Balancing", "Tailscale/WireGuard", "Cloudflare", "Bunny CDN", "Fastly", "Firewalls"],
     color: "k8s" as const,
   },
   {
