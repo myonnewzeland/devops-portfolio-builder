@@ -1,41 +1,158 @@
 import { memo } from "react";
-import { Server, Activity, Cloud, Terminal, Shield, GitBranch } from "lucide-react";
+import {
+  Server,
+  Activity,
+  Cloud,
+  Terminal,
+  Shield,
+  GitBranch,
+  Database,
+  Cpu,
+  DollarSign,
+  AlertTriangle,
+} from "lucide-react";
 
 const skillGroups = [
   {
+    icon: Cloud,
+    title: "Cloud & Distributed",
+    skills: [
+      "AWS (ECS, EC2, Lambda, RDS, S3, DynamoDB, CloudFront, Route 53, IAM, VPC, SQS/SNS)",
+      "Azure (AKS, DevOps, Container Apps)",
+      "GCP (BigQuery, Compute Engine, Cloud Storage)",
+      "Kubernetes",
+      "OpenShift",
+      "Docker",
+      "Helm",
+      "ArgoCD",
+      "Amazon ECS",
+    ],
+    color: "docker" as const,
+  },
+  {
     icon: Activity,
     title: "Observability & SRE",
-    skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "ELK", "OpenTelemetry", "SLI/SLO"],
+    skills: [
+      "Prometheus",
+      "Grafana",
+      "Datadog",
+      "CloudWatch",
+      "Kibana",
+      "Loki",
+      "OpenTelemetry",
+      "SLI/SLO",
+    ],
     color: "docker" as const,
   },
   {
     icon: GitBranch,
-    title: "Automation & CI/CD",
-    skills: ["Terraform", "Ansible", "GitHub Actions", "Azure DevOps", "GitLab CI", "Harness.io"],
+    title: "IaC & CI/CD",
+    skills: [
+      "Terraform",
+      "Ansible",
+      "CloudFormation",
+      "ARM Templates",
+      "GitOps",
+      "GitHub Actions",
+      "Azure DevOps",
+      "GitLab CI",
+      "Jenkins",
+      "TeamCity",
+      "Harness.io",
+    ],
     color: "k8s" as const,
-  },
-  {
-    icon: Cloud,
-    title: "Cloud & Distributed",
-    skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker", "ECS", "Helm"],
-    color: "docker" as const,
   },
   {
     icon: Shield,
     title: "Networking",
-    skills: ["TCP/IP", "DNS", "VPN", "Firewalls", "L3 Troubleshooting"],
+    skills: [
+      "VPC Design",
+      "DNS",
+      "Load Balancing",
+      "TCP/IP",
+      "VPNs (Tailscale, WireGuard)",
+      "Firewalls",
+      "Cloudflare",
+      "L3 Troubleshooting",
+    ],
     color: "k8s" as const,
   },
   {
     icon: Terminal,
-    title: "Dev & Scripting",
-    skills: ["Python", "Bash", "SQL", "BigQuery", "Git", "GitOps"],
+    title: "Scripting & Dev",
+    skills: [
+      "Python",
+      "Bash (Advanced)",
+      "PowerShell",
+      "SQL",
+      "Java Spring Boot",
+      "Node.js",
+      "Git",
+    ],
     color: "docker" as const,
+  },
+  {
+    icon: Database,
+    title: "Databases",
+    skills: [
+      "PostgreSQL",
+      "MySQL",
+      "BigQuery",
+      "Redis",
+      "DragonflyDB",
+      "MongoDB",
+      "DynamoDB",
+    ],
+    color: "k8s" as const,
   },
   {
     icon: Server,
     title: "Linux & Sysadmin",
-    skills: ["Ubuntu", "Debian", "RHEL", "Performance Tuning", "Log Analysis"],
+    skills: [
+      "Ubuntu",
+      "Debian",
+      "RHEL",
+      "Performance Tuning",
+      "Log Analysis",
+    ],
+    color: "docker" as const,
+  },
+  {
+    icon: AlertTriangle,
+    title: "SRE Practices",
+    skills: [
+      "Incident Management",
+      "On-Call Rotations",
+      "Runbooks/SOPs",
+      "Capacity Planning",
+      "Post-Mortems",
+    ],
+    color: "k8s" as const,
+  },
+  {
+    icon: Cpu,
+    title: "Edge / IoT",
+    skills: [
+      "NVIDIA Jetson",
+      "Docker on Edge",
+      "Caddy + Tailscale MagicDNS",
+      "Prometheus Device Telemetry",
+      "Jenkins Edge CI/CD",
+    ],
+    color: "docker" as const,
+  },
+  {
+    icon: DollarSign,
+    title: "FinOps",
+    skills: [
+      "FOCUS Data Models",
+      "Multi-Cloud Cost Governance",
+      "BigQuery Billing Pipelines",
+      "Spot / CUDs",
+      "Right-Sizing",
+      "Showback / Chargeback",
+      "Tagging Policy",
+    ],
     color: "k8s" as const,
   },
 ];
@@ -71,7 +188,11 @@ const SkillsSection = memo(() => {
                 >
                   <group.icon
                     size={18}
-                    className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"}
+                    className={
+                      group.color === "docker"
+                        ? "text-docker-blue"
+                        : "text-k8s-blue"
+                    }
                   />
                 </div>
                 <h4 className="font-display text-xs tracking-wider text-foreground uppercase">
@@ -82,7 +203,9 @@ const SkillsSection = memo(() => {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className={group.color === "docker" ? "badge-docker" : "badge-k8s"}
+                    className={
+                      group.color === "docker" ? "badge-docker" : "badge-k8s"
+                    }
                   >
                     {skill}
                   </span>
