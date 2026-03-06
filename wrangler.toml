@@ -1,0 +1,6 @@
+name = "devops-portfolio-builder"
+compatibility_date = "2026-03-06"
+compatibility_flags = []
+
+# Serve the Vite build output as static assets via Cloudflare Workers Assets
+assets = { directory = "./dist" }

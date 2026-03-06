@@ -1,73 +1,63 @@
-# Welcome to your Lovable project
+# devops-portfolio-builder
 
-## Project info
+Portfolio personal de **Luis Fernando Navarrete Estrada** — Site Reliability Engineer con 5+ años en sistemas distribuidos, observabilidad y automatización de infraestructura.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**Live:** https://luisfernando.dev
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Stack
 
-**Use Lovable**
+| | |
+|---|---|
+| Framework | React 18 + TypeScript |
+| Build | Vite 7 + SWC |
+| Estilos | Tailwind CSS v3 + shadcn/ui |
+| Deploy | Cloudflare Pages |
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Optimizaciones implementadas
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Lazy loading** — secciones below-the-fold cargadas con `React.lazy` + `Suspense`
+- **Code splitting** — chunks separados: `vendor-react`, `vendor-radix`, `vendor-icons`, `vendor-data`, `vendor-ui`
+- **Compresión** — gzip + brotli en todos los assets de producción
+- **WebP** — imágenes convertidas con fallback PNG (`avatar.webp` 50KB vs 281KB original)
+- **Prefetch on-hover** — los chunks de cada sección se prefetchean al hacer hover en el navbar
+- **Error Boundary** — captura global de errores con UI de recuperación
+- **SEO** — OG, Twitter Card, JSON-LD structured data, canonical, preload hints
 
-**Use your preferred IDE**
+## Desarrollo local
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+npm install
+npm run dev        # http://localhost:8080
+npm run build      # build de producción
+npm run preview    # preview del build
 ```
 
-**Edit a file directly in GitHub**
+> Requiere Node.js 18+ y npm 9+
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Variables de entorno
 
-**Use GitHub Codespaces**
+Copia `.env.example` a `.env` y ajusta los valores:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+cp .env.example .env
+```
 
-## What technologies are used for this project?
+## Estructura
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+src/
+├── components/
+│   ├── Navbar.tsx          # Fixed nav con prefetch on-hover
+│   ├── HeroSection.tsx     # Above-the-fold, eager load
+│   ├── SkillsSection.tsx   # Lazy
+│   ├── ProjectsSection.tsx # Lazy
+│   ├── ExperienceSection.tsx # Lazy
+│   ├── CertsSection.tsx    # Lazy
+│   ├── FooterSection.tsx   # Lazy
+│   ├── ErrorBoundary.tsx   # Global error handler
+│   └── SectionSkeleton.tsx # Loading fallback
+└── pages/
+    └── Index.tsx           # Orquesta lazy loading
+```
