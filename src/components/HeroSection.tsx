@@ -90,11 +90,16 @@ const HeroSection = memo(() => {
               by up to 50%, and keep systems running at 99.9%+ uptime.
             </p>
             <p
-              className="text-xs font-body text-muted-foreground mb-6 animate-fade-up flex items-center justify-center gap-1.5"
+              className="text-xs font-body text-muted-foreground mb-6 animate-fade-up"
               style={{ animationDelay: "0.25s" }}
             >
-              <MapPin size={14} className="text-docker-blue" />
-              Working Holiday Visa — full work rights until Mar 2027 · Open to sponsorship
+              <span className="inline-flex items-center justify-center gap-1.5">
+                <MapPin size={13} className="text-docker-blue shrink-0" aria-hidden="true" />
+                Auckland, NZ · Working Holiday Visa (full rights until Mar 2027)
+              </span>
+              <span className="block mt-0.5 text-center">
+                Open to sponsorship
+              </span>
             </p>
 
             {/* Contact links */}

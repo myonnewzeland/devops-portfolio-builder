@@ -58,8 +58,52 @@ const Navbar = () => {
       }`}
     >
       <div className="container max-w-6xl px-6 py-4 flex items-center justify-between">
-        <a href="#" className="font-display text-sm tracking-wider text-docker-blue text-glow-docker">
-          LF
+        <a
+          href="#"
+          aria-label="Luis Fernando — home"
+          className="flex items-center gap-2 group"
+        >
+          {/* Hexagon monogram — Docker-inspired geometry */}
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            className="transition-transform duration-300 group-hover:scale-110"
+          >
+            {/* Hex border with glow */}
+            <polygon
+              points="16,2 28,9 28,23 16,30 4,23 4,9"
+              fill="none"
+              stroke="hsl(210 93% 54%)"
+              strokeWidth="1.5"
+              className="drop-shadow-[0_0_6px_hsl(210_93%_54%/0.8)]"
+            />
+            {/* Inner hex fill — subtle */}
+            <polygon
+              points="16,5 25.5,10.5 25.5,21.5 16,27 6.5,21.5 6.5,10.5"
+              fill="hsl(210 93% 54% / 0.08)"
+            />
+            {/* Monogram "LF" */}
+            <text
+              x="16"
+              y="20.5"
+              textAnchor="middle"
+              fontFamily="Alata, sans-serif"
+              fontSize="10"
+              fontWeight="700"
+              letterSpacing="0.5"
+              fill="hsl(210 93% 54%)"
+            >
+              LF
+            </text>
+          </svg>
+          {/* Wordmark — hidden on very small screens */}
+          <span className="hidden sm:block font-display text-xs tracking-[0.2em] text-docker-blue text-glow-docker uppercase">
+            Luis Fernando
+          </span>
         </a>
 
         {/* Desktop links */}
