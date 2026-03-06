@@ -196,6 +196,18 @@
     background-size: 60px 60px;
   }
 
+  /* Circuit board pattern */
+  .circuit-pattern {
+    background-image:
+      radial-gradient(circle at 25px 25px, hsl(var(--docker-blue) / 0.12) 2px, transparent 2px),
+      radial-gradient(circle at 75px 75px, hsl(var(--k8s-blue) / 0.08) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, hsl(var(--docker-blue) / 0.06) 1px, transparent 1px),
+      linear-gradient(hsl(var(--docker-blue) / 0.06) 1px, transparent 1px),
+      linear-gradient(45deg, transparent 48%, hsl(var(--docker-blue) / 0.04) 49%, hsl(var(--docker-blue) / 0.04) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, hsl(var(--k8s-blue) / 0.03) 49%, hsl(var(--k8s-blue) / 0.03) 51%, transparent 52%);
+    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px, 100px 100px, 100px 100px;
+  }
+
   /* Scan line effect */
   .scan-line {
     background: repeating-linear-gradient(
