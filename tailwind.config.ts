@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Orbitron", "sans-serif"],
-        body: ["Rajdhani", "sans-serif"],
+        display: ["Alata", "sans-serif"],
+        body: ["Josefin Sans", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
