@@ -1,15 +1,10 @@
 import { memo, useState, useCallback, useId } from "react";
-import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
+import { AnimateCard } from "./AnimateOnScroll";
 import {
-  Mail,
-  Linkedin,
   Send,
   Loader2,
   CheckCircle2,
   AlertCircle,
-  Clock,
-  MapPin,
-  Zap,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -118,28 +113,6 @@ const inputBase =
 
 const inputIdle  = "border-border";
 const inputError = "border-destructive focus:ring-[hsl(var(--destructive)/0.3)] focus:border-destructive";
-
-// ─── Sidebar info cards data ──────────────────────────────────────────────────
-
-const SIDEBAR_ITEMS = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "yamoshi454@gmail.com",
-    href: "mailto:yamoshi454@gmail.com",
-    ariaLabel: "Send an email to Luis Fernando",
-    colorClass: "docker" as const,
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "/in/luis-fernando-navarrete",
-    href: "https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183",
-    ariaLabel: "Visit Luis Fernando's LinkedIn profile (opens in new tab)",
-    colorClass: "k8s" as const,
-    external: true,
-  },
-] as const;
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
@@ -434,120 +407,8 @@ const ContactSection = memo(() => {
     >
       <div className="container max-w-5xl">
 
-        {/* ── Heading block ──────────────────────────────────────────────────── */}
-        <AnimateSection>
-          <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
-            連絡先 // Contact
-          </p>
-          <h2 className="text-2xl md:text-4xl font-display font-bold gradient-text neon-underline inline-block pb-2">
-            LET'S TALK RELIABILITY
-          </h2>
-
-          {/* Value props — row on desktop, compact 2-col grid on mobile */}
-          <div className="mt-5 grid grid-cols-2 sm:flex sm:flex-row gap-2 sm:gap-6">
-            {[
-              { icon: Zap,    text: "35–50% cost savings" },
-              { icon: Clock,  text: "99.9% uptime" },
-              { icon: MapPin, text: "NZ · Remote · Visa OK" },
-            ].map(({ icon: Icon, text }) => (
-              <span
-                key={text}
-                className="inline-flex items-center gap-1.5 font-body text-xs sm:text-sm text-card-foreground"
-              >
-                <Icon size={13} className="text-docker-blue shrink-0" aria-hidden="true" />
-                {text}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-sm font-body text-muted-foreground max-w-xl mt-3 leading-relaxed">
-            Open to Senior DevOps / SRE / FinOps roles in NZ and remote,
-            with or without visa sponsorship.
-          </p>
-        </AnimateSection>
-
-        {/* ── Content grid ───────────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8 mt-12">
-
-          {/* ── Left: quick-reach sidebar ────────────────────────────────────── */}
-          <StaggerContainer className="flex flex-col gap-4">
-
-            {/* Email + LinkedIn */}
-            {SIDEBAR_ITEMS.map((item) => {
-              const { icon: Icon, label, value, href, ariaLabel, colorClass } = item;
-              const isDocker = colorClass === "docker";
-              const isExternal = "external" in item && item.external === true;
-              return (
-                <AnimateCard
-                  key={label}
-                  className="card-anime p-5 flex items-center gap-4 group"
-                >
-                  <div
-                    className={`p-2 rounded-md shrink-0 transition-colors ${
-                      isDocker
-                        ? "bg-docker-blue/10 border border-docker-blue/30 group-hover:bg-docker-blue/20"
-                        : "bg-k8s-blue/10 border border-k8s-blue/30 group-hover:bg-k8s-blue/20"
-                    }`}
-                  >
-                    <Icon
-                      size={18}
-                      className={isDocker ? "text-docker-blue" : "text-k8s-blue"}
-                      aria-hidden="true"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="font-display text-[10px] tracking-wider text-muted-foreground uppercase">
-                      {label}
-                    </p>
-                    <a
-                      href={href}
-                      {...(isExternal
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                      className={`text-sm font-body text-card-foreground transition-colors truncate block ${
-                        isDocker
-                          ? "hover:text-docker-blue"
-                          : "hover:text-k8s-blue"
-                      }`}
-                      aria-label={ariaLabel}
-                    >
-                      {value}
-                    </a>
-                  </div>
-                </AnimateCard>
-              );
-            })}
-
-            {/* Availability status */}
-            <AnimateCard className="card-anime p-5 relative overflow-hidden">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden="true">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                </span>
-                <p className="font-display text-[10px] tracking-wider text-muted-foreground uppercase">
-                  Status
-                </p>
-              </div>
-              <p className="font-body text-sm text-foreground font-medium">
-                Open to opportunities
-              </p>
-              <p className="font-mono text-[10px] text-muted-foreground mt-1">
-                NZ / Remote · Visa sponsorship welcome
-              </p>
-              {/* Bottom accent bar — parent needs relative + overflow-hidden (both present) */}
-              <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-30" />
-            </AnimateCard>
-
-            {/* Response time notice */}
-            <p className="font-mono text-[10px] text-muted-foreground/50 px-1 leading-relaxed">
-              {"// Response time: < 24 h on business days."}
-            </p>
-
-          </StaggerContainer>
-
-          {/* ── Right: form card ──────────────────────────────────────────────── */}
-          <AnimateCard className="card-anime relative overflow-hidden">
+        {/* ── Form card — full width ─────────────────────────────────────────── */}
+        <AnimateCard className="card-anime relative overflow-hidden mt-0">
             {/* Decorative top bar */}
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-50 pointer-events-none" />
 
@@ -575,7 +436,6 @@ const ContactSection = memo(() => {
           </AnimateCard>
 
         </div>
-      </div>
     </section>
   );
 });
