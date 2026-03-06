@@ -18,7 +18,7 @@ const HeroSection = () => {
           <div className="shrink-0 animate-fade-up">
             <div className="relative">
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-neon-pink animate-pulse-glow">
-                <img src={avatar} alt="Luis Fernando - Anime Avatar" className="w-full h-full object-cover" />
+                <img src={avatar} alt="SRE Robot Avatar" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 anime-badge-pink font-display text-[10px] tracking-wider">
                 SRE LVL 99
