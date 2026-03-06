@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Mail, Linkedin, MapPin, Download, Calendar } from "lucide-react";
+import { Mail, Linkedin, MapPin } from "lucide-react";
 
 const HeroSection = memo(() => {
   return (
@@ -68,29 +68,7 @@ const HeroSection = memo(() => {
               Working Holiday Visa — full work rights until Mar 2027 · Open to sponsorship
             </p>
 
-            {/* Primary CTAs */}
-            <div
-              className="flex flex-wrap justify-center gap-3 animate-fade-up mb-4"
-              style={{ animationDelay: "0.3s" }}
-            >
-              <a
-                href="/Luis_Fernando_CV.pdf"
-                download
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-display text-sm tracking-wider uppercase
-                  bg-[hsl(var(--docker-blue))] text-white hover:bg-[hsl(var(--docker-blue)/0.85)] transition-colors shadow-lg shadow-[hsl(var(--docker-blue)/0.25)]"
-              >
-                <Download size={16} /> Download CV
-              </a>
-              <a
-                href="https://calendly.com/yamoshi454/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-display text-sm tracking-wider uppercase
-                  border border-[hsl(var(--k8s-blue)/0.5)] bg-[hsl(var(--k8s-blue)/0.1)] text-[hsl(var(--k8s-blue))] hover:bg-[hsl(var(--k8s-blue)/0.2)] transition-colors"
-              >
-                <Calendar size={16} /> Book a 15-min Call
-              </a>
-            </div>
+            {/* Contact links */}
 
             {/* Secondary links */}
             <div
