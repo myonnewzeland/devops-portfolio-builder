@@ -50,6 +50,9 @@ const CertsSection = memo(() => {
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> SMCE – Scrum Master
               </li>
+              <li className="flex gap-2">
+                <span className="text-docker-blue">✦</span> AWS Cloud Practitioner (Foundational)
+              </li>
             </ul>
           </AnimateCard>
 
