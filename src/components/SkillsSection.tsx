@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
 import {
   Server,
   Activity,
@@ -161,22 +162,20 @@ const SkillsSection = memo(() => {
   return (
     <section className="py-24 px-6" id="skills">
       <div className="container max-w-6xl">
-        <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
-          スキル // Skills
-        </p>
-        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          SKILLS
-        </h2>
+        <AnimateSection>
+          <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
+            スキル // Skills
+          </p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
+            SKILLS
+          </h2>
+        </AnimateSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-          {skillGroups.map((group, i) => (
-            <div
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {skillGroups.map((group) => (
+            <AnimateCard
               key={group.title}
               className="card-anime p-6"
-              style={{
-                animationDelay: `${i * 0.1}s`,
-                willChange: "transform, opacity",
-              }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div
@@ -211,9 +210,9 @@ const SkillsSection = memo(() => {
                   </span>
                 ))}
               </div>
-            </div>
+            </AnimateCard>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

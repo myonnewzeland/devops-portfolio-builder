@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
 import { ExternalLink, GitBranch, Cloud, Activity, Server, Package } from "lucide-react";
 
 const projects = [
@@ -47,19 +48,20 @@ const ProjectsSection = memo(() => {
   return (
     <section className="py-24 px-6" id="projects">
       <div className="container max-w-5xl">
-        <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
-          プロジェクト // Projects
-        </p>
-        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          PROJECTS
-        </h2>
+        <AnimateSection>
+          <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
+            プロジェクト // Projects
+          </p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
+            PROJECTS
+          </h2>
+        </AnimateSection>
 
-        <div className="space-y-8 mt-8">
+        <StaggerContainer className="space-y-8 mt-8">
           {projects.map((project) => (
-            <div
+            <AnimateCard
               key={project.title}
               className="card-anime p-6 md:p-8 relative overflow-hidden"
-              style={{ willChange: "transform, opacity" }}
             >
               <div className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${project.level === "S-RANK" ? "rank-s" : "rank-a"}`}>
                 {project.level}
@@ -146,9 +148,9 @@ const ProjectsSection = memo(() => {
               </div>
 
               <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-30" />
-            </div>
+            </AnimateCard>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
