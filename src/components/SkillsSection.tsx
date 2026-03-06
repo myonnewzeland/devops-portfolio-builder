@@ -13,148 +13,68 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
+const MAX_BADGES = 6;
+
 const skillGroups = [
   {
     icon: Cloud,
     title: "Cloud & Distributed",
-    skills: [
-      "AWS (ECS, EC2, Lambda, RDS, S3, DynamoDB, CloudFront, Route 53, IAM, VPC, SQS/SNS)",
-      "Azure (AKS, DevOps, Container Apps)",
-      "GCP (BigQuery, Compute Engine, Cloud Storage)",
-      "Kubernetes",
-      "OpenShift",
-      "Docker",
-      "Helm",
-      "ArgoCD",
-      "Amazon ECS",
-    ],
+    skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker"],
     color: "docker" as const,
   },
   {
     icon: Activity,
     title: "Observability & SRE",
-    skills: [
-      "Prometheus",
-      "Grafana",
-      "Datadog",
-      "CloudWatch",
-      "Kibana",
-      "Loki",
-      "OpenTelemetry",
-      "SLI/SLO",
-    ],
+    skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "Loki", "OpenTelemetry"],
     color: "docker" as const,
   },
   {
     icon: GitBranch,
     title: "IaC & CI/CD",
-    skills: [
-      "Terraform",
-      "Ansible",
-      "CloudFormation",
-      "ARM Templates",
-      "GitOps",
-      "GitHub Actions",
-      "Azure DevOps",
-      "GitLab CI",
-      "Jenkins",
-      "TeamCity",
-      "Harness.io",
-    ],
+    skills: ["Terraform", "Ansible", "GitHub Actions", "GitOps", "Jenkins", "Harness.io"],
     color: "k8s" as const,
   },
   {
     icon: Shield,
     title: "Networking",
-    skills: [
-      "VPC Design",
-      "DNS",
-      "Load Balancing",
-      "TCP/IP",
-      "VPNs (Tailscale, WireGuard)",
-      "Firewalls",
-      "Cloudflare",
-      "L3 Troubleshooting",
-    ],
+    skills: ["VPC Design", "DNS", "Load Balancing", "Tailscale/WireGuard", "Cloudflare", "Firewalls"],
     color: "k8s" as const,
   },
   {
     icon: Terminal,
     title: "Scripting & Dev",
-    skills: [
-      "Python",
-      "Bash (Advanced)",
-      "PowerShell",
-      "SQL",
-      "Java Spring Boot",
-      "Node.js",
-      "Git",
-    ],
+    skills: ["Python", "Bash", "PowerShell", "SQL", "Java Spring Boot", "Node.js"],
     color: "docker" as const,
   },
   {
     icon: Database,
     title: "Databases",
-    skills: [
-      "PostgreSQL",
-      "MySQL",
-      "BigQuery",
-      "Redis",
-      "DragonflyDB",
-      "MongoDB",
-      "DynamoDB",
-    ],
+    skills: ["PostgreSQL", "MySQL", "BigQuery", "Redis", "DragonflyDB", "DynamoDB"],
     color: "k8s" as const,
   },
   {
     icon: Server,
     title: "Linux & Sysadmin",
-    skills: [
-      "Ubuntu",
-      "Debian",
-      "RHEL",
-      "Performance Tuning",
-      "Log Analysis",
-    ],
-    color: "docker" as const,
-  },
-  {
-    icon: AlertTriangle,
-    title: "SRE Practices",
-    skills: [
-      "Incident Management",
-      "On-Call Rotations",
-      "Runbooks/SOPs",
-      "Capacity Planning",
-      "Post-Mortems",
-    ],
-    color: "k8s" as const,
-  },
-  {
-    icon: Cpu,
-    title: "Edge / IoT",
-    skills: [
-      "NVIDIA Jetson",
-      "Docker on Edge",
-      "Caddy + Tailscale MagicDNS",
-      "Prometheus Device Telemetry",
-      "Jenkins Edge CI/CD",
-    ],
+    skills: ["Ubuntu", "Debian", "RHEL", "Performance Tuning", "Log Analysis"],
     color: "docker" as const,
   },
   {
     icon: DollarSign,
     title: "FinOps",
-    skills: [
-      "FOCUS Data Models",
-      "Multi-Cloud Cost Governance",
-      "BigQuery Billing Pipelines",
-      "Spot / CUDs",
-      "Right-Sizing",
-      "Showback / Chargeback",
-      "Tagging Policy",
-    ],
+    skills: ["FOCUS Data Models", "Multi-Cloud Cost Gov.", "Spot / CUDs", "Right-Sizing", "Showback", "Tagging Policy"],
     color: "k8s" as const,
+  },
+  {
+    icon: AlertTriangle,
+    title: "SRE Practices",
+    skills: ["Incident Management", "On-Call Rotations", "Runbooks/SOPs", "Capacity Planning", "Post-Mortems"],
+    color: "k8s" as const,
+  },
+  {
+    icon: Cpu,
+    title: "Edge / IoT",
+    skills: ["NVIDIA Jetson", "Docker on Edge", "Caddy + MagicDNS", "Device Telemetry", "Jenkins Edge CI/CD"],
+    color: "docker" as const,
   },
 ];
 
@@ -199,7 +119,7 @@ const SkillsSection = memo(() => {
                 </h4>
               </div>
               <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
+                {group.skills.slice(0, MAX_BADGES).map((skill) => (
                   <span
                     key={skill}
                     className={

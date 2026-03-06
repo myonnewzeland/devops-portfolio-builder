@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 
 const navLinks = [
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#certs", label: "Certifications" },
+  { href: "#skills", label: "Skills", id: "skills" },
+  { href: "#projects", label: "Projects", id: "projects" },
+  { href: "#experience", label: "Experience", id: "experience" },
+  { href: "#certs", label: "Certifications", id: "certs" },
 ];
 
-// Section IDs map to their lazy-loaded module paths for prefetch
 const sectionModules: Record<string, () => Promise<unknown>> = {
   "#skills": () => import("@/components/SkillsSection"),
   "#projects": () => import("@/components/ProjectsSection"),
@@ -17,10 +16,22 @@ const sectionModules: Record<string, () => Promise<unknown>> = {
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
-  // useCallback prevents re-creating handler on every render
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 50);
+
+    // Determine active section
+    const sections = navLinks.map((l) => l.id);
+    let current = "";
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 120) current = id;
+      }
+    }
+    setActiveSection(current);
   }, []);
 
   useEffect(() => {
@@ -28,7 +39,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Prefetch the section's chunk when user hovers a nav link
   const handleMouseEnter = useCallback((href: string) => {
     const prefetch = sectionModules[href];
     if (prefetch) prefetch();
@@ -52,7 +62,11 @@ const Navbar = () => {
               key={link.href}
               href={link.href}
               onMouseEnter={() => handleMouseEnter(link.href)}
-              className="relative font-display text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-docker-blue transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-docker-blue after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
+              className={`relative font-display text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-docker-blue after:transition-transform after:duration-300 ${
+                activeSection === link.id
+                  ? "text-docker-blue after:scale-x-100 after:origin-left"
+                  : "text-muted-foreground hover:text-docker-blue after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left"
+              }`}
             >
               {link.label}
             </a>

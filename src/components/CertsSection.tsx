@@ -24,7 +24,10 @@ const CertsSection = memo(() => {
               Education
             </h4>
             <p className="text-sm font-body text-card-foreground">B.Sc. Systems Engineering</p>
-            <p className="text-xs font-body text-muted-foreground">UVEG, Mexico (2024)</p>
+            <p className="text-xs font-body text-muted-foreground">UVEG, Mexico</p>
+            <span className="inline-block mt-3 px-2.5 py-1 text-[10px] font-display tracking-wider uppercase rounded-md border border-docker-blue/30 bg-docker-blue/10 text-docker-blue">
+              ✓ Graduated 2024
+            </span>
           </AnimateCard>
 
           <AnimateCard className="card-anime p-6">
@@ -35,6 +38,9 @@ const CertsSection = memo(() => {
               Certifications
             </h4>
             <ul className="space-y-1.5 text-sm font-body text-card-foreground">
+              <li className="flex gap-2">
+                <span className="text-docker-blue">✦</span> AWS Cloud Practitioner (Foundational)
+              </li>
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> Oracle Cloud Foundations
               </li>
@@ -49,9 +55,6 @@ const CertsSection = memo(() => {
               </li>
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> SMCE – Scrum Master
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> AWS Cloud Practitioner (Foundational)
               </li>
             </ul>
           </AnimateCard>
