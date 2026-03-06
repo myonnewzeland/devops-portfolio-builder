@@ -64,9 +64,9 @@ const AboutSection = memo(() => (
               <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30">
                 <item.icon size={18} className="text-docker-blue" />
               </div>
-              <h4 className="font-display text-xs tracking-wider text-foreground uppercase">
+              <h3 className="font-display text-xs tracking-wider text-foreground uppercase">
                 {item.title}
-              </h4>
+              </h3>
             </div>
             <p className="text-sm font-body text-card-foreground leading-relaxed">
               {item.text}

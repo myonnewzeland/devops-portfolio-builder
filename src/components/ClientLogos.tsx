@@ -1,14 +1,12 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { Building2 } from "lucide-react";
+import { Landmark, Server } from "lucide-react";
 
 const clients = [
-  { name: "IBM" },
-  { name: "Citi" },
-  { name: "Banorte" },
-  { name: "Santander" },
-  { name: "Campari" },
-  { name: "NextEra Energy" },
+  { name: "IBM", icon: Server },
+  { name: "Citi", icon: Landmark },
+  { name: "Banorte", icon: Landmark },
+  { name: "Santander", icon: Landmark },
 ];
 
 const ClientLogos = memo(() => (
@@ -19,14 +17,14 @@ const ClientLogos = memo(() => (
           Trusted by global enterprises
         </p>
       </AnimateSection>
-      <StaggerContainer className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+      <StaggerContainer className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
         {clients.map((client) => (
           <AnimateCard
             key={client.name}
-            className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity duration-300"
+            className="flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-opacity duration-300"
           >
-            <Building2 size={28} className="text-muted-foreground" />
-            <span className="font-display text-[10px] tracking-wider text-muted-foreground uppercase">
+            <client.icon size={32} className="text-muted-foreground" />
+            <span className="font-display text-[11px] font-bold tracking-widest text-muted-foreground uppercase">
               {client.name}
             </span>
           </AnimateCard>

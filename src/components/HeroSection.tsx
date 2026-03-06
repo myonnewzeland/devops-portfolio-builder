@@ -3,7 +3,10 @@ import { Mail, Linkedin, MapPin } from "lucide-react";
 
 const HeroSection = memo(() => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      aria-label="Introduction"
+    >
       <picture>
         <source
           type="image/avif"
@@ -62,7 +65,8 @@ const HeroSection = memo(() => {
                     width="192"
                     height="192"
                     decoding="async"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
                     className="w-full h-full object-cover"
                   />
                 </picture>

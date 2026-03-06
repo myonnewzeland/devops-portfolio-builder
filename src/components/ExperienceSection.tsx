@@ -93,9 +93,9 @@ const ExperienceSection = memo(() => {
               </div>
 
               <div className="mb-3">
-                <h4 className="text-xl font-display font-bold text-foreground tracking-wide">
+                <h3 className="text-xl font-display font-bold text-foreground tracking-wide">
                   {exp.company}
-                </h4>
+                </h3>
                 <p className="font-body text-sm text-k8s-blue">{exp.role}</p>
                 <p className="font-body text-xs text-muted-foreground mt-0.5">
                   {exp.period}
