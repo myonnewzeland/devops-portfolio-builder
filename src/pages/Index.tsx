@@ -12,6 +12,7 @@ const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const CertsSection = lazy(() => import("@/components/CertsSection"));
 
+const ContactSection = lazy(() => import("@/components/ContactSection"));
 const FooterSection = lazy(() => import("@/components/FooterSection"));
 
 const Index = () => {
@@ -54,6 +55,10 @@ const Index = () => {
         <CertsSection />
       </Suspense>
 
+      <div className="section-divider mx-auto max-w-4xl" />
+      <Suspense fallback={<SectionSkeleton />}>
+        <ContactSection />
+      </Suspense>
 
       <Suspense fallback={<div className="py-10" />}>
         <FooterSection />

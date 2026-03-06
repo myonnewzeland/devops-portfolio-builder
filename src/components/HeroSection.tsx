@@ -24,7 +24,7 @@ const HeroSection = memo(() => {
           src="/assets/hero-bg-1200w.jpg"
           alt=""
           aria-hidden="true"
-          fetchpriority="high"
+          fetchPriority="high"
           width="1600"
           height="900"
           className="absolute inset-0 w-full h-full object-cover object-center -z-10"
