@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
 
 const experiences = [
   {
@@ -77,19 +78,20 @@ const ExperienceSection = memo(() => {
   return (
     <section className="py-24 px-6 bg-surface-elevated" id="experience">
       <div className="container max-w-4xl">
-        <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
-          経験 // Experience
-        </p>
-        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          COMPLETED MISSIONS
-        </h2>
+        <AnimateSection>
+          <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
+            経験 // Experience
+          </p>
+          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
+            COMPLETED MISSIONS
+          </h2>
+        </AnimateSection>
 
-        <div className="space-y-8 mt-8">
+        <StaggerContainer className="space-y-8 mt-8">
           {experiences.map((exp) => (
-            <div
+            <AnimateCard
               key={exp.company}
               className="card-anime p-6 relative overflow-hidden"
-              style={{ willChange: "transform, opacity" }}
             >
               <div
                 className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${exp.rankClass}`}
@@ -133,9 +135,9 @@ const ExperienceSection = memo(() => {
               )}
 
               <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-docker-blue via-k8s-blue to-docker-blue opacity-30" />
-            </div>
+            </AnimateCard>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
