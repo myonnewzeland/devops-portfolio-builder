@@ -5,20 +5,20 @@ const projects = [
     title: "AWS Ghost CMS — Infrastructure as Code",
     repo: "https://github.com/myonnewzeland/terraform-blog",
     description:
-      "Stack de infraestructura production-ready para Ghost CMS en AWS con Terraform y Podman. Incluye CDN, WAF, observabilidad y backups automatizados.",
+      "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups.",
     architecture: [
       "CloudFront + WAF v2 (OWASP Top 10)",
       "EC2 Graviton2 (t4g.small) + Rootless Podman",
-      "RDS MySQL 8.4 encriptado",
+      "Encrypted RDS MySQL 8.4",
       "Route 53 + ACM SSL/TLS",
-      "CloudWatch Dashboard centralizado",
-      "AWS Backup automatizado",
+      "Centralized CloudWatch Dashboard",
+      "Automated AWS Backup",
     ],
     highlights: [
-      "Graviton ARM64 para mejor precio/rendimiento",
-      "IMDSv2, WAF, RDS encriptado, secret headers",
-      "Fix de CSRF para Ghost Admin detrás de CDN",
-      "~$51.50/mes con optimización a ~$39/mes",
+      "Graviton ARM64 for better price/performance",
+      "IMDSv2, WAF, encrypted RDS, secret headers",
+      "CSRF fix for Ghost Admin behind CDN",
+      "~$51.50/mo with optimization to ~$39/mo",
     ],
     tech: ["Terraform", "AWS", "Podman", "Caddy", "CloudWatch", "Ghost CMS"],
     level: "S-RANK",
@@ -33,7 +33,7 @@ const ProjectsSection = () => {
           プロジェクト // Projects
         </p>
         <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          PROYECTOS
+          PROJECTS
         </h2>
 
         <div className="space-y-8 mt-8">
@@ -59,7 +59,7 @@ const ProjectsSection = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm font-body text-neon-cyan hover:text-neon-pink transition-colors mt-1"
                   >
-                    <GitBranch size={14} /> Ver repositorio <ExternalLink size={12} />
+                    <GitBranch size={14} /> View repository <ExternalLink size={12} />
                   </a>
                 </div>
               </div>
@@ -72,7 +72,7 @@ const ProjectsSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <h4 className="font-display text-[10px] tracking-[0.2em] text-neon-cyan uppercase mb-3 flex items-center gap-2">
-                    <Server size={14} /> Arquitectura
+                    <Server size={14} /> Architecture
                   </h4>
                   <ul className="space-y-1.5">
                     {project.architecture.map((item, i) => (

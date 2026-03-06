@@ -3,19 +3,19 @@ import { Server, Activity, Cloud, Terminal, Shield, GitBranch } from "lucide-rea
 const skillGroups = [
   {
     icon: Activity,
-    title: "Observabilidad & SRE",
+    title: "Observability & SRE",
     skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "ELK", "OpenTelemetry", "SLI/SLO"],
     color: "pink" as const,
   },
   {
     icon: GitBranch,
-    title: "Automatización & CI/CD",
+    title: "Automation & CI/CD",
     skills: ["Terraform", "Ansible", "GitHub Actions", "Azure DevOps", "GitLab CI", "Harness.io"],
     color: "cyan" as const,
   },
   {
     icon: Cloud,
-    title: "Cloud & Distribuidos",
+    title: "Cloud & Distributed",
     skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker", "ECS", "Helm"],
     color: "pink" as const,
   },
@@ -47,7 +47,7 @@ const SkillsSection = () => {
           スキル // Skills
         </p>
         <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-          HABILIDADES
+          SKILLS
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
