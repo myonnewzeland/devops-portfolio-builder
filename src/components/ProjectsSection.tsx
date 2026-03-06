@@ -4,6 +4,28 @@ import { ExternalLink, GitBranch, Cloud, Activity, Server, Package, Layout } fro
 
 const projects = [
   {
+    title: "Red Hat OpenShift (ROSA HCP) Terraform Template",
+    repo: "https://github.com/myonnewzeland/setupopenshift",
+    description:
+      "Reusable Infrastructure as Code (IaC) template to provision a Red Hat OpenShift Service on AWS (ROSA) cluster utilizing the Hosted Control Plane (HCP) architecture.",
+    architecture: [
+      "AWS VPC Single-AZ (Multi-Subnet) Topology",
+      "Public Subnets for Ingress LoadBalancer via IGW",
+      "Private Subnets for Worker Nodes via NAT Gateway",
+      "OIDC Configuration & Operator Roles",
+      "RHCS (Red Hat Cloud Services) Integration",
+    ],
+    highlights: [
+      "Abstracted infrastructure definition via Terraform modules",
+      "Automated AWS IAM role creation and trust policies",
+      "AWS Marketplace & Red Hat OCM token authentication",
+      "Dedicated secure subnets for execution layer",
+    ],
+    tech: ["Terraform", "AWS", "OpenShift", "ROSA", "IAM"],
+    level: "S-RANK",
+    icon: Server,
+  },
+  {
     title: "AWS Ghost CMS — Infrastructure as Code",
     repo: "https://github.com/myonnewzeland/terraform-blog",
     description:
