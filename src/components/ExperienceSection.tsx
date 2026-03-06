@@ -57,7 +57,7 @@ const experiences = [
   {
     company: "Freelance (Upwork & Local Clients)",
     role: "Infrastructure Consultant",
-    period: "2019 – 2022",
+    period: "2017 – 2022",
     highlights: [
       "Deployed and maintained VPS and on-premise servers (Ubuntu/Debian) for SMBs and NGOs.",
       "Managed web infrastructure, DNS, SSL and security hardening.",
