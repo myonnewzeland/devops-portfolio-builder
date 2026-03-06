@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const navLinks = [
   { href: "#skills", label: "Skills" },
@@ -7,13 +7,31 @@ const navLinks = [
   { href: "#certs", label: "Certifications" },
 ];
 
+// Section IDs map to their lazy-loaded module paths for prefetch
+const sectionModules: Record<string, () => Promise<unknown>> = {
+  "#skills": () => import("@/components/SkillsSection"),
+  "#projects": () => import("@/components/ProjectsSection"),
+  "#experience": () => import("@/components/ExperienceSection"),
+  "#certs": () => import("@/components/CertsSection"),
+};
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
+  // useCallback prevents re-creating handler on every render
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 50);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  // Prefetch the section's chunk when user hovers a nav link
+  const handleMouseEnter = useCallback((href: string) => {
+    const prefetch = sectionModules[href];
+    if (prefetch) prefetch();
   }, []);
 
   return (
@@ -33,6 +51,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
+              onMouseEnter={() => handleMouseEnter(link.href)}
               className="relative font-display text-[10px] tracking-[0.15em] uppercase text-muted-foreground hover:text-docker-blue transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:bg-docker-blue after:scale-x-0 after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-left"
             >
               {link.label}

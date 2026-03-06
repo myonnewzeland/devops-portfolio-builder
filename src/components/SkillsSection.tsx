@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Server, Activity, Cloud, Terminal, Shield, GitBranch } from "lucide-react";
 
 const skillGroups = [
@@ -39,7 +40,7 @@ const skillGroups = [
   },
 ];
 
-const SkillsSection = () => {
+const SkillsSection = memo(() => {
   return (
     <section className="py-24 px-6" id="skills">
       <div className="container max-w-6xl">
@@ -55,17 +56,34 @@ const SkillsSection = () => {
             <div
               key={group.title}
               className="card-anime p-6"
-              style={{ animationDelay: `${i * 0.1}s` }}
+              style={{
+                animationDelay: `${i * 0.1}s`,
+                willChange: "transform, opacity",
+              }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2 rounded-md ${group.color === "docker" ? "bg-docker-blue/10 border border-docker-blue/30" : "bg-k8s-blue/10 border border-k8s-blue/30"}`}>
-                  <group.icon size={18} className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"} />
+                <div
+                  className={`p-2 rounded-md ${
+                    group.color === "docker"
+                      ? "bg-docker-blue/10 border border-docker-blue/30"
+                      : "bg-k8s-blue/10 border border-k8s-blue/30"
+                  }`}
+                >
+                  <group.icon
+                    size={18}
+                    className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"}
+                  />
                 </div>
-                <h4 className="font-display text-xs tracking-wider text-foreground uppercase">{group.title}</h4>
+                <h4 className="font-display text-xs tracking-wider text-foreground uppercase">
+                  {group.title}
+                </h4>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <span key={skill} className={group.color === "docker" ? "badge-docker" : "badge-k8s"}>
+                  <span
+                    key={skill}
+                    className={group.color === "docker" ? "badge-docker" : "badge-k8s"}
+                  >
                     {skill}
                   </span>
                 ))}
@@ -76,6 +94,8 @@ const SkillsSection = () => {
       </div>
     </section>
   );
-};
+});
+
+SkillsSection.displayName = "SkillsSection";
 
 export default SkillsSection;

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const experiences = [
   {
     company: "IBM México",
@@ -48,7 +50,7 @@ const experiences = [
   },
 ];
 
-const ExperienceSection = () => {
+const ExperienceSection = memo(() => {
   return (
     <section className="py-24 px-6 bg-surface-elevated" id="experience">
       <div className="container max-w-4xl">
@@ -61,14 +63,22 @@ const ExperienceSection = () => {
 
         <div className="space-y-8 mt-8">
           {experiences.map((exp) => (
-            <div key={exp.company} className="card-anime p-6 relative overflow-hidden">
+            <div
+              key={exp.company}
+              className="card-anime p-6 relative overflow-hidden"
+              style={{ willChange: "transform, opacity" }}
+            >
               {/* Rank badge */}
-              <div className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${exp.rankClass}`}>
+              <div
+                className={`absolute top-4 right-4 font-display text-[10px] tracking-widest ${exp.rankClass}`}
+              >
                 {exp.level}
               </div>
 
               <div className="mb-3">
-                <h4 className="text-xl font-display font-bold text-foreground tracking-wide">{exp.company}</h4>
+                <h4 className="text-xl font-display font-bold text-foreground tracking-wide">
+                  {exp.company}
+                </h4>
                 <p className="font-body text-sm text-k8s-blue">{exp.role}</p>
                 <p className="font-body text-xs text-muted-foreground mt-0.5">{exp.period}</p>
               </div>
@@ -84,9 +94,13 @@ const ExperienceSection = () => {
 
               {exp.clients && (
                 <div className="flex items-center flex-wrap gap-2">
-                  <span className="font-display text-[10px] tracking-wider text-muted-foreground uppercase">Clients:</span>
+                  <span className="font-display text-[10px] tracking-wider text-muted-foreground uppercase">
+                    Clients:
+                  </span>
                   {exp.clients.map((c) => (
-                    <span key={c} className="badge-k8s">{c}</span>
+                    <span key={c} className="badge-k8s">
+                      {c}
+                    </span>
                   ))}
                 </div>
               )}
@@ -99,6 +113,8 @@ const ExperienceSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ExperienceSection.displayName = "ExperienceSection";
 
 export default ExperienceSection;

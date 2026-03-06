@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ExternalLink, GitBranch, Cloud, Activity, Server } from "lucide-react";
 
 const projects = [
@@ -25,7 +26,7 @@ const projects = [
   },
 ];
 
-const ProjectsSection = () => {
+const ProjectsSection = memo(() => {
   return (
     <section className="py-24 px-6" id="projects">
       <div className="container max-w-5xl">
@@ -38,7 +39,11 @@ const ProjectsSection = () => {
 
         <div className="space-y-8 mt-8">
           {projects.map((project) => (
-            <div key={project.title} className="card-anime p-6 md:p-8 relative overflow-hidden">
+            <div
+              key={project.title}
+              className="card-anime p-6 md:p-8 relative overflow-hidden"
+              style={{ willChange: "transform, opacity" }}
+            >
               {/* Rank */}
               <div className="absolute top-4 right-4 font-display text-[10px] tracking-widest rank-s">
                 {project.level}
@@ -101,7 +106,9 @@ const ProjectsSection = () => {
               {/* Tech tags */}
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t) => (
-                  <span key={t} className="badge-docker">{t}</span>
+                  <span key={t} className="badge-docker">
+                    {t}
+                  </span>
                 ))}
               </div>
 
@@ -113,6 +120,8 @@ const ProjectsSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ProjectsSection.displayName = "ProjectsSection";
 
 export default ProjectsSection;

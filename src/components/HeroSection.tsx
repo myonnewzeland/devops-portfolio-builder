@@ -1,24 +1,50 @@
-import heroBg from "@/assets/hero-bg.jpg";
-import avatar from "@/assets/avatar.png";
+import { memo } from "react";
 import { Mail, Linkedin, MapPin } from "lucide-react";
 
-const HeroSection = () => {
+const HeroSection = memo(() => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      {/*
+        Hero background:
+        - Native lazy loading (fetchpriority="low" for background)
+        - Using CSS background-image via inline style is unavoidable for full-bleed
+          but we defer the actual img load with a hidden <img> that hints the browser
+      */}
+      <picture>
+        <source
+          srcSet="/assets/hero-bg.webp"
+          type="image/webp"
+        />
+        <img
+          src="/assets/hero-bg.jpg"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+          fetchPriority="low"
+          className="absolute inset-0 w-full h-full object-cover object-center -z-10"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
 
       <div className="relative z-10 container max-w-5xl px-6 py-20">
         <div className="flex flex-col md:flex-row items-center gap-10">
-          {/* Avatar */}
+          {/* Avatar — above-the-fold: eager load, high priority */}
           <div className="shrink-0 animate-fade-up">
             <div className="relative">
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-docker-blue animate-pulse-glow">
-                <img src={avatar} alt="SRE Robot Avatar" className="w-full h-full object-cover" />
+                <picture>
+                  <source srcSet="/assets/avatar.webp" type="image/webp" />
+                  <img
+                    src="/assets/avatar.png"
+                    alt="SRE Robot Avatar"
+                    width={224}
+                    height={224}
+                    decoding="sync"
+                    fetchPriority="high"
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 rank-s font-display text-[10px] tracking-wider">
                 SRE LVL 99
@@ -41,7 +67,7 @@ const HeroSection = () => {
               className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-8 animate-fade-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
-              5+ years building large-scale distributed systems. 
+              5+ years building large-scale distributed systems.{" "}
               Observability, automation and reliability are my jutsu.
             </p>
 
@@ -69,6 +95,8 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = "HeroSection";
 
 export default HeroSection;
