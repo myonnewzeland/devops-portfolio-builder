@@ -5,13 +5,28 @@ const HeroSection = memo(() => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <picture>
-        <source srcSet="/assets/hero-bg.webp" type="image/webp" />
+        <source
+          type="image/avif"
+          srcSet="/assets/hero-bg-400w.avif 400w, /assets/hero-bg-800w.avif 800w, /assets/hero-bg-1200w.avif 1200w, /assets/hero-bg-1600w.avif 1600w"
+          sizes="100vw"
+        />
+        <source
+          type="image/webp"
+          srcSet="/assets/hero-bg-400w.webp 400w, /assets/hero-bg-800w.webp 800w, /assets/hero-bg-1200w.webp 1200w, /assets/hero-bg-1600w.webp 1600w"
+          sizes="100vw"
+        />
+        <source
+          type="image/jpeg"
+          srcSet="/assets/hero-bg-400w.jpg 400w, /assets/hero-bg-800w.jpg 800w, /assets/hero-bg-1200w.jpg 1200w, /assets/hero-bg-1600w.jpg 1600w"
+          sizes="100vw"
+        />
         <img
-          src="/assets/hero-bg.jpg"
+          src="/assets/hero-bg-1200w.jpg"
           alt=""
           aria-hidden="true"
-          decoding="async"
-          fetchPriority="low"
+          fetchpriority="high"
+          width="1600"
+          height="900"
           className="absolute inset-0 w-full h-full object-cover object-center -z-10"
         />
       </picture>
@@ -26,14 +41,28 @@ const HeroSection = memo(() => {
             <div className="relative animate-levitate">
               <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-docker-blue avatar-glow-ring">
                 <picture>
-                  <source srcSet="/assets/avatar.webp" type="image/webp" />
+                  <source
+                    type="image/avif"
+                    srcSet="/assets/avatar-96.avif 96w, /assets/avatar-192.avif 192w, /assets/avatar-384.avif 384w"
+                    sizes="(max-width: 768px) 160px, 192px"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet="/assets/avatar-96.webp 96w, /assets/avatar-192.webp 192w, /assets/avatar-384.webp 384w"
+                    sizes="(max-width: 768px) 160px, 192px"
+                  />
+                  <source
+                    type="image/png"
+                    srcSet="/assets/avatar-96.png 96w, /assets/avatar-192.png 192w, /assets/avatar-384.png 384w"
+                    sizes="(max-width: 768px) 160px, 192px"
+                  />
                   <img
-                    src="/assets/avatar.png"
+                    src="/assets/avatar-192.png"
                     alt="Luis Fernando — DevOps / SRE Engineer"
-                    width={192}
-                    height={192}
-                    decoding="sync"
-                    fetchPriority="high"
+                    width="192"
+                    height="192"
+                    decoding="async"
+                    loading="lazy"
                     className="w-full h-full object-cover"
                   />
                 </picture>

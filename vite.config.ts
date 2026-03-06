@@ -4,6 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import compression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -19,6 +20,23 @@ export default defineConfig(({ mode }) => ({
     react(),
     ...(mode === "development" ? [componentTagger()] : []),
     ...(mode === "production" ? [
+      ViteImageOptimizer({
+        png: {
+          quality: 80,
+        },
+        jpeg: {
+          quality: 80,
+        },
+        jpg: {
+          quality: 80,
+        },
+        webp: {
+          quality: 78,
+        },
+        avif: {
+          quality: 75,
+        },
+      }),
       compression({ algorithm: "gzip", ext: ".gz", threshold: 1024, deleteOriginFile: false }),
       compression({ algorithm: "brotliCompress", ext: ".br", threshold: 1024, deleteOriginFile: false }),
       visualizer({ filename: "dist/stats.html", open: false, gzipSize: true, brotliSize: true, template: "treemap" }) as unknown as PluginOption,
@@ -75,6 +93,9 @@ export default defineConfig(({ mode }) => ({
 
           "vendor-icons": ["lucide-react"],
 
+          // react-icons is large when fully imported — isolate
+          "vendor-react-icons": ["react-icons"],
+
           "vendor-data": [
             "@tanstack/react-query",
             "react-hook-form",
@@ -88,18 +109,27 @@ export default defineConfig(({ mode }) => ({
             "tailwind-merge",
             "next-themes",
             "sonner",
-            "vaul",
           ],
         },
       },
     },
 
-    // Drop console.* and debugger in production
+    // Aggressive minification with terser for maximum compression
     minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
+        passes: 2,
+        pure_funcs: ["console.log", "console.info", "console.debug", "console.trace"],
+        dead_code: true,
+        unused: true,
+      },
+      mangle: {
+        safari10: true,
+      },
+      format: {
+        comments: false,
       },
     },
   },

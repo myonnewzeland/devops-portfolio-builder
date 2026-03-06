@@ -47,6 +47,15 @@
     --k8s-blue: 221 76% 55%;
     --docker-dark: 200 19% 27%;
     --surface-elevated: 210 20% 93%;
+
+    /* Background pattern opacities — light mode: very subtle so pattern doesn't dominate */
+    --pattern-circuit-opacity: 0.18;
+    --pattern-dot1-opacity: 0.07;
+    --pattern-dot2-opacity: 0.05;
+    --pattern-line-opacity: 0.04;
+    --pattern-diag-opacity: 0.025;
+    --scan-line-opacity: 0.015;
+    --glow-opacity: 0.035;
   }
 
   .dark {
@@ -84,6 +93,15 @@
     --k8s-blue: 221 76% 55%;
     --docker-dark: 200 19% 27%;
     --surface-elevated: 215 22% 13%;
+
+    /* Background pattern opacities — dark mode: slightly more visible on dark bg */
+    --pattern-circuit-opacity: 0.32;
+    --pattern-dot1-opacity: 0.12;
+    --pattern-dot2-opacity: 0.08;
+    --pattern-line-opacity: 0.06;
+    --pattern-diag-opacity: 0.04;
+    --scan-line-opacity: 0.02;
+    --glow-opacity: 0.05;
   }
 }
 
@@ -188,47 +206,37 @@
     color: hsl(0 0% 90%);
   }
 
-  /* Cyberpunk grid background */
+  /* Cyberpunk grid background — opacity controlled via parent element */
   .cyber-grid {
     background-image:
-      linear-gradient(hsl(var(--docker-blue) / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.3) 1px, transparent 1px);
+      linear-gradient(hsl(var(--docker-blue) / 0.5) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--docker-blue) / 0.5) 1px, transparent 1px);
     background-size: 60px 60px;
+    opacity: var(--pattern-line-opacity, 0.05);
   }
 
-  /* Docker container pattern — stacked blocks + connection nodes */
+  /* Circuit board pattern — 4 layers (down from 6) for better paint performance.
+     Opacity driven by --pattern-circuit-opacity so dark/light modes differ. */
   .circuit-pattern {
     background-image:
-      /* Container block outlines */
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.15) 20px, transparent 20px),
-      linear-gradient(90deg, transparent 60px, hsl(var(--docker-blue) / 0.12) 61px, transparent 62px),
-      linear-gradient(hsl(var(--docker-blue) / 0.12) 12px, transparent 12px),
-      linear-gradient(transparent 28px, hsl(var(--docker-blue) / 0.10) 29px, transparent 30px),
-      /* Connection nodes (ports) */
-      radial-gradient(circle at 10px 6px, hsl(var(--docker-blue) / 0.30) 3px, transparent 3px),
-      radial-gradient(circle at 40px 20px, hsl(var(--k8s-blue) / 0.20) 2.5px, transparent 2.5px),
-      radial-gradient(circle at 70px 35px, hsl(var(--docker-blue) / 0.18) 2px, transparent 2px),
-      /* Grid lines */
-      linear-gradient(90deg, hsl(var(--k8s-blue) / 0.08) 1px, transparent 1px),
-      linear-gradient(hsl(var(--k8s-blue) / 0.08) 1px, transparent 1px),
-      /* Diagonal links */
-      linear-gradient(45deg, transparent 47%, hsl(var(--docker-blue) / 0.08) 49%, hsl(var(--docker-blue) / 0.08) 51%, transparent 53%);
-    background-size:
-      80px 40px, 80px 40px, 80px 40px, 80px 40px,
-      80px 40px, 80px 40px, 80px 40px,
-      40px 40px, 40px 40px,
-      120px 120px;
+      radial-gradient(circle at 25px 25px, hsl(var(--docker-blue)) 2px, transparent 2px),
+      radial-gradient(circle at 75px 75px, hsl(var(--k8s-blue)) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, hsl(var(--docker-blue) / 0.5) 1px, transparent 1px),
+      linear-gradient(hsl(var(--docker-blue) / 0.5) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+    opacity: var(--pattern-circuit-opacity, 0.25);
   }
 
-  /* Scan line effect */
+  /* Scan line effect — opacity via CSS var */
   .scan-line {
     background: repeating-linear-gradient(
       0deg,
       transparent,
       transparent 2px,
-      hsl(var(--docker-blue) / 0.1) 2px,
-      hsl(var(--docker-blue) / 0.1) 4px
+      hsl(var(--docker-blue) / 0.6) 2px,
+      hsl(var(--docker-blue) / 0.6) 4px
     );
+    opacity: var(--scan-line-opacity, 0.02);
   }
 
   /* Section divider */
@@ -303,4 +311,67 @@
 }
 .avatar-glow-ring {
   animation: avatar-glow 3s ease-in-out infinite;
+}
+
+/* Scroll-triggered animations — replacing framer-motion */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation utility classes */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-card {
+  opacity: 0;
+}
+
+.animate-card.is-visible {
+  animation: fade-up 0.5s ease-out forwards;
+}
+
+/* Stagger children by adding animation-delay */
+.stagger-container > .animate-card:nth-child(1).is-visible { animation-delay: 0s; }
+.stagger-container > .animate-card:nth-child(2).is-visible { animation-delay: 0.1s; }
+.stagger-container > .animate-card:nth-child(3).is-visible { animation-delay: 0.2s; }
+.stagger-container > .animate-card:nth-child(4).is-visible { animation-delay: 0.3s; }
+.stagger-container > .animate-card:nth-child(5).is-visible { animation-delay: 0.4s; }
+.stagger-container > .animate-card:nth-child(6).is-visible { animation-delay: 0.5s; }
+.stagger-container > .animate-card:nth-child(7).is-visible { animation-delay: 0.6s; }
+.stagger-container > .animate-card:nth-child(8).is-visible { animation-delay: 0.7s; }
+.stagger-container > .animate-card:nth-child(9).is-visible { animation-delay: 0.8s; }
+.stagger-container > .animate-card:nth-child(10).is-visible { animation-delay: 0.9s; }
+
+/* Hero fade-up animation */
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
