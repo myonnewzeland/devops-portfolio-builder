@@ -196,16 +196,28 @@
     background-size: 60px 60px;
   }
 
-  /* Circuit board pattern */
+  /* Docker container pattern — stacked blocks + connection nodes */
   .circuit-pattern {
     background-image:
-      radial-gradient(circle at 25px 25px, hsl(var(--docker-blue) / 0.12) 2px, transparent 2px),
-      radial-gradient(circle at 75px 75px, hsl(var(--k8s-blue) / 0.08) 1.5px, transparent 1.5px),
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.06) 1px, transparent 1px),
-      linear-gradient(hsl(var(--docker-blue) / 0.06) 1px, transparent 1px),
-      linear-gradient(45deg, transparent 48%, hsl(var(--docker-blue) / 0.04) 49%, hsl(var(--docker-blue) / 0.04) 51%, transparent 52%),
-      linear-gradient(-45deg, transparent 48%, hsl(var(--k8s-blue) / 0.03) 49%, hsl(var(--k8s-blue) / 0.03) 51%, transparent 52%);
-    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px, 100px 100px, 100px 100px;
+      /* Container block outlines (horizontal rectangles like Docker containers) */
+      linear-gradient(90deg, hsl(var(--docker-blue) / 0.07) 20px, transparent 20px),
+      linear-gradient(90deg, transparent 60px, hsl(var(--docker-blue) / 0.07) 61px, transparent 62px),
+      linear-gradient(hsl(var(--docker-blue) / 0.06) 12px, transparent 12px),
+      linear-gradient(transparent 28px, hsl(var(--docker-blue) / 0.06) 29px, transparent 30px),
+      /* Connection nodes (ports) */
+      radial-gradient(circle at 10px 6px, hsl(var(--docker-blue) / 0.15) 2.5px, transparent 2.5px),
+      radial-gradient(circle at 40px 20px, hsl(var(--k8s-blue) / 0.10) 2px, transparent 2px),
+      radial-gradient(circle at 70px 35px, hsl(var(--docker-blue) / 0.08) 1.5px, transparent 1.5px),
+      /* Orchestration grid lines */
+      linear-gradient(90deg, hsl(var(--k8s-blue) / 0.04) 1px, transparent 1px),
+      linear-gradient(hsl(var(--k8s-blue) / 0.04) 1px, transparent 1px),
+      /* Diagonal network links */
+      linear-gradient(45deg, transparent 47%, hsl(var(--docker-blue) / 0.04) 49%, hsl(var(--docker-blue) / 0.04) 51%, transparent 53%);
+    background-size:
+      80px 40px, 80px 40px, 80px 40px, 80px 40px,
+      80px 40px, 80px 40px, 80px 40px,
+      40px 40px, 40px 40px,
+      120px 120px;
   }
 
   /* Scan line effect */
