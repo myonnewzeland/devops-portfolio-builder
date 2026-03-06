@@ -5,59 +5,67 @@ const skillGroups = [
     icon: Activity,
     title: "Observabilidad & SRE",
     skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "ELK", "OpenTelemetry", "SLI/SLO"],
+    color: "pink" as const,
   },
   {
     icon: GitBranch,
     title: "Automatización & CI/CD",
-    skills: ["Terraform", "Ansible", "GitHub Actions", "Azure DevOps", "GitLab CI", "Harness.io", "Canary/Blue-Green"],
+    skills: ["Terraform", "Ansible", "GitHub Actions", "Azure DevOps", "GitLab CI", "Harness.io"],
+    color: "cyan" as const,
   },
   {
     icon: Cloud,
-    title: "Cloud & Sistemas Distribuidos",
+    title: "Cloud & Distribuidos",
     skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker", "ECS", "Helm"],
+    color: "pink" as const,
   },
   {
     icon: Shield,
     title: "Networking",
-    skills: ["TCP/IP", "DNS", "VPN", "Firewalls", "L3 Troubleshooting", "Latency Analysis"],
+    skills: ["TCP/IP", "DNS", "VPN", "Firewalls", "L3 Troubleshooting"],
+    color: "cyan" as const,
   },
   {
     icon: Terminal,
-    title: "Desarrollo & Scripting",
+    title: "Dev & Scripting",
     skills: ["Python", "Bash", "SQL", "BigQuery", "Git", "GitOps"],
+    color: "pink" as const,
   },
   {
     icon: Server,
-    title: "Sistemas Operativos",
-    skills: ["Linux (Ubuntu, Debian, RHEL)", "Sysadmin", "Performance Tuning"],
+    title: "Linux & Sysadmin",
+    skills: ["Ubuntu", "Debian", "RHEL", "Performance Tuning", "Log Analysis"],
+    color: "cyan" as const,
   },
 ];
 
 const SkillsSection = () => {
   return (
-    <section className="py-20 px-6" id="skills">
+    <section className="py-24 px-6" id="skills">
       <div className="container max-w-6xl">
-        <h2 className="font-mono text-sm text-primary tracking-widest uppercase mb-2">
-          <span className="text-muted-foreground">$</span> cat skills.yml
+        <p className="font-display text-xs tracking-[0.3em] text-neon-cyan text-glow-cyan mb-2 uppercase">
+          スキル // Skills
+        </p>
+        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
+          HABILIDADES
         </h2>
-        <h3 className="text-3xl font-bold text-foreground mb-12">Habilidades Técnicas</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillGroups.map((group) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {skillGroups.map((group, i) => (
             <div
               key={group.title}
-              className="p-6 rounded-lg border border-border bg-card card-hover"
+              className="card-anime p-6"
+              style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <group.icon size={20} className="text-primary" />
-                <h4 className="font-mono text-sm font-semibold text-foreground">{group.title}</h4>
+                <div className={`p-2 rounded-md ${group.color === "pink" ? "bg-neon-pink/10 border border-neon-pink/30" : "bg-neon-cyan/10 border border-neon-cyan/30"}`}>
+                  <group.icon size={18} className={group.color === "pink" ? "text-neon-pink" : "text-neon-cyan"} />
+                </div>
+                <h4 className="font-display text-xs tracking-wider text-foreground uppercase">{group.title}</h4>
               </div>
               <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2 py-1 text-xs font-mono rounded bg-secondary text-secondary-foreground"
-                  >
+                  <span key={skill} className={group.color === "pink" ? "anime-badge-pink" : "anime-badge"}>
                     {skill}
                   </span>
                 ))}

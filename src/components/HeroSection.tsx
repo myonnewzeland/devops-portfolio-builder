@@ -1,40 +1,70 @@
 import heroBg from "@/assets/hero-bg.jpg";
+import avatar from "@/assets/avatar.png";
 import { Mail, Linkedin, MapPin } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-30"
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroBg})` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
 
-      <div className="relative z-10 container max-w-4xl text-center px-6 py-20">
-        <p className="font-mono text-primary text-sm tracking-widest uppercase mb-4 animate-fade-up">
-          <span className="text-muted-foreground">$</span> whoami
-        </p>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-body mb-4 text-glow animate-fade-up text-primary" style={{ animationDelay: "0.1s" }}>
-          Luis Fernando
-        </h1>
-        <h2 className="text-xl md:text-2xl font-mono text-secondary-foreground mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          Site Reliability Engineer
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-up leading-relaxed" style={{ animationDelay: "0.3s" }}>
-          5+ años construyendo y operando sistemas distribuidos a gran escala para banca, energía y FMCG.
-          Enfocado en observabilidad, automatización e ingeniería de confiabilidad.
-        </p>
+      <div className="relative z-10 container max-w-5xl px-6 py-20">
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          {/* Avatar */}
+          <div className="shrink-0 animate-fade-up">
+            <div className="relative">
+              <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-neon-pink animate-pulse-glow">
+                <img src={avatar} alt="Luis Fernando - Anime Avatar" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 anime-badge-pink font-display text-[10px] tracking-wider">
+                SRE LVL 99
+              </div>
+            </div>
+          </div>
 
-        <div className="flex flex-wrap justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-          <a href="mailto:yamoshi454@gmail.com" className="flex items-center gap-2 px-4 py-2 rounded-md border border-border bg-card card-hover text-sm font-mono text-card-foreground hover:text-primary">
-            <Mail size={16} /> Email
-          </a>
-          <a href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-md border border-border bg-card card-hover text-sm font-mono text-card-foreground hover:text-primary">
-            <Linkedin size={16} /> LinkedIn
-          </a>
-          <span className="flex items-center gap-2 px-4 py-2 rounded-md border border-border bg-card text-sm font-mono text-muted-foreground">
-            <MapPin size={16} /> Auckland, NZ
-          </span>
+          {/* Info */}
+          <div className="text-center md:text-left">
+            <p className="font-display text-xs tracking-[0.3em] text-neon-cyan text-glow-cyan mb-3 animate-fade-up uppercase">
+              Site Reliability Engineer
+            </p>
+            <h1
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-black mb-3 gradient-text animate-fade-up"
+              style={{ animationDelay: "0.1s" }}
+            >
+              LUIS FERNANDO
+            </h1>
+            <p
+              className="text-lg md:text-xl font-body text-muted-foreground max-w-lg mb-8 animate-fade-up leading-relaxed"
+              style={{ animationDelay: "0.2s" }}
+            >
+              5+ años construyendo sistemas distribuidos a gran escala. 
+              Observabilidad, automatización y confiabilidad son mi jutsu.
+            </p>
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+              <a
+                href="mailto:yamoshi454@gmail.com"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-neon-pink"
+              >
+                <Mail size={16} /> Email
+              </a>
+              <a
+                href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-neon-cyan"
+              >
+                <Linkedin size={16} /> LinkedIn
+              </a>
+              <span className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-card text-sm font-body text-muted-foreground">
+                <MapPin size={16} /> Auckland, NZ
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
