@@ -94,7 +94,7 @@ const projects = [
     ],
     tech: ["PocketBase", "Go", "SQLite", "S3", "WebSocket", "Edge"],
     level: "A-RANK",
-    icon: Server,
+    icon: Database,
   },
   {
     title: "DevOps Portfolio Builder",
