@@ -95,6 +95,21 @@ const AboutSection = memo(() => (
           ))}
         </StaggerContainer>
       </div>
+
+      {/* Why I Share This */}
+      <div className="mt-16">
+        <AnimateSection>
+          <h3 className="text-2xl md:text-3xl font-display font-bold gradient-text mb-8 neon-underline inline-block pb-2">
+            WHY I SHARE THIS
+          </h3>
+          <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl leading-relaxed">
+            I learned SRE, FinOps and large‑scale cloud by fixing real production issues 
+            and paying for real cloud bills. It took me years and a lot of mistakes. 
+            I share my playbooks and projects here so NZ companies can use that 
+            experience from day one.
+          </p>
+        </AnimateSection>
+      </div>
     </div>
   </section>
 ));
