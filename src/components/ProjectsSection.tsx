@@ -28,6 +28,7 @@ const projects = [
   },
   {
     title: "AWS Ghost CMS — Infrastructure as Code",
+    github: "https://github.com/myonnewzeland/terraform-blog",
     repo: "https://git.luam.us.kg/yamoshi454/terraform-blog",
     description:
       "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups.",
