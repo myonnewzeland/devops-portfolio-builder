@@ -115,16 +115,28 @@ const ProjectsSection = memo(() => {
                   <h3 className="text-xl md:text-2xl font-display font-bold text-foreground tracking-wide">
                     {project.title}
                   </h3>
-                  {project.repo && (
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-body text-k8s-blue hover:text-docker-blue transition-colors mt-1"
-                    >
-                      <GitBranch size={14} /> View repository <ExternalLink size={12} />
-                    </a>
-                  )}
+                  <div className="flex flex-wrap gap-3 mt-1">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-body text-k8s-blue hover:text-docker-blue transition-colors"
+                      >
+                        <Github size={14} /> GitHub <ExternalLink size={12} />
+                      </a>
+                    )}
+                    {project.repo && (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-body text-docker-blue hover:text-k8s-blue transition-colors"
+                      >
+                        <GitBranch size={14} /> Self-hosted <ExternalLink size={12} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
 
