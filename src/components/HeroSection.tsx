@@ -89,9 +89,10 @@ const HeroSection = memo(() => {
               className="text-base md:text-lg font-body text-muted-foreground max-w-xl mx-auto mb-3 animate-fade-up leading-relaxed"
               style={{ animationDelay: "0.2s" }}
             >
-              5+ years building reliable, cost-optimised cloud platforms for
-              Fortune 500 clients. I automate infrastructure, cut cloud spend
-              by up to 50%, and keep systems running at 99.9%+ uptime.
+              I spent the last 5+ years learning the hard way how to run reliable, 
+              cost‑efficient cloud platforms for banks, energy and SaaS companies. 
+              Now I bring that experience to New Zealand teams that want real SRE, 
+              FinOps and automation, not theory.
             </p>
             <p
               className="text-xs font-body text-muted-foreground mb-6 animate-fade-up"
@@ -99,10 +100,7 @@ const HeroSection = memo(() => {
             >
               <span className="inline-flex items-center justify-center gap-1.5">
                 <MapPin size={13} className="text-docker-blue shrink-0" aria-hidden="true" />
-                Auckland, NZ · Working Holiday Visa (full rights until Mar 2027)
-              </span>
-              <span className="block mt-0.5 text-center">
-                Open to sponsorship
+                Based in Auckland on a valid NZ work visa, open to long‑term roles and sponsorship
               </span>
             </p>
 

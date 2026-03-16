@@ -31,7 +31,7 @@ const projects = [
     github: "https://github.com/myonnewzeland/terraform-blog",
     repo: "https://git.luam.us.kg/yamoshi454/terraform-blog",
     description:
-      "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups.",
+      "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups. These practices come from real production work in banking and energy — now available here so NZ companies don't have to repeat the same expensive mistakes.",
     architecture: [
       "CloudFront + WAF v2 (OWASP Top 10)",
       "EC2 Graviton2 (t4g.small) + Rootless Podman",
