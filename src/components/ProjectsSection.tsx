@@ -73,6 +73,30 @@ const projects = [
     icon: Globe,
   },
   {
+    title: "NZ API Backend — PocketBase as a Service",
+    github: "https://github.com/myonnewzeland/myonnewzeland-pb-api-nz",
+    repo: "https://git.luam.us.kg/yamoshi454/myonnewzeland-pb-api-nz",
+    description:
+      "Self-hosted PocketBase backend-as-a-service deployment for NZ-based applications. Provides authentication, database, file storage and real-time APIs with edge-optimized infrastructure.",
+    architecture: [
+      "PocketBase monolithic backend (Go + SQLite)",
+      "Self-hosted on personal infrastructure",
+      "S3-compatible storage for file uploads",
+      "Edge-optimized with Cloudflare tunneling",
+      "Backup & replication to secondary nodes",
+    ],
+    highlights: [
+      "Lightweight alternative to Firebase/Supabase",
+      "Self-sovereign data — full control",
+      "Real-time subscriptions via WebSocket",
+      "Built-in auth with OAuth2 providers",
+      "Cost-effective for small-to-medium apps",
+    ],
+    tech: ["PocketBase", "Go", "SQLite", "S3", "WebSocket", "Edge"],
+    level: "A-RANK",
+    icon: Server,
+  },
+  {
     title: "DevOps Portfolio Builder",
     github: "https://github.com/myonnewzeland/devops-portfolio-builder",
     repo: null,
