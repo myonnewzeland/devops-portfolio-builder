@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout } from "lucide-react";
+import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout, Globe } from "lucide-react";
 
 const projects = [
   {
@@ -51,9 +51,31 @@ const projects = [
     icon: Cloud,
   },
   {
+    title: "Te Puke Kiwi Home — Community Website",
+    github: "https://github.com/myonnewzeland/te-puke-kiwi-home",
+    repo: "https://git.luam.us.kg/yamoshi454/te-puke-kiwi-home",
+    description:
+      "Pro-bono website built for a local Te Puke accommodation business. Designed to modernise their online presence with updated photos, data and SEO. Deployed on Cloudflare Pages with edge rendering and S3-backed image storage, plus self-hosted on personal infrastructure.",
+    architecture: [
+      "Cloudflare Pages with Edge Functions (SSR/ISR)",
+      "AWS S3 bucket for optimised image hosting",
+      "Self-hosted mirror on personal infrastructure",
+      "Responsive design for mobile-first guests",
+    ],
+    highlights: [
+      "Community contribution — gifted to the business",
+      "Edge-rendered for fast global load times",
+      "S3 image pipeline for easy photo updates",
+      "Self-hosted + Cloudflare Pages dual deployment",
+    ],
+    tech: ["Cloudflare Pages", "Edge Functions", "AWS S3", "Self-Hosted"],
+    level: "A-RANK",
+    icon: Globe,
+  },
+  {
     title: "DevOps Portfolio Builder",
     github: "https://github.com/myonnewzeland/devops-portfolio-builder",
-    repo: "https://git.luam.us.kg/yamoshi454/te-puke-kiwi-home",
+    repo: null,
     description:
       "Anime/cyberpunk-themed portfolio site for DevOps & SRE engineers. Built with React, TypeScript and Tailwind CSS — featuring Docker & Kubernetes brand colors, framer-motion scroll animations, lazy-loaded sections and a responsive sticky navbar.",
     architecture: null,
