@@ -52,6 +52,7 @@ const projects = [
   },
   {
     title: "DevOps Portfolio Builder",
+    github: "https://github.com/myonnewzeland/devops-portfolio-builder",
     repo: "https://git.luam.us.kg/yamoshi454/te-puke-kiwi-home",
     description:
       "Anime/cyberpunk-themed portfolio site for DevOps & SRE engineers. Built with React, TypeScript and Tailwind CSS — featuring Docker & Kubernetes brand colors, framer-motion scroll animations, lazy-loaded sections and a responsive sticky navbar.",
