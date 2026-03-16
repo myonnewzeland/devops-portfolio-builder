@@ -1,10 +1,11 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { ExternalLink, GitBranch, Cloud, Activity, Server, Package, Layout } from "lucide-react";
+import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout } from "lucide-react";
 
 const projects = [
   {
     title: "Red Hat OpenShift (ROSA HCP) Terraform Template",
+    github: "https://github.com/myonnewzeland/setupopenshift",
     repo: "https://git.luam.us.kg/yamoshi454/setupopenshift",
     description:
       "Reusable Infrastructure as Code (IaC) template to provision a Red Hat OpenShift Service on AWS (ROSA) cluster utilizing the Hosted Control Plane (HCP) architecture.",
@@ -27,6 +28,7 @@ const projects = [
   },
   {
     title: "AWS Ghost CMS — Infrastructure as Code",
+    github: "https://github.com/myonnewzeland/terraform-blog",
     repo: "https://git.luam.us.kg/yamoshi454/terraform-blog",
     description:
       "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups.",
@@ -50,6 +52,7 @@ const projects = [
   },
   {
     title: "DevOps Portfolio Builder",
+    github: "https://github.com/myonnewzeland/devops-portfolio-builder",
     repo: "https://git.luam.us.kg/yamoshi454/te-puke-kiwi-home",
     description:
       "Anime/cyberpunk-themed portfolio site for DevOps & SRE engineers. Built with React, TypeScript and Tailwind CSS — featuring Docker & Kubernetes brand colors, framer-motion scroll animations, lazy-loaded sections and a responsive sticky navbar.",
@@ -67,6 +70,7 @@ const projects = [
   },
   {
     title: "Loc-OS Linux — Open Source Maintainer",
+    github: null,
     repo: null,
     description:
       "Maintainer of Loc-OS Linux, a global lightweight Linux distribution. Manage automated build pipelines, CI/CD and package repositories for the community.",
@@ -111,16 +115,28 @@ const ProjectsSection = memo(() => {
                   <h3 className="text-xl md:text-2xl font-display font-bold text-foreground tracking-wide">
                     {project.title}
                   </h3>
-                  {project.repo && (
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-body text-k8s-blue hover:text-docker-blue transition-colors mt-1"
-                    >
-                      <GitBranch size={14} /> View repository <ExternalLink size={12} />
-                    </a>
-                  )}
+                  <div className="flex flex-wrap gap-3 mt-1">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-body text-k8s-blue hover:text-docker-blue transition-colors"
+                      >
+                        <Github size={14} /> GitHub <ExternalLink size={12} />
+                      </a>
+                    )}
+                    {project.repo && (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-body text-docker-blue hover:text-k8s-blue transition-colors"
+                      >
+                        <GitBranch size={14} /> Self-hosted <ExternalLink size={12} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
 
