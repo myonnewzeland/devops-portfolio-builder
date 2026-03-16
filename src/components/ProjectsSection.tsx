@@ -5,7 +5,7 @@ import { ExternalLink, GitBranch, Cloud, Activity, Server, Package, Layout } fro
 const projects = [
   {
     title: "Red Hat OpenShift (ROSA HCP) Terraform Template",
-    repo: "https://github.com/myonnewzeland/setupopenshift",
+    repo: "https://git.luam.us.kg/yamoshi454/setupopenshift",
     description:
       "Reusable Infrastructure as Code (IaC) template to provision a Red Hat OpenShift Service on AWS (ROSA) cluster utilizing the Hosted Control Plane (HCP) architecture.",
     architecture: [
@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "AWS Ghost CMS — Infrastructure as Code",
-    repo: "https://github.com/myonnewzeland/terraform-blog",
+    repo: "https://git.luam.us.kg/yamoshi454/terraform-blog",
     description:
       "Production-ready infrastructure stack for Ghost CMS on AWS using Terraform and Podman. Includes CDN, WAF, observability and automated backups.",
     architecture: [
@@ -50,7 +50,7 @@ const projects = [
   },
   {
     title: "DevOps Portfolio Builder",
-    repo: "https://github.com/myonnewzeland/devops-portfolio-builder",
+    repo: "https://git.luam.us.kg/yamoshi454/te-puke-kiwi-home",
     description:
       "Anime/cyberpunk-themed portfolio site for DevOps & SRE engineers. Built with React, TypeScript and Tailwind CSS — featuring Docker & Kubernetes brand colors, framer-motion scroll animations, lazy-loaded sections and a responsive sticky navbar.",
     architecture: null,
