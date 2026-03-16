@@ -5,7 +5,7 @@ import { ExternalLink, GitBranch, Cloud, Activity, Server, Package, Layout } fro
 const projects = [
   {
     title: "Red Hat OpenShift (ROSA HCP) Terraform Template",
-    repo: "https://github.com/myonnewzeland/setupopenshift",
+    repo: "https://git.luam.us.kg/yamoshi454/setupopenshift",
     description:
       "Reusable Infrastructure as Code (IaC) template to provision a Red Hat OpenShift Service on AWS (ROSA) cluster utilizing the Hosted Control Plane (HCP) architecture.",
     architecture: [
