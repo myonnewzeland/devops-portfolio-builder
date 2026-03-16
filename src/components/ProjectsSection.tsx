@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout, Globe } from "lucide-react";
+import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout, Globe, Database } from "lucide-react";
 
 const projects = [
   {
