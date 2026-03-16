@@ -70,6 +70,7 @@ const projects = [
   },
   {
     title: "Loc-OS Linux — Open Source Maintainer",
+    github: null,
     repo: null,
     description:
       "Maintainer of Loc-OS Linux, a global lightweight Linux distribution. Manage automated build pipelines, CI/CD and package repositories for the community.",
