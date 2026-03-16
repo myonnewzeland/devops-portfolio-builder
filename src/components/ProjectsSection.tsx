@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout, Globe } from "lucide-react";
+import { ExternalLink, GitBranch, Github, Cloud, Activity, Server, Package, Layout, Globe, Database } from "lucide-react";
 
 const projects = [
   {
@@ -71,6 +71,30 @@ const projects = [
     tech: ["Cloudflare Pages", "Edge Functions", "AWS S3", "Self-Hosted"],
     level: "A-RANK",
     icon: Globe,
+  },
+  {
+    title: "NZ API Backend — PocketBase as a Service",
+    github: "https://github.com/myonnewzeland/myonnewzeland-pb-api-nz",
+    repo: "https://git.luam.us.kg/yamoshi454/myonnewzeland-pb-api-nz",
+    description:
+      "Self-hosted PocketBase backend-as-a-service deployment for NZ-based applications. Provides authentication, database, file storage and real-time APIs with edge-optimized infrastructure.",
+    architecture: [
+      "PocketBase monolithic backend (Go + SQLite)",
+      "Self-hosted on personal infrastructure",
+      "S3-compatible storage for file uploads",
+      "Edge-optimized with Cloudflare tunneling",
+      "Backup & replication to secondary nodes",
+    ],
+    highlights: [
+      "Lightweight alternative to Firebase/Supabase",
+      "Self-sovereign data — full control",
+      "Real-time subscriptions via WebSocket",
+      "Built-in auth with OAuth2 providers",
+      "Cost-effective for small-to-medium apps",
+    ],
+    tech: ["PocketBase", "Go", "SQLite", "S3", "WebSocket", "Edge"],
+    level: "A-RANK",
+    icon: Database,
   },
   {
     title: "DevOps Portfolio Builder",
