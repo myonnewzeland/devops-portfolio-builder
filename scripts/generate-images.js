@@ -35,21 +35,21 @@ async function generateHeroImages() {
     // Generate AVIF (best compression)
     await sharp(sourceImage)
       .resize(width, null, { withoutEnlargement: true })
-      .avif({ quality: 75, effort: 6 })
+      .avif({ quality: 52, effort: 8 })
       .toFile(`${outputBase}.avif`);
     console.log(`  ✓ Generated hero-bg-${width}w.avif`);
     
     // Generate WebP (fallback 1)
     await sharp(sourceImage)
       .resize(width, null, { withoutEnlargement: true })
-      .webp({ quality: 78, effort: 6 })
+      .webp({ quality: 64, effort: 6 })
       .toFile(`${outputBase}.webp`);
     console.log(`  ✓ Generated hero-bg-${width}w.webp`);
     
     // Generate JPEG (fallback 2)
     await sharp(sourceImage)
       .resize(width, null, { withoutEnlargement: true })
-      .jpeg({ quality: 80, progressive: true })
+      .jpeg({ quality: 68, progressive: true })
       .toFile(`${outputBase}.jpg`);
     console.log(`  ✓ Generated hero-bg-${width}w.jpg`);
   }

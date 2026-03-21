@@ -1,86 +1,38 @@
-import {
-  SiKubernetes,
-  SiDocker,
-  SiTerraform,
-  SiAnsible,
-  SiGithubactions,
-  SiJenkins,
-  SiPrometheus,
-  SiGrafana,
-  SiDatadog,
-  SiPython,
-  SiGnubash,
-  SiPostgresql,
-  SiMysql,
-  SiRedis,
-  SiCloudflare,
-  SiLinux,
-  SiDebian,
-  SiRedhat,
-  SiUbuntu,
-  SiNodedotjs,
-  SiSpringboot,
-  SiNvidia,
-  SiGooglecloud,
-  SiRedhatopenshift,
-  SiOpentelemetry,
-  SiTailscale,
-  
-  SiFastly,
-  SiBunnydotnet,
-  SiCaddy,
-  SiGooglebigquery,
-} from "react-icons/si";
-import type { IconType } from "react-icons";
+import { memo } from "react";
 
-const iconMap: Record<string, IconType> = {
-  // Cloud & Distributed
-  GCP: SiGooglecloud,
-  Kubernetes: SiKubernetes,
-  OpenShift: SiRedhatopenshift,
-  Docker: SiDocker,
-
-  // Observability
-  Prometheus: SiPrometheus,
-  Grafana: SiGrafana,
-  Datadog: SiDatadog,
-  OpenTelemetry: SiOpentelemetry,
-
-  // IaC & CI/CD
-  Terraform: SiTerraform,
-  Ansible: SiAnsible,
-  "GitHub Actions": SiGithubactions,
-  Jenkins: SiJenkins,
-
-  // Networking
-  "Tailscale/WireGuard": SiTailscale,
-  Cloudflare: SiCloudflare,
-  "Bunny CDN": SiBunnydotnet,
-  Fastly: SiFastly,
-
-  // Scripting & Dev
-  Python: SiPython,
-  Bash: SiGnubash,
-  "Node.js": SiNodedotjs,
-  "Java Spring Boot": SiSpringboot,
-
-  // Databases
-  PostgreSQL: SiPostgresql,
-  MySQL: SiMysql,
-  BigQuery: SiGooglebigquery,
-  Redis: SiRedis,
-
-  // Linux & Sysadmin
-  Ubuntu: SiUbuntu,
-  Debian: SiDebian,
-  RHEL: SiRedhat,
-  Linux: SiLinux,
-
-  // Edge / IoT
-  "NVIDIA Jetson": SiNvidia,
-  "Docker on Edge": SiDocker,
-  "Caddy + MagicDNS": SiCaddy,
-  "Jenkins Edge CI/CD": SiJenkins,
+const iconMap: Record<string, string> = {
+  GCP: "GC",
+  Kubernetes: "K8",
+  OpenShift: "OS",
+  Docker: "DK",
+  Prometheus: "PM",
+  Grafana: "GF",
+  Datadog: "DD",
+  OpenTelemetry: "OT",
+  Terraform: "TF",
+  Ansible: "AN",
+  "GitHub Actions": "GH",
+  Jenkins: "JK",
+  "Tailscale/WireGuard": "TS",
+  Cloudflare: "CF",
+  "Bunny CDN": "BN",
+  Fastly: "FY",
+  Python: "PY",
+  Bash: "SH",
+  "Node.js": "JS",
+  "Java Spring Boot": "JB",
+  PostgreSQL: "PG",
+  MySQL: "MY",
+  BigQuery: "BQ",
+  Redis: "RD",
+  Ubuntu: "UB",
+  Debian: "DB",
+  RHEL: "RH",
+  Linux: "LX",
+  "NVIDIA Jetson": "NV",
+  "Docker on Edge": "DK",
+  "Caddy + MagicDNS": "CD",
+  "Jenkins Edge CI/CD": "JK",
 };
 
 interface TechIconProps {
@@ -89,10 +41,20 @@ interface TechIconProps {
   size?: number;
 }
 
-const TechIcon = ({ name, className = "", size = 12 }: TechIconProps) => {
-  const Icon = iconMap[name];
-  if (!Icon) return null;
-  return <Icon size={size} className={className} />;
-};
+const TechIcon = memo(({ name, className = "", size = 12 }: TechIconProps) => {
+  const label = iconMap[name] ?? name.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase();
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-flex items-center justify-center rounded-full border border-current/25 bg-current/10 font-mono text-[9px] font-bold leading-none ${className}`}
+      style={{ width: size + 8, height: size + 8 }}
+    >
+      {label}
+    </span>
+  );
+});
+
+TechIcon.displayName = "TechIcon";
 
 export default TechIcon;

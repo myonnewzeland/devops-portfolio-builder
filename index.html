@@ -34,13 +34,16 @@
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
-  <link href="https://fonts.bunny.net/css?family=alata:400|inter:100|josefin-sans:200&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=alata:400|josefin-sans:200&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=alata:400|josefin-sans:200&display=swap" />
+  </noscript>
 
   <!-- Critical asset preloads -->
   <link rel="preload" href="/assets/hero-bg-800w.avif" as="image" type="image/avif" fetchpriority="high"
     imagesrcset="/assets/hero-bg-400w.avif 400w, /assets/hero-bg-800w.avif 800w, /assets/hero-bg-1200w.avif 1200w, /assets/hero-bg-1600w.avif 1600w"
     imagesizes="100vw" />
-  <link rel="preload" href="/assets/avatar-192.webp" as="image" type="image/webp" />
 
   <!-- Icons & theme -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -98,13 +101,35 @@
     "Incident Management"
   ]
   }</script>
-  <!-- Microsoft Clarity -->
   <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "vrr37v4wy9");
+    (function () {
+      var loaded = false;
+
+      function loadClarity() {
+        if (loaded) return;
+        loaded = true;
+
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+          t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "vrr37v4wy9");
+      }
+
+      function loadOnIdle() {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(loadClarity, { timeout: 8000 });
+          return;
+        }
+
+        window.setTimeout(loadClarity, 8000);
+      }
+
+      window.addEventListener("load", loadOnIdle, { once: true });
+      ["pointerdown", "keydown", "scroll"].forEach(function (eventName) {
+        window.addEventListener(eventName, loadClarity, { once: true, passive: true });
+      });
+    })();
   </script>
 </head>
 

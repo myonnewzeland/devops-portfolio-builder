@@ -66,7 +66,7 @@ const HeroSection = memo(() => {
                     height="192"
                     decoding="async"
                     loading="eager"
-                    fetchPriority="high"
+                    fetchPriority="low"
                     className="w-full h-full object-cover"
                   />
                 </picture>
