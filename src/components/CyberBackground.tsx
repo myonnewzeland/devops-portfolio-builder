@@ -36,7 +36,7 @@ const CyberBackground = memo(() => {
       PARTICLES.map((p, i) => (
         <div
           key={i}
-          className="absolute rounded-full animate-float-particle"
+          className="absolute hidden rounded-full animate-float-particle md:block"
           style={{
             width: `${p.width}px`,
             height: `${p.height}px`,
@@ -69,7 +69,7 @@ const CyberBackground = memo(() => {
 
       {/* Radial glow blobs — GPU-composited via will-change */}
       <div
-        className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full animate-pulse-slow"
+        className="absolute top-0 left-1/4 hidden h-[600px] w-[600px] rounded-full animate-pulse-slow md:block"
         style={{
           background: "hsl(var(--docker-blue) / var(--glow-opacity, 0.05))",
           filter: "blur(120px)",
@@ -77,7 +77,7 @@ const CyberBackground = memo(() => {
         }}
       />
       <div
-        className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full animate-pulse-slow-delayed"
+        className="absolute bottom-1/4 right-0 hidden h-[500px] w-[500px] rounded-full animate-pulse-slow-delayed md:block"
         style={{
           background: "hsl(var(--k8s-blue) / var(--glow-opacity, 0.04))",
           filter: "blur(100px)",
@@ -85,7 +85,7 @@ const CyberBackground = memo(() => {
         }}
       />
       <div
-        className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full animate-pulse-slow"
+        className="absolute top-1/2 left-0 hidden h-[400px] w-[400px] rounded-full animate-pulse-slow md:block"
         style={{
           background: "hsl(var(--docker-blue) / var(--glow-opacity, 0.03))",
           filter: "blur(80px)",

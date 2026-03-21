@@ -7,7 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 const vendorChunks = {
-  "vendor-react": ["react", "react-dom", "react-router-dom"],
+  "vendor-react": ["react", "react-dom"],
   "vendor-radix": [
     "@radix-ui/react-accordion",
     "@radix-ui/react-alert-dialog",
@@ -31,15 +31,11 @@ const vendorChunks = {
     "@radix-ui/react-slot",
     "@radix-ui/react-switch",
     "@radix-ui/react-tabs",
-    "@radix-ui/react-toast",
     "@radix-ui/react-toggle",
     "@radix-ui/react-toggle-group",
-    "@radix-ui/react-tooltip",
   ],
   "vendor-icons": ["lucide-react"],
-  "vendor-react-icons": ["react-icons"],
-  "vendor-data": ["@tanstack/react-query", "react-hook-form", "@hookform/resolvers", "zod"],
-  "vendor-ui": ["clsx", "class-variance-authority", "tailwind-merge", "next-themes", "sonner"],
+  "vendor-ui": ["clsx", "class-variance-authority", "tailwind-merge"],
 } satisfies Record<string, string[]>;
 
 function manualChunks(id: string) {

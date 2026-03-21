@@ -32,13 +32,32 @@
     content="Site Reliability Engineer with 5+ years building large-scale distributed systems. Observability, FinOps &amp; automation specialist. Auckland, NZ." />
   <meta name="twitter:image" content="https://portafolio.luam.ovh/assets/avatar.webp" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.bunny.net/css?family=alata:400|josefin-sans:200&display=swap"
-    onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=alata:400|josefin-sans:200&display=swap" />
-  </noscript>
+  <style>
+    @font-face {
+      font-family: "Alata";
+      src: url("/fonts/alata-latin-400.woff2") format("woff2");
+      font-display: swap;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Josefin Sans";
+      src: url("/fonts/josefin-sans-latin-200.woff2") format("woff2");
+      font-display: swap;
+      font-weight: 200;
+      font-style: normal;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-width: 320px;
+    }
+  </style>
+
+  <link rel="preload" href="/fonts/alata-latin-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/josefin-sans-latin-200.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Critical asset preloads -->
   <link rel="preload" href="/assets/hero-bg-800w.avif" as="image" type="image/avif" fetchpriority="high"

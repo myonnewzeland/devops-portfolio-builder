@@ -34,14 +34,14 @@ const HeroSection = memo(() => {
         />
       </picture>
       {/* Stronger overlays for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/52 via-background/78 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/62 via-transparent to-background/62" />
 
       <div className="relative z-10 container max-w-5xl px-6 py-20">
         <div className="flex flex-col items-center gap-8 text-center">
           {/* Avatar */}
-          <div className="shrink-0 animate-fade-up">
-            <div className="relative animate-levitate">
+          <div className="shrink-0">
+            <div className="relative md:animate-levitate">
               <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-docker-blue avatar-glow-ring">
                 <picture>
                   <source
@@ -76,18 +76,16 @@ const HeroSection = memo(() => {
 
           {/* Copy */}
           <div className="max-w-2xl">
-            <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 animate-fade-up uppercase">
+            <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 uppercase">
               DevOps / SRE Engineer · Auckland, NZ
             </p>
             <h1
-              className="text-3xl md:text-5xl lg:text-6xl font-display font-black mb-4 gradient-text animate-fade-up leading-tight"
-              style={{ animationDelay: "0.1s" }}
+              className="text-3xl md:text-5xl lg:text-6xl font-display font-black mb-4 gradient-text leading-tight"
             >
               Cloud, FinOps &amp; Observability
             </h1>
             <p
-              className="text-base md:text-lg font-body text-muted-foreground max-w-xl mx-auto mb-3 animate-fade-up leading-relaxed"
-              style={{ animationDelay: "0.2s" }}
+              className="text-base md:text-lg font-body text-muted-foreground max-w-xl mx-auto mb-3 leading-relaxed"
             >
               I spent the last 5+ years learning the hard way how to run reliable, 
               cost‑efficient cloud platforms for banks, energy and SaaS companies. 
@@ -95,8 +93,7 @@ const HeroSection = memo(() => {
               FinOps and automation, not theory.
             </p>
             <p
-              className="text-xs font-body text-muted-foreground mb-6 animate-fade-up"
-              style={{ animationDelay: "0.25s" }}
+              className="text-xs font-body text-muted-foreground mb-6"
             >
               <span className="inline-flex items-center justify-center gap-1.5">
                 <MapPin size={13} className="text-docker-blue shrink-0" aria-hidden="true" />
@@ -107,10 +104,7 @@ const HeroSection = memo(() => {
             {/* Contact links */}
 
             {/* Secondary links */}
-            <div
-              className="flex flex-wrap justify-center gap-3 animate-fade-up"
-              style={{ animationDelay: "0.35s" }}
-            >
+            <div className="flex flex-wrap justify-center gap-3">
               <a
                 href="mailto:yamoshi454@gmail.com"
                 className="flex items-center gap-2 px-4 py-2 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
