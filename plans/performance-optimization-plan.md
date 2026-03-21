@@ -1,7 +1,18 @@
 # Portfolio Performance Optimization Plan
 
 ## Objective
-Achieve Lighthouse scores ≥95 Performance and ≥90 Accessibility/Best Practices on both mobile and desktop, while maintaining the exact same Docker/Kubernetes themed design, content, and functionality.
+Achieve Lighthouse scores >=95 Performance and >=90 Accessibility/Best Practices on both mobile and desktop, while maintaining the same Docker/Kubernetes themed design, content, and functionality.
+
+## Final Status
+
+This plan has already been executed and validated.
+
+- Mobile Lighthouse Performance: `96`
+- Desktop Lighthouse Performance: `100`
+- Current deploy target: Cloudflare Workers via `wrangler.toml`
+- Current deployment URL: `https://devops-portfolio-builder.luisfernandonavarrete.workers.dev`
+
+The remaining value of this document is historical context plus a checklist for future optimization rounds.
 
 ## Current Performance Bottlenecks
 
@@ -28,10 +39,10 @@ Achieve Lighthouse scores ≥95 Performance and ≥90 Accessibility/Best Practic
 - **Impact**: Mobile devices download desktop-sized images
 - **Solution**: Generate 400w, 800w, 1200w, 1600w versions with appropriate sizes attribute
 
-### 5. **No Critical CSS Extraction** 🟡 Medium Priority
-- **Problem**: All CSS loaded as blocking resource
-- **Impact**: Delays FCP by 200-400ms
-- **Solution**: Extract above-the-fold CSS (Navbar, HeroSection, CyberBackground) and inline in HTML head
+### 5. **Render Path Tuning** 🟡 Medium Priority
+- **Problem**: CSS, font delivery, and animated hero effects can still slow first paint on mobile
+- **Impact**: Delays FCP/LCP by a few hundred milliseconds
+- **Solution**: prioritize font delivery, simplify above-the-fold effects, keep mobile-specific motion reductions
 
 ### 6. **CLS Risk from Images** 🟡 Medium Priority
 - **Problem**: No explicit width/height on hero-bg image
@@ -83,23 +94,22 @@ graph LR
 - Remove unused deps: -150KB
 - Total savings: ~250KB gzipped = 750KB raw
 
-### Phase 3: Critical CSS & Loading Strategy (Items 16-19)
+### Phase 3: Critical Render Path & Font Strategy (Items 16-19)
 ```mermaid
 graph LR
-    A[Identify critical CSS] --> B[Extract Navbar + Hero + CyberBg styles]
-    B --> C[Inline in HTML head]
-    C --> D[Defer non-critical CSS]
-    D --> E[Add font-display: swap]
+    A[Identify render blockers] --> B[Optimize font delivery]
+    B --> C[Self-host critical fonts]
+    C --> D[Reduce hero animation cost]
+    D --> E[Keep mobile effects lighter]
 ```
 
-**Critical CSS Scope:**
-- CSS variables and theme colors
-- Navbar layout and positioning
-- Hero section typography and layout
-- CyberBackground base styles
-- Above-the-fold animations
+**Implemented Scope:**
+- Self-hosted `Alata` and `Josefin Sans` with `@font-face` in `index.html`
+- Preloaded local `.woff2` fonts from `public/fonts/`
+- Removed the experimental fake critical shell approach after it caused invalid `NO_LCP` Lighthouse runs
+- Reduced hero animation work and disabled heavy decorative effects on mobile
 
-**Target**: <14KB inlined CSS, deferred load for rest
+**Result**: valid mobile LCP restored and performance target exceeded
 
 ### Phase 4: Lazy Loading Enhancement (Items 20-21)
 - Current: React.lazy() for code splitting ✓
@@ -131,7 +141,7 @@ graph LR
 ### Priority 2 (High Impact):
 4. Remove unused dependencies
 5. Implement responsive images
-6. Add critical CSS
+6. Simplify font and render path delivery
 
 ### Priority 3 (Polish):
 7. Intersection Observer lazy loading
@@ -162,11 +172,13 @@ graph LR
 - Bundle size: ~400KB gzipped
 - Hero-bg load: 251KB
 
-**After Optimization (Target State):**
-- Performance: ≥95 (mobile & desktop)
-- LCP: <2.0s (mobile)
-- Bundle size: ~150KB gzipped (-62%)
-- Hero-bg load: <80KB mobile, <200KB desktop (-68% mobile)
+**After Optimization (Measured State):**
+- Performance: `96` mobile, `100` desktop
+- Mobile LCP: `2.3s`
+- Mobile FCP: `2.3s`
+- Mobile TBT: `20ms`
+- Desktop LCP: `0.5s`
+- JS initial vendor-react chunk: ~`43.32KB` gzip
 
 ## Diagram: Optimization Flow
 
@@ -202,6 +214,14 @@ graph TD
     U --> V[Success: Deploy Optimized Portfolio]
 ```
 
+## What Was Added Beyond The Original Plan
+
+- Self-hosted fonts in `public/fonts/`
+- Removal of `react-router-dom` in favor of lightweight pathname-based rendering
+- Extra mobile-only animation reductions in `src/index.css` and `src/components/CyberBackground.tsx`
+- Deployment flow documented and executed with `bunx wrangler deploy`
+
 ## Next Steps
 
-Once this plan is approved, switch to **Code mode** to execute the implementation following the todo list order. The entire optimization should be completed without altering any content, design, or user-facing functionality.
+- Keep this plan as a baseline for future audits.
+- If another performance pass is needed, focus on residual Lighthouse insights such as cache lifetime tuning and minor image delivery savings.

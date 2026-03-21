@@ -1,63 +1,93 @@
 # devops-portfolio-builder
 
-Portfolio personal de **Luis Fernando Navarrete Estrada** — Site Reliability Engineer con 5+ años en sistemas distribuidos, observabilidad y automatización de infraestructura.
+Portfolio personal de **Luis Fernando Navarrete Estrada**, enfocado en SRE, DevOps, observabilidad, FinOps y automatizacion de infraestructura.
 
-**Live:** https://portafolio.luam.ovh
-
----
+- Live: `https://portafolio.luam.ovh`
+- Cloudflare Workers: `https://devops-portfolio-builder.luisfernandonavarrete.workers.dev`
 
 ## Stack
 
-| | |
+| Area | Tecnologia |
 |---|---|
 | Framework | React 18 + TypeScript |
-| Build | Vite 7 + SWC |
+| Build | Vite 8 |
 | Estilos | Tailwind CSS v3 + shadcn/ui |
-| Deploy | Cloudflare Pages |
+| Runtime de deploy | Cloudflare Workers Assets + Wrangler |
+| Package manager | Bun |
 
-## Optimizaciones implementadas
+## Optimizaciones actuales
 
-- **Lazy loading** — secciones below-the-fold cargadas con `React.lazy` + `Suspense`
-- **Code splitting** — chunks separados: `vendor-react`, `vendor-radix`, `vendor-icons`, `vendor-data`, `vendor-ui`
-- **Compresión** — gzip + brotli en todos los assets de producción
-- **WebP** — imágenes convertidas con fallback PNG (`avatar.webp` 50KB vs 281KB original)
-- **Prefetch on-hover** — los chunks de cada sección se prefetchean al hacer hover en el navbar
-- **Error Boundary** — captura global de errores con UI de recuperación
-- **SEO** — OG, Twitter Card, JSON-LD structured data, canonical, preload hints
+- `Above the fold`: hero con imagen responsive en `AVIF/WebP/JPEG`, preload del fondo principal y dimensiones explicitas para evitar CLS.
+- `Fuentes`: fuentes self-hosted en `public/fonts/` con `@font-face` y `font-display: swap`; ya no dependen de Bunny Fonts.
+- `JS inicial`: se elimino `react-router-dom` para una navegacion estatica simple basada en `window.location.pathname`.
+- `Mobile rendering`: se redujeron animaciones y efectos pesados del fondo en mobile para mejorar LCP, TBT e interactividad.
+- `Below the fold`: secciones diferidas con lazy loading y render progresivo.
+- `Build output`: compresion `gzip` y `brotli`, division de chunks y minificacion con Terser.
+- `SEO`: metadatos OG/Twitter, JSON-LD, canonical y preload hints.
+
+## Resultados medidos
+
+- Lighthouse mobile: `96`
+- Lighthouse desktop: `100`
+- Mobile FCP: `2.3s`
+- Mobile LCP: `2.3s`
+- Mobile TBT: `20ms`
+- Desktop LCP: `0.5s`
+
+Detalles completos en `plans/optimization-results.md`.
 
 ## Desarrollo local
 
 ```bash
-npm install
-npm run dev        # http://localhost:8080
-npm run build      # build de producción
-npm run preview    # preview del build
+bun install
+bun run dev       # http://localhost:8080
+bun run build     # build de produccion
+bun run preview   # preview local del build
 ```
 
-> Requiere Node.js 18+ y npm 9+
+Tambien puedes usar `npm`, pero el lockfile oficial del proyecto es `bun.lock`.
 
-## Variables de entorno
-
-Copia `.env.example` a `.env` y ajusta los valores:
+## Deploy
 
 ```bash
-cp .env.example .env
+bun run build
+bunx wrangler deploy
 ```
 
-## Estructura
+La configuracion de despliegue vive en `wrangler.toml` y sirve `dist/` como assets estaticos desde Cloudflare Workers.
 
+## Validacion rapida
+
+```bash
+bun run build
+bun run preview --host 127.0.0.1 --port 4173
+npx lighthouse http://127.0.0.1:4173 --preset=desktop --only-categories=performance
 ```
+
+Nota: `bun run lint` todavia reporta errores previos no relacionados en `tailwind.config.ts` y `src/components/ui/textarea.tsx`.
+
+## Estructura relevante
+
+```text
+public/
+├── assets/                  # imagenes responsive optimizadas
+└── fonts/                   # fuentes self-hosted
+
 src/
 ├── components/
-│   ├── Navbar.tsx          # Fixed nav con prefetch on-hover
-│   ├── HeroSection.tsx     # Above-the-fold, eager load
-│   ├── SkillsSection.tsx   # Lazy
-│   ├── ProjectsSection.tsx # Lazy
-│   ├── ExperienceSection.tsx # Lazy
-│   ├── CertsSection.tsx    # Lazy
-│   ├── FooterSection.tsx   # Lazy
-│   ├── ErrorBoundary.tsx   # Global error handler
-│   └── SectionSkeleton.tsx # Loading fallback
-└── pages/
-    └── Index.tsx           # Orquesta lazy loading
+│   ├── CyberBackground.tsx  # fondo visual optimizado para mobile
+│   ├── DeferredSection.tsx  # montaje progresivo below-the-fold
+│   ├── HeroSection.tsx      # hero y LCP principal
+│   ├── Navbar.tsx           # nav fija con prefetch y scroll optimizado
+│   └── ErrorBoundary.tsx    # fallback global
+├── pages/
+│   ├── Index.tsx            # pagina principal
+│   └── NotFound.tsx         # fallback simple sin router
+├── App.tsx                  # seleccion de pagina basada en pathname
+└── index.css                # tema, animaciones y reducciones mobile
 ```
+
+## Documentacion adicional
+
+- `plans/performance-optimization-plan.md`
+- `plans/optimization-results.md`

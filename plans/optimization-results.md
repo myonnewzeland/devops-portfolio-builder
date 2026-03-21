@@ -1,306 +1,246 @@
 # Portfolio Performance Optimization Results
 
-## 🎯 Optimization Summary
+## Overview
 
-Successfully completed **aggressive** performance optimization of the React + Vite + Tailwind portfolio while maintaining 100% of the original design, content, and functionality.
+This optimization round focused on improving mobile Lighthouse performance without changing the portfolio's content, structure, or visual identity.
 
----
+The final result exceeded the original target:
 
-## ✅ Completed Optimizations
+- Mobile Lighthouse Performance: `96`
+- Desktop Lighthouse Performance: `100`
+- Mobile FCP: `2.3s`
+- Mobile LCP: `2.3s`
+- Mobile TBT: `20ms`
+- Desktop LCP: `0.5s`
 
-### 1. Image Optimization (CRITICAL - LCP Impact)
-**Status**: ✅ Complete
+Production deployment after validation:
 
-**Changes**:
-- Generated responsive images: hero-bg at 400w, 800w, 1200w, 1600w
-- Generated responsive avatars: 96px, 192px, 384px  
-- Added AVIF format (best compression) with WebP and JPEG/PNG fallbacks
-- Implemented `<picture>` elements with proper `srcset` and `sizes`
-- Fixed `fetchpriority="high"` on hero background (LCP element)
-- Added preload link in HTML head for hero image
-- Removed duplicate images from src/assets
-
-**Results**:
-- Mobile hero-bg: 400w AVIF = **19.5KB** (vs 251KB original) = **92% reduction**
-- Desktop hero-bg: 1200w AVIF = **124KB** (vs 251KB original) = **51% reduction**
-- Avatar: 192px AVIF = **4.37KB** (vs 18KB original) = **76% reduction**
-- Total image savings: **80KB+ per page load**
-
-**Files Modified**:
-- [`src/components/HeroSection.tsx`](../src/components/HeroSection.tsx)
-- [`index.html`](../index.html)
-- [`scripts/generate-images.js`](../scripts/generate-images.js) (new)
+- Repo: `https://github.com/myonnewzeland/devops-portfolio-builder.git`
+- Branch: `main`
+- Commit: `1b4d598` (`perf: self-host fonts and trim mobile rendering`)
+- Cloudflare Workers URL: `https://devops-portfolio-builder.luisfernandonavarrete.workers.dev`
 
 ---
 
-### 2. JavaScript Bundle Optimization (CRITICAL - TTI/TBT Impact)
-**Status**: ✅ Complete
+## What Changed
 
-**Changes**:
-- Replaced framer-motion with native Intersection Observer + CSS animations
-- Removed 47 unused packages: framer-motion, recharts, embla-carousel, react-day-picker, vaul, cmdk, date-fns, input-otp, react-resizable-panels
-- Updated vendor code splitting (removed vendor-motion chunk, removed vaul from vendor-ui)
-- Enhanced terser minification with 2-pass compression
+### 1. Font Delivery
 
-**Results**:
-```
-Bundle Size Analysis:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-File                         Raw      Gzip     Brotli
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-index.css                   71KB     12KB     10KB
-index.js                    21KB      6.9KB    5.9KB
-vendor-react.js             14KB      5.6KB    4.9KB
-vendor-radix.js            193KB     63KB     54KB
-vendor-icons.js              8KB      3.4KB    2.9KB
-vendor-react-icons.js        2KB      1.0KB    0.9KB
-vendor-data.js              24KB      7.5KB    6.6KB
-vendor-ui.js                55KB     16.5KB   14KB
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total JS (initial load):   ~122KB gzipped (~105KB Brotli)
-```
+Status: complete
 
-**Estimated Savings**: ~100KB gzipped (framer-motion removed)
+Changes:
 
-**Files Modified**:
-- [`src/components/AnimateOnScroll.tsx`](../src/components/AnimateOnScroll.tsx) - Rewritten to use Intersection Observer
-- [`src/index.css`](../src/index.css) - Added CSS @keyframes animations
-- [`package.json`](../package.json) - Removed 47 unused packages
-- [`vite.config.ts`](../vite.config.ts) - Updated vendor splitting & terser options
+- Replaced Bunny Fonts with self-hosted fonts.
+- Added local font files:
+  - `public/fonts/alata-latin-400.woff2`
+  - `public/fonts/josefin-sans-latin-200.woff2`
+- Declared fonts with `@font-face` in `index.html`.
+- Preloaded both `.woff2` files to improve first paint consistency.
+
+Impact:
+
+- Removed external font dependency from the critical path.
+- Reduced render-blocking risk from third-party font CSS.
+- Improved reliability and consistency of FCP/LCP.
+
+Files:
+
+- `index.html`
+- `public/fonts/alata-latin-400.woff2`
+- `public/fonts/josefin-sans-latin-200.woff2`
 
 ---
 
-### 3. Compression & Build Optimization
-**Status**: ✅ Complete
+### 2. Hero and Above-The-Fold Rendering
 
-**Changes**:
-- Gzip compression enabled (threshold: 1KB)
-- Brotli compression enabled (threshold: 1KB)
-- Terser minification enhanced:
-  - 2-pass compression
-  - Drop console.log, console.info, console.debug
-  - Dead code elimination
-  - Safari10 compatibility
+Status: complete
 
-**Results**:
-- All JS/CSS/HTML files have `.gz` and `.br` variants
-- Brotli typically **15-20% smaller** than Gzip
-- Example: vendor-radix.js = 193KB raw → 63KB gzip → 54KB brotli
+Changes:
 
-**Files Modified**:
-- [`vite.config.ts`](../vite.config.ts)
+- Kept the responsive hero image strategy with AVIF/WebP/JPEG fallbacks.
+- Preserved hero image preload and `fetchPriority="high"` for the LCP element.
+- Simplified hero animations to reduce work during initial render.
+- Removed additional first-paint animation wrappers from the main hero copy and CTA area.
+- Kept explicit image dimensions to avoid CLS.
 
----
+Important note:
 
-### 4. Loading Performance Enhancements
-**Status**: ✅ Complete
+- An experimental critical-shell approach was tested and then abandoned because it caused invalid Lighthouse runs with `NO_LCP`.
+- The final implementation does not use that shell approach.
 
-**Changes**:
-- Added `font-display: swap` to Google Fonts (prevents FOIT)
-- Hero background: `fetchpriority="high"`, no `loading` attribute
-- Avatar: `loading="lazy"`, `decoding="async"`
-- Explicit `width` and `height` on all images to prevent CLS
-- Preload link for LCP image (hero-bg) with responsive srcset
+Impact:
 
-**Results**:
-- Fonts load without blocking render
-- LCP image prioritized by browser
-- Layout shifts prevented with image dimensions
+- Restored valid LCP measurement.
+- Reduced main-thread and paint work during initial mobile load.
 
-**Files Modified**:
-- [`index.html`](../index.html)
-- [`src/components/HeroSection.tsx`](../src/components/HeroSection.tsx)
+Files:
+
+- `src/components/HeroSection.tsx`
+- `index.html`
 
 ---
 
-### 5. Image Format Plugin
-**Status**: ✅ Complete
+### 3. Mobile Rendering Cost Reduction
 
-**Changes**:
-- Installed vite-plugin-image-optimizer
-- Configured quality: AVIF 75%, WebP 78%, JPEG/PNG 80%
-- Automatic optimization during build
+Status: complete
 
-**Results**:
-- Additional 7% savings on already-optimized images
-- All images under 100KB (most under 50KB)
+Changes:
 
-**Files Modified**:
-- [`vite.config.ts`](../vite.config.ts)
+- Disabled floating particles and large blurred glow blobs on mobile in `CyberBackground`.
+- Reduced motion-heavy decorative effects for mobile screens.
+- Added stronger mobile-specific animation reduction rules in `src/index.css`.
+- Disabled the animated gradient text effect on mobile.
+- Added reduced-motion handling for accessibility and performance.
 
----
+Impact:
 
-## 📊 Performance Metrics (Expected)
+- Lower paint/compositing cost on mobile.
+- Smoother first render and lower interaction overhead.
 
-### Before Optimization:
-- **Performance Score**: ~70-75 (mobile), ~85 (desktop)
-- **LCP**: ~3.5-4s
-- **Bundle Size**: ~400KB gzipped
-- **Hero Image**: 251KB (no responsive sizes)
+Files:
 
-### After Optimization:
-- **Performance Score**: **≥95** (mobile & desktop) ✨
-- **LCP**: **<2.0s** (target <1.8s) ✨
-- **Bundle Size**: **~150KB gzipped** (-62%) ✨
-- **Hero Image Mobile**: **19.5KB** AVIF (-92%) ✨
-- **Hero Image Desktop**: **124KB** AVIF (-51%) ✨
-
-### Core Web Vitals Targets:
-- ✅ LCP (Largest Contentful Paint): <2.5s (target <1.8s)
-- ✅ FID/INP (First Input Delay): <100ms (target <50ms)
-- ✅ CLS (Cumulative Layout Shift): <0.1 (target <0.05)
-- ✅ TBT (Total Blocking Time): <200ms (target <150ms)
-- ✅ TTFB (Time to First Byte): <600ms (target <400ms)
+- `src/components/CyberBackground.tsx`
+- `src/index.css`
 
 ---
 
-## 🔧 Remaining Optional Optimizations
+### 4. JavaScript and Routing Simplification
 
-### Critical CSS Extraction (Low Priority)
-**Impact**: Additional ~200-400ms FCP improvement
-**Effort**: Medium
-**Status**: Optional (already at target performance)
+Status: complete
 
-Would involve:
-1. Extracting above-the-fold CSS for Navbar, HeroSection, CyberBackground
-2. Inlining ~10-14KB of critical CSS in HTML head
-3. Deferring non-critical CSS load
+Changes:
 
-### Unused Radix UI Components Removal (Low Priority)
-**Impact**: ~10-20KB bundle reduction
-**Effort**: High (requires careful dependency analysis)
-**Status**: Optional
+- Removed `react-router-dom` from the application.
+- Simplified routing to a lightweight `window.location.pathname` check in `src/App.tsx`.
+- Updated `src/pages/NotFound.tsx` accordingly.
+- Deleted unused `src/components/NavLink.tsx`.
+- Cleaned `vite.config.ts` vendor chunk groups to reflect the reduced dependency set.
+- Updated `package.json` and `bun.lock`.
 
-Many Radix UI components are defined but may not be actively used in the portfolio. Requires thorough testing.
+Impact:
+
+- Reduced JavaScript shipped on initial load.
+- Kept the site behavior intact for a static portfolio use case.
+- Maintained a smaller `vendor-react` bundle at about `43.32KB` gzip.
+
+Files:
+
+- `src/App.tsx`
+- `src/pages/NotFound.tsx`
+- `src/components/NavLink.tsx`
+- `vite.config.ts`
+- `package.json`
+- `bun.lock`
 
 ---
 
-## 🚀 Testing & Validation
+### 5. Existing Optimizations Preserved
 
-### Build Verification ✅
+Status: complete
+
+The final result builds on the previous optimization round, which already included:
+
+- deferred below-the-fold sections
+- lazy loading and chunk splitting
+- lighter tech stack icon rendering
+- deferred Clarity loading
+- optimized hero and avatar assets
+- gzip and brotli output
+
+---
+
+## Validation Summary
+
+### Build
+
+Validated with:
+
 ```bash
-npm run build
+bun run build
 ```
-**Results**:
-- ✅ Build successful
-- ✅ No framer-motion in bundle
-- ✅ Gzip files generated (.gz)
-- ✅ Brotli files generated (.br)
-- ✅ Images optimized
-- ✅ Total bundle: ~122KB gzipped JS + 12KB gzipped CSS
 
-### Lighthouse Audits (Next Step)
-**Command**:
+Observed production output highlights:
+
+- `dist/index.html`: about `6.82KB` raw / `2.39KB` gzip
+- `dist/assets/index-BJWfx4El.css`: about `56.20KB` raw / `10.54KB` gzip
+- `dist/assets/vendor-react-Bm9D08vR.js`: about `132.83KB` raw / `43.32KB` gzip
+
+### Lighthouse
+
+Validated locally against the production preview build.
+
+Mobile:
+
+- Performance: `96`
+- FCP: `2.3s`
+- LCP: `2.3s`
+- Speed Index: `2.0s`
+- TBT: `20ms`
+- Interactive: `4.1s`
+- CLS: `0`
+
+Desktop:
+
+- Performance: `100`
+- FCP: `0.4s`
+- LCP: `0.5s`
+- TBT: `0ms`
+- CLS: `0`
+
+Residual Lighthouse insights were minor:
+
+- cache lifetime improvements
+- small image delivery savings
+
+These were not blockers for the performance target.
+
+---
+
+## Deployment
+
+Deployment is now documented and uses Cloudflare Workers assets via Wrangler.
+
+Command used:
+
 ```bash
-npm run preview
-# Then run Lighthouse in Chrome DevTools
+bunx wrangler deploy
 ```
 
-**Mobile Settings**:
-- Device: Moto G4
-- CPU: 4x slowdown
-- Network: Fast 3G
+Configuration:
 
-**Desktop Settings**:
-- CPU: 6x slowdown
-- Network: Slow 3G
+- `wrangler.toml`
+- static assets served from `dist/`
 
-**Target Scores**:
-- Performance: ≥95
-- Accessibility: ≥90
-- Best Practices: ≥90
-- SEO: ≥90
+Deployment result:
+
+- URL: `https://devops-portfolio-builder.luisfernandonavarrete.workers.dev`
+- Version ID: `fce38fb1-7f2f-47fa-a19b-f3e4fc3ab2bd`
 
 ---
 
-## 📝 Files Changed Summary
+## Known Issues
 
-### Modified Files:
-1. [`vite.config.ts`](../vite.config.ts) - Image optimization, vendor splitting, terser
-2. [`src/components/AnimateOnScroll.tsx`](../src/components/AnimateOnScroll.tsx) - Intersection Observer
-3. [`src/components/HeroSection.tsx`](../src/components/HeroSection.tsx) - Responsive images
-4. [`src/index.css`](../src/index.css) - CSS animations
-5. [`index.html`](../index.html) - Preload links, font-display
-6. [`package.json`](../package.json) - Removed 47 unused packages
+These issues were present outside the scope of the performance work and still affect linting:
 
-### New Files:
-1. [`scripts/generate-images.js`](../scripts/generate-images.js) - Image generation script
-2. [`plans/performance-optimization-plan.md`](./performance-optimization-plan.md) - Original plan
-3. [`plans/optimization-results.md`](./optimization-results.md) - This file
+- `src/components/ui/textarea.tsx`
+- `tailwind.config.ts`
 
-### Deleted Files:
-1. `src/assets/avatar.png`
-2. `src/assets/hero-bg.jpg`
-3. `src/assets/tech-bg.jpg`
+`bun run lint` currently fails because of those pre-existing issues plus several existing react-refresh warnings in UI helper files.
 
 ---
 
-## ⚡ What Was NOT Changed
+## Final Assessment
 
-✅ **Zero Visual Changes**
-- Docker/Kubernetes blue theme preserved
-- All typography, spacing, colors unchanged
-- Cyberpunk/anime aesthetic maintained
-- All animations look identical (CSS vs framer-motion)
+Goals achieved:
 
-✅ **Zero Content Changes**
-- All text, descriptions, links preserved
-- All sections: Hero, Highlights, Skills, Projects, Experience, About, Certs, Contact
-- All project details, experience entries, certifications intact
+- exceeded the mobile performance target
+- preserved the portfolio design and content
+- improved font delivery and mobile rendering cost
+- reduced unnecessary routing/runtime overhead
+- deployed the validated build to production
 
-✅ **Zero Functional Changes**
-- Contact form works identically
-- Theme toggle (dark/light mode) works
-- Smooth scroll behavior preserved
-- All links and navigation functional
+This round can be considered complete.
 
 ---
 
-## 🎉 Success Metrics
-
-### Bundle Size Reduction:
-- **Before**: ~400KB gzipped
-- **After**: ~150KB gzipped
-- **Savings**: **250KB (-62%)** 🎯
-
-### Image Optimization:
-- **Mobile Hero**: 19.5KB AVIF (vs 251KB) = **-92%** 🎯
-- **Desktop Hero**: 124KB AVIF (vs 251KB) = **-51%** 🎯
-- **Avatar**: 4.37KB AVIF (vs 18KB) = **-76%** 🎯
-
-### Dependencies Removed:
-- **Packages**: 47 packages removed
-- **Estimated Savings**: ~150KB gzipped 🎯
-
----
-
-## 🔄 Next Steps
-
-1. **Run Lighthouse audits** (mobile & desktop) to verify performance ≥95
-2. **Test on real devices** (mobile, tablet) for validation
-3. **(Optional)** Critical CSS extraction if scores fall short
-4. **(Optional)** Remove unused Radix UI components for further reduction
-5. **Deploy** optimized build to production
-
----
-
-## 📌 Notes
-
-- All optimizations are **production-ready** and **battle-tested** patterns
-- Intersection Observer has **97%+ browser support**
-- AVIF/WebP formats have broad modern browser support
-- Original JPEG/PNG fallbacks ensure compatibility
-- No breaking changes introduced
-- All functionality tested during development
-
----
-
-## 🏆 Achievement Unlocked
-
-**"Performance Engineer"** - Reduced bundle size by 62% and image sizes by 70-92% while maintaining pixel-perfect design fidelity.
-
----
-
-_Generated: 2026-03-06_
-_Portfolio: DevOps/SRE Engineer Portfolio_
-_Tech Stack: React + Vite + Tailwind CSS + TypeScript_
+Generated: `2026-03-21`
