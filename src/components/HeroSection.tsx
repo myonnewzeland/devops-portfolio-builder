@@ -76,7 +76,7 @@ const HeroSection = memo(() => {
 
           {/* Copy */}
           <div className="max-w-2xl">
-            <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-3 uppercase">
+            <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-3 uppercase">
               DevOps / SRE Engineer · Auckland, NZ
             </p>
             <h1

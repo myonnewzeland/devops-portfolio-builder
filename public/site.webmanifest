@@ -1,0 +1,23 @@
+{
+  "name": "Luis Fernando - SRE Portfolio",
+  "short_name": "LF Portfolio",
+  "description": "Portfolio website for Luis Fernando Navarrete, Site Reliability Engineer and DevOps Engineer based in Auckland, New Zealand.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1a",
+  "theme_color": "#0ea5e9",
+  "lang": "en-NZ",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

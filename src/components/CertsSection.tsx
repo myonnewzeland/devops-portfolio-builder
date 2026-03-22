@@ -20,9 +20,9 @@ const CertsSection = memo(() => {
             <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 w-fit mb-4">
               <GraduationCap size={20} className="text-docker-blue" />
             </div>
-            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
+            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
               Education
-            </h4>
+            </h3>
             <p className="text-sm font-body text-card-foreground">B.Sc. Systems Engineering</p>
             <p className="text-xs font-body text-muted-foreground">UVEG, Mexico</p>
             <span className="inline-block mt-3 px-2.5 py-1 text-[10px] font-display tracking-wider uppercase rounded-md border border-docker-blue/30 bg-docker-blue/10 text-docker-blue">
@@ -34,9 +34,9 @@ const CertsSection = memo(() => {
             <div className="p-2 rounded-md bg-k8s-blue/10 border border-k8s-blue/30 w-fit mb-4">
               <Award size={20} className="text-k8s-blue" />
             </div>
-            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
+            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
               Certifications
-            </h4>
+            </h3>
             <ul className="space-y-1.5 text-sm font-body text-card-foreground">
               <li className="flex gap-2">
                 <span className="text-docker-blue">✦</span> AWS Cloud Practitioner (Foundational)
@@ -63,9 +63,9 @@ const CertsSection = memo(() => {
             <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 w-fit mb-4">
               <Languages size={20} className="text-docker-blue" />
             </div>
-            <h4 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
+            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
               Languages
-            </h4>
+            </h3>
             <ul className="space-y-1.5 text-sm font-body text-card-foreground">
               <li className="flex gap-2">
                 <span className="text-docker-blue">★</span> Spanish – Native

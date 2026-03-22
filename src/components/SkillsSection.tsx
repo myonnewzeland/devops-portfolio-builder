@@ -95,9 +95,9 @@ const SkillGroup = ({ group }: { group: typeof coreStack[0] }) => (
           className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"}
         />
       </div>
-      <h4 className="font-display text-xs tracking-wider text-foreground uppercase">
+      <h3 className="font-display text-xs tracking-wider text-foreground uppercase">
         {group.title}
-      </h4>
+      </h3>
     </div>
     <div className="flex flex-wrap gap-2">
       {group.skills.map((skill) => (

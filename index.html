@@ -8,10 +8,16 @@
   <meta name="description"
     content="Site Reliability Engineer with 5+ years building large-scale distributed systems for Fortune 500 clients. Observability, FinOps &amp; automation specialist. Open to roles in Auckland, NZ." />
   <meta name="author" content="Luis Fernando Navarrete Estrada" />
+  <meta name="creator" content="Luis Fernando Navarrete Estrada" />
+  <meta name="publisher" content="Luis Fernando Navarrete Estrada" />
+  <meta name="application-name" content="Luis Fernando - SRE Portfolio" />
   <meta name="keywords"
     content="SRE, Site Reliability Engineer, DevOps Engineer, FinOps, Kubernetes, Terraform, Prometheus, Grafana, AWS, Azure, GCP, Cloud Infrastructure, Auckland" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://portafolio.luam.ovh" />
+  <link rel="alternate" hreflang="en-NZ" href="https://portafolio.luam.ovh" />
+  <link rel="alternate" hreflang="x-default" href="https://portafolio.luam.ovh" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -20,8 +26,12 @@
   <meta property="og:description"
     content="Site Reliability Engineer with 5+ years building large-scale distributed systems. Observability, FinOps &amp; automation specialist. Auckland, NZ." />
   <meta property="og:image" content="https://portafolio.luam.ovh/assets/avatar.webp" />
+  <meta property="og:image:secure_url" content="https://portafolio.luam.ovh/assets/avatar.webp" />
+  <meta property="og:image:alt" content="Portrait of Luis Fernando Navarrete, Site Reliability Engineer and DevOps Engineer based in Auckland, New Zealand." />
+  <meta property="og:image:type" content="image/webp" />
   <meta property="og:image:width" content="512" />
   <meta property="og:image:height" content="512" />
+  <meta property="og:image" content="https://portafolio.luam.ovh/assets/avatar.png" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Luis Fernando – SRE Portfolio" />
 
@@ -31,6 +41,7 @@
   <meta name="twitter:description"
     content="Site Reliability Engineer with 5+ years building large-scale distributed systems. Observability, FinOps &amp; automation specialist. Auckland, NZ." />
   <meta name="twitter:image" content="https://portafolio.luam.ovh/assets/avatar.webp" />
+  <meta name="twitter:image:alt" content="Portrait of Luis Fernando Navarrete, Site Reliability Engineer and DevOps Engineer based in Auckland, New Zealand." />
 
   <style>
     @font-face {
@@ -66,62 +77,105 @@
 
   <!-- Icons & theme -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <meta name="theme-color" content="#0ea5e9" />
   <meta name="color-scheme" content="dark light" />
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Luis Fernando Navarrete Estrada",
-  "givenName": "Luis Fernando",
-  "familyName": "Navarrete Estrada",
-  "jobTitle": "Site Reliability Engineer",
-  "description": "SRE and DevOps Engineer with 5+ years in observability, FinOps, automation and large-scale distributed systems for Fortune 500 clients.",
-  "url": "https://portafolio.luam.ovh",
-  "email": "yamoshi454@gmail.com",
-  "image": "https://portafolio.luam.ovh/assets/avatar.webp",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Auckland",
-    "addressCountry": "NZ"
+  "@graph": [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://portafolio.luam.ovh/#website",
+    "url": "https://portafolio.luam.ovh",
+    "name": "Luis Fernando - SRE Portfolio",
+    "description": "Portfolio website for Luis Fernando Navarrete, Site Reliability Engineer and DevOps Engineer based in Auckland, New Zealand.",
+    "inLanguage": "en-NZ"
   },
-  "alumniOf": {
-    "@type": "CollegeOrUniversity",
-    "name": "UVEG",
-    "address": { "@type": "PostalAddress", "addressCountry": "MX" }
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://portafolio.luam.ovh/#webpage",
+    "url": "https://portafolio.luam.ovh",
+    "name": "Luis Fernando Navarrete - SRE & DevOps Engineer | Auckland, NZ",
+    "isPartOf": {
+      "@id": "https://portafolio.luam.ovh/#website"
+    },
+    "about": {
+      "@id": "https://portafolio.luam.ovh/#person"
+    },
+    "primaryImageOfPage": {
+      "@type": "ImageObject",
+      "url": "https://portafolio.luam.ovh/assets/avatar.webp"
+    },
+    "description": "Site Reliability Engineer with 5+ years building large-scale distributed systems for Fortune 500 clients. Observability, FinOps and automation specialist based in Auckland, New Zealand.",
+    "inLanguage": "en-NZ"
   },
-  "hasOccupation": {
-    "@type": "Occupation",
-    "name": "Site Reliability Engineer",
-    "occupationLocation": { "@type": "Country", "name": "New Zealand" },
-    "skills": "Kubernetes, Terraform, Prometheus, Grafana, AWS, Azure, GCP, FinOps, CI/CD"
-  },
-  "worksFor": {
-    "@type": "Organization",
-    "name": "IBM México"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183",
-    "https://github.com/myonnewzeland"
-  ],
-  "knowsAbout": [
-    "Site Reliability Engineering",
-    "DevOps",
-    "FinOps",
-    "Kubernetes",
-    "Terraform",
-    "Prometheus",
-    "Grafana",
-    "AWS",
-    "Azure",
-    "GCP",
-    "Observability",
-    "Incident Management"
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://portafolio.luam.ovh/#person",
+    "name": "Luis Fernando Navarrete Estrada",
+    "givenName": "Luis Fernando",
+    "familyName": "Navarrete Estrada",
+    "jobTitle": "Site Reliability Engineer",
+    "description": "SRE and DevOps Engineer with 5+ years in observability, FinOps, automation and large-scale distributed systems for Fortune 500 clients.",
+    "url": "https://portafolio.luam.ovh",
+    "mainEntityOfPage": {
+      "@id": "https://portafolio.luam.ovh/#webpage"
+    },
+    "email": "yamoshi454@gmail.com",
+    "image": "https://portafolio.luam.ovh/assets/avatar.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Auckland",
+      "addressCountry": "NZ"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "UVEG",
+      "address": { "@type": "PostalAddress", "addressCountry": "MX" }
+    },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Site Reliability Engineer",
+      "occupationLocation": { "@type": "Country", "name": "New Zealand" },
+      "skills": "Kubernetes, Terraform, Prometheus, Grafana, AWS, Azure, GCP, FinOps, CI/CD"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "IBM México"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183",
+      "https://github.com/myonnewzeland"
+    ],
+    "knowsAbout": [
+      "Site Reliability Engineering",
+      "DevOps",
+      "FinOps",
+      "Kubernetes",
+      "Terraform",
+      "Prometheus",
+      "Grafana",
+      "AWS",
+      "Azure",
+      "GCP",
+      "Observability",
+      "Incident Management"
+    ]
+  }
   ]
   }</script>
   <script type="text/javascript">
     (function () {
+      if (localStorage.getItem("analytics-consent") !== "granted") {
+        return;
+      }
+
       var loaded = false;
 
       function loadClarity() {
