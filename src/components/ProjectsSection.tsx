@@ -98,6 +98,29 @@ const projects = [
     icon: Database,
   },
   {
+    title: "K3s on Hetzner — Lightweight Kubernetes Cluster",
+    github: "https://github.com/myonnewzeland/k3s-hetzner",
+    repo: "https://git.luam.us.kg/yamoshi454/k3s-hetzner",
+    description:
+      "Automated deployment of a lightweight Kubernetes (K3s) cluster on Hetzner Cloud. Cost-effective alternative to managed Kubernetes services, ideal for dev/staging environments or small production workloads in the NZ/APAC region.",
+    architecture: [
+      "K3s lightweight Kubernetes distribution",
+      "Hetzner Cloud VMs (ARM64 & x86)",
+      "Automated node provisioning & joining",
+      "Traefik Ingress Controller",
+      "Persistent storage via Hetzner CSI",
+    ],
+    highlights: [
+      "Fraction of the cost vs EKS/AKS/GKE",
+      "Fully automated cluster bootstrap",
+      "Production-grade K8s without the overhead",
+      "Ideal for startups and small teams in NZ",
+    ],
+    tech: ["K3s", "Kubernetes", "Hetzner", "Terraform", "Linux"],
+    level: "A-RANK",
+    icon: Server,
+  },
+  {
     title: "DevOps Portfolio Builder",
     github: "https://github.com/myonnewzeland/devops-portfolio-builder",
     repo: null,
