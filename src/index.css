@@ -14,11 +14,11 @@
     --background: 210 15% 98%;
     --foreground: 215 28% 12%;
 
-    --card: 210 18% 100%;
-    --card-foreground: 215 22% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 12%;
 
-    --popover: 210 18% 100%;
-    --popover-foreground: 215 22% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 12%;
 
     --primary: 210 93% 54%;
     --primary-foreground: 0 0% 100%;
@@ -26,10 +26,10 @@
     --secondary: 221 76% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 15% 93%;
-    --muted-foreground: 215 10% 38%;
+    --muted: 210 15% 94%;
+    --muted-foreground: 215 10% 42%;
 
-    --accent: 210 20% 93%;
+    --accent: 210 20% 94%;
     --accent-foreground: 215 10% 18%;
 
     --destructive: 0 84.2% 60.2%;
@@ -44,15 +44,15 @@
     --docker-blue: 210 93% 54%;
     --k8s-blue: 221 76% 55%;
     --docker-dark: 200 19% 27%;
-    --surface-elevated: 210 15% 95%;
+    --surface-elevated: 0 0% 100%;
 
-    --pattern-circuit-opacity: 0.10;
-    --pattern-dot1-opacity: 0.04;
-    --pattern-dot2-opacity: 0.03;
-    --pattern-line-opacity: 0.025;
+    --pattern-circuit-opacity: 0.08;
+    --pattern-dot1-opacity: 0.03;
+    --pattern-dot2-opacity: 0.02;
+    --pattern-line-opacity: 0.03;
     --pattern-diag-opacity: 0.015;
-    --scan-line-opacity: 0.008;
-    --glow-opacity: 0.025;
+    --scan-line-opacity: 0.005;
+    --glow-opacity: 0.015;
   }
 
   .dark {
@@ -91,7 +91,6 @@
     --docker-dark: 200 19% 27%;
     --surface-elevated: 215 22% 13%;
 
-    /* Background pattern opacities — dark mode: slightly more visible on dark bg */
     --pattern-circuit-opacity: 0.32;
     --pattern-dot1-opacity: 0.12;
     --pattern-dot2-opacity: 0.08;
@@ -132,22 +131,40 @@
 }
 
 @layer utilities {
+  /* ===== TEXT GLOW — neon in dark, clean gradient text in light ===== */
   .text-glow-docker {
+    text-shadow: none;
+  }
+  .dark .text-glow-docker {
     text-shadow: 0 0 10px hsl(var(--docker-blue) / 0.6), 0 0 40px hsl(var(--docker-blue) / 0.3), 0 0 80px hsl(var(--docker-blue) / 0.1);
   }
+
   .text-glow-k8s {
+    text-shadow: none;
+  }
+  .dark .text-glow-k8s {
     text-shadow: 0 0 10px hsl(var(--k8s-blue) / 0.6), 0 0 40px hsl(var(--k8s-blue) / 0.3);
   }
+
+  /* ===== CARDS — clean shadow in light, glow in dark ===== */
   .card-anime {
     @apply transition-all duration-300 border border-border rounded-lg;
     background: hsl(var(--card));
     backdrop-filter: blur(8px);
+    box-shadow: 0 1px 3px 0 hsl(var(--foreground) / 0.06), 0 1px 2px -1px hsl(var(--foreground) / 0.06);
   }
   .card-anime:hover {
+    border-color: hsl(var(--docker-blue) / 0.35);
+    box-shadow: 0 4px 12px hsl(var(--docker-blue) / 0.08), 0 2px 4px hsl(var(--foreground) / 0.04);
+    transform: translateY(-2px);
+  }
+  .dark .card-anime:hover {
     border-color: hsl(var(--docker-blue));
     box-shadow: 0 0 20px hsl(var(--docker-blue) / 0.15), 0 0 40px hsl(var(--docker-blue) / 0.05), inset 0 1px 0 hsl(var(--docker-blue) / 0.1);
     transform: translateY(-2px);
   }
+
+  /* ===== NEON UNDERLINE — subtle in light, glowing in dark ===== */
   .neon-underline {
     position: relative;
   }
@@ -159,9 +176,16 @@
     width: 100%;
     height: 2px;
     background: linear-gradient(90deg, hsl(var(--docker-blue)), hsl(var(--k8s-blue)), transparent);
-    box-shadow: 0 0 8px hsl(var(--docker-blue) / 0.5), 0 0 16px hsl(var(--docker-blue) / 0.2);
+    box-shadow: none;
+    opacity: 0.7;
     animation: neon-flicker 3s ease-in-out infinite;
   }
+  .dark .neon-underline::after {
+    box-shadow: 0 0 12px hsl(var(--docker-blue) / 0.7), 0 0 30px hsl(var(--docker-blue) / 0.3);
+    opacity: 1;
+  }
+
+  /* ===== GRADIENT TEXT ===== */
   .gradient-text {
     background: linear-gradient(135deg, hsl(var(--docker-blue)), hsl(var(--k8s-blue)), hsl(var(--docker-blue)));
     background-size: 200% 200%;
@@ -170,44 +194,77 @@
     background-clip: text;
     animation: gradient-shift 4s ease infinite;
   }
+
+  /* ===== BADGES — clean in light, cyberpunk in dark ===== */
   .badge-docker {
+    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
+    border-color: hsl(var(--docker-blue) / 0.25);
+    background: hsl(var(--docker-blue) / 0.06);
+    color: hsl(var(--docker-blue));
+  }
+  .dark .badge-docker {
+    border-color: hsl(var(--docker-blue) / 0.3);
+    background: hsl(var(--docker-blue) / 0.08);
+  }
+
+  .badge-k8s {
+    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
+    border-color: hsl(var(--k8s-blue) / 0.25);
+    background: hsl(var(--k8s-blue) / 0.06);
+    color: hsl(var(--k8s-blue));
+  }
+  .dark .badge-k8s {
+    border-color: hsl(var(--k8s-blue) / 0.3);
+    background: hsl(var(--k8s-blue) / 0.08);
+  }
+
+  .badge-dark {
+    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
+    border-color: hsl(var(--docker-dark) / 0.25);
+    background: hsl(var(--docker-dark) / 0.06);
+    color: hsl(var(--docker-dark));
+  }
+  .dark .badge-dark {
+    border-color: hsl(var(--docker-dark) / 0.5);
+    background: hsl(var(--docker-dark) / 0.3);
+    color: hsl(0 0% 90%);
+  }
+
+  .rank-s {
     @apply px-2.5 py-1 text-xs font-mono rounded-md border;
     border-color: hsl(var(--docker-blue) / 0.3);
     background: hsl(var(--docker-blue) / 0.08);
     color: hsl(var(--docker-blue));
   }
-  .badge-k8s {
+  .rank-a {
     @apply px-2.5 py-1 text-xs font-mono rounded-md border;
     border-color: hsl(var(--k8s-blue) / 0.3);
     background: hsl(var(--k8s-blue) / 0.08);
     color: hsl(var(--k8s-blue));
   }
-  .badge-dark {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-dark) / 0.5);
-    background: hsl(var(--docker-dark) / 0.3);
-    color: hsl(0 0% 90%);
-  }
-  .rank-s {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-blue) / 0.4);
-    background: hsl(var(--docker-blue) / 0.12);
-    color: hsl(var(--docker-blue));
-  }
-  .rank-a {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--k8s-blue) / 0.4);
-    background: hsl(var(--k8s-blue) / 0.12);
-    color: hsl(var(--k8s-blue));
-  }
   .rank-b {
     @apply px-2.5 py-1 text-xs font-mono rounded-md border;
+    border-color: hsl(var(--docker-dark) / 0.25);
+    background: hsl(var(--docker-dark) / 0.06);
+    color: hsl(var(--docker-dark));
+  }
+  .dark .rank-b {
     border-color: hsl(var(--docker-dark) / 0.6);
     background: hsl(var(--docker-dark) / 0.3);
     color: hsl(0 0% 90%);
   }
 
-  /* Cyberpunk grid background — opacity controlled via parent element */
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--docker-blue) / 0.2), hsl(var(--k8s-blue) / 0.2), transparent);
+  }
+  .dark .section-divider {
+    background: linear-gradient(90deg, transparent, hsl(var(--docker-blue) / 0.3), hsl(var(--k8s-blue) / 0.3), transparent);
+    box-shadow: 0 0 8px hsl(var(--docker-blue) / 0.15);
+  }
+
+  /* ===== CYBER BACKGROUND PATTERNS ===== */
   .cyber-grid {
     background-image:
       linear-gradient(hsl(var(--docker-blue) / 0.5) 1px, transparent 1px),
@@ -216,8 +273,6 @@
     opacity: var(--pattern-line-opacity, 0.05);
   }
 
-  /* Circuit board pattern — 4 layers (down from 6) for better paint performance.
-     Opacity driven by --pattern-circuit-opacity so dark/light modes differ. */
   .circuit-pattern {
     background-image:
       radial-gradient(circle at 25px 25px, hsl(var(--docker-blue)) 2px, transparent 2px),
@@ -228,7 +283,6 @@
     opacity: var(--pattern-circuit-opacity, 0.25);
   }
 
-  /* Scan line effect — opacity via CSS var */
   .scan-line {
     background: repeating-linear-gradient(
       0deg,
@@ -238,13 +292,6 @@
       hsl(var(--docker-blue) / 0.6) 4px
     );
     opacity: var(--scan-line-opacity, 0.02);
-  }
-
-  /* Section divider */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--docker-blue) / 0.3), hsl(var(--k8s-blue) / 0.3), transparent);
-    box-shadow: 0 0 8px hsl(var(--docker-blue) / 0.15);
   }
 }
 
@@ -314,16 +361,12 @@
   animation: avatar-glow 3s ease-in-out infinite;
 }
 
-/* Scroll-triggered animations — now powered by GSAP ScrollTrigger (AnimateOnScroll.tsx)
-   Legacy CSS classes kept for fallback only; GSAP sets visibility directly via autoAlpha */
-
-/* gsap-card: initial state is set inline by GSAP (autoAlpha: 0).
-   No CSS opacity override needed — GSAP handles everything. */
+/* Scroll-triggered animations — powered by GSAP ScrollTrigger (AnimateOnScroll.tsx) */
 .gsap-card {
   will-change: transform, opacity;
 }
 
-/* Legacy compatibility — kept so any remaining CSS references don't break */
+/* Legacy compatibility */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -340,7 +383,6 @@
   to   { opacity: 1; }
 }
 
-/* Hero fade-up animation */
 .animate-fade-up {
   animation: fade-up 0.8s ease-out forwards;
   opacity: 0;

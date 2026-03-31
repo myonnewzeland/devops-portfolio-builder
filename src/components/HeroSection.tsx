@@ -286,7 +286,7 @@ const HeroSection = memo(() => {
       </div>
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/52 via-background/78 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/95 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/62 via-transparent to-background/62" />
 
       <div className="relative z-10 container max-w-5xl px-6 py-20">
