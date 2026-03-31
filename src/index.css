@@ -315,7 +315,16 @@
   animation: avatar-glow 3s ease-in-out infinite;
 }
 
-/* Scroll-triggered animations — replacing framer-motion */
+/* Scroll-triggered animations — now powered by GSAP ScrollTrigger (AnimateOnScroll.tsx)
+   Legacy CSS classes kept for fallback only; GSAP sets visibility directly via autoAlpha */
+
+/* gsap-card: initial state is set inline by GSAP (autoAlpha: 0).
+   No CSS opacity override needed — GSAP handles everything. */
+.gsap-card {
+  will-change: transform, opacity;
+}
+
+/* Legacy compatibility — kept so any remaining CSS references don't break */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -328,42 +337,9 @@
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-
-/* Animation utility classes */
-.animate-on-scroll {
-  opacity: 0;
-}
-
-.animate-on-scroll.is-visible {
-  animation: fade-up 0.6s ease-out forwards;
-}
-
-.animate-card {
-  opacity: 0;
-}
-
-.animate-card.is-visible {
-  animation: fade-up 0.5s ease-out forwards;
-}
-
-/* Stagger children by adding animation-delay */
-.stagger-container > .animate-card:nth-child(1).is-visible { animation-delay: 0s; }
-.stagger-container > .animate-card:nth-child(2).is-visible { animation-delay: 0.1s; }
-.stagger-container > .animate-card:nth-child(3).is-visible { animation-delay: 0.2s; }
-.stagger-container > .animate-card:nth-child(4).is-visible { animation-delay: 0.3s; }
-.stagger-container > .animate-card:nth-child(5).is-visible { animation-delay: 0.4s; }
-.stagger-container > .animate-card:nth-child(6).is-visible { animation-delay: 0.5s; }
-.stagger-container > .animate-card:nth-child(7).is-visible { animation-delay: 0.6s; }
-.stagger-container > .animate-card:nth-child(8).is-visible { animation-delay: 0.7s; }
-.stagger-container > .animate-card:nth-child(9).is-visible { animation-delay: 0.8s; }
-.stagger-container > .animate-card:nth-child(10).is-visible { animation-delay: 0.9s; }
 
 /* Hero fade-up animation */
 .animate-fade-up {
