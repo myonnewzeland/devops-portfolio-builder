@@ -1,6 +1,12 @@
-import { memo, useRef, useEffect } from "react";
+import { memo, useRef } from "react";
 import { Mail, Linkedin, MapPin } from "lucide-react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const TAGLINE = "DevOps / SRE Engineer · Auckland, NZ";
 
 const HeroSection = memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -9,136 +15,234 @@ const HeroSection = memo(() => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const bodyRef = useRef<HTMLParagraphElement>(null);
   const locationRef = useRef<HTMLParagraphElement>(null);
-  const ctaRowRef = useRef<HTMLDivElement>(null);
   const emailRef = useRef<HTMLAnchorElement>(null);
   const linkedinRef = useRef<HTMLAnchorElement>(null);
+  const bgImgRef = useRef<HTMLDivElement>(null);
 
-  /* ── Hero entrance timeline ── */
-  useEffect(() => {
-    const mm = gsap.matchMedia();
+  /* ── Hero entrance timeline (cinematic) ── */
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-    mm.add(
-      {
-        reduceMotion: "(prefers-reduced-motion: reduce)",
-        isMobile: "(max-width: 799px)",
-      },
-      (context) => {
-        const { reduceMotion, isMobile } = context.conditions as {
-          reduceMotion: boolean;
-          isMobile: boolean;
-        };
+      mm.add(
+        {
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          isMobile: "(max-width: 799px)",
+        },
+        (context) => {
+          const { reduceMotion, isMobile } = context.conditions as {
+            reduceMotion: boolean;
+            isMobile: boolean;
+          };
 
-        const dur = (base: number) => (reduceMotion ? 0 : base);
-        const offsetY = isMobile ? 14 : 28;
+          const dur = (base: number) => (reduceMotion ? 0 : base);
+          const offsetY = isMobile ? 14 : 28;
 
-        const tl = gsap.timeline({
-          defaults: { ease: "power3.out" },
-        });
+          /* ─── Parallax background on scroll ─── */
+          if (!reduceMotion && bgImgRef.current) {
+            gsap.to(bgImgRef.current, {
+              yPercent: 25,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+          }
 
-        // Avatar: scale + fade in
-        tl.from(avatarRef.current, {
-          scale: 0.82,
-          autoAlpha: 0,
-          duration: dur(0.7),
-        });
+          /* ─── Entrance timeline ─── */
+          const tl = gsap.timeline({
+            defaults: { ease: "power3.out" },
+          });
 
-        // Tagline: slide from below
-        tl.from(
-          taglineRef.current,
-          { y: offsetY, autoAlpha: 0, duration: dur(0.55) },
-          "-=0.45"
-        );
-
-        // Headline: slide + slight letter-spacing collapse
-        tl.from(
-          headlineRef.current,
-          { y: offsetY, autoAlpha: 0, duration: dur(0.65) },
-          "-=0.4"
-        );
-
-        // Body paragraph
-        tl.from(
-          bodyRef.current,
-          { y: offsetY * 0.7, autoAlpha: 0, duration: dur(0.55) },
-          "-=0.38"
-        );
-
-        // Location badge
-        tl.from(
-          locationRef.current,
-          { y: offsetY * 0.5, autoAlpha: 0, duration: dur(0.45) },
-          "-=0.35"
-        );
-
-        // CTA links: stagger from scale + fade
-        tl.from(
-          [emailRef.current, linkedinRef.current],
-          {
-            scale: 0.92,
-            y: 10,
+          // 1) Avatar: scale in with back-ease bounce feel
+          tl.from(avatarRef.current, {
+            scale: 0.72,
             autoAlpha: 0,
-            duration: dur(0.45),
-            stagger: { each: 0.1 },
-            ease: "back.out(1.7)",
-          },
-          "-=0.28"
-        );
+            duration: dur(0.8),
+            ease: "back.out(1.6)",
+          });
 
-        return () => tl.kill();
-      }
-    );
+          // 2) Tagline: character-by-character stagger (typewriter feel)
+          if (taglineRef.current && !reduceMotion) {
+            // Split into char spans at runtime
+            const chars = TAGLINE.split("").map((ch) => {
+              const span = document.createElement("span");
+              span.textContent = ch === " " ? "\u00a0" : ch;
+              span.style.display = "inline-block";
+              span.style.willChange = "transform,opacity";
+              return span;
+            });
+            taglineRef.current.textContent = "";
+            chars.forEach((s) => taglineRef.current!.appendChild(s));
 
-    return () => mm.revert();
-  }, []);
+            gsap.set(chars, { autoAlpha: 0, y: 8 });
+            tl.to(
+              chars,
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.025,
+                ease: "none",
+                stagger: { each: 0.03, from: "start" },
+                clearProps: "transform",
+              },
+              "-=0.5"
+            );
+          } else {
+            tl.from(
+              taglineRef.current,
+              {
+                x: 0,
+                autoAlpha: 0,
+                duration: dur(0.5),
+                ease: "power2.out",
+              },
+              "-=0.45"
+            );
+          }
 
-  /* ── CTA hover / press micro-animations ── */
-  const makeCTAHandlers = (ref: React.RefObject<HTMLAnchorElement>) => {
-    let hoverTween: gsap.core.Tween | null = null;
+          // 3) Headline: clip-path wipe-in from left
+          if (!reduceMotion) {
+            gsap.set(headlineRef.current, { clipPath: "inset(0 100% 0 0)", autoAlpha: 1 });
+            tl.to(
+              headlineRef.current,
+              {
+                clipPath: "inset(0 0% 0 0)",
+                duration: dur(0.75),
+                ease: "power3.inOut",
+                clearProps: "clipPath",
+              },
+              "-=0.2"
+            );
+          } else {
+            gsap.from(headlineRef.current, { autoAlpha: 0, duration: 0 });
+          }
+
+          // 4) Body paragraph: fade + slight y
+          tl.from(
+            bodyRef.current,
+            {
+              y: offsetY * 0.8,
+              autoAlpha: 0,
+              duration: dur(0.6),
+              clearProps: "transform",
+            },
+            "-=0.38"
+          );
+
+          // 5) Location badge
+          tl.from(
+            locationRef.current,
+            {
+              y: offsetY * 0.5,
+              autoAlpha: 0,
+              duration: dur(0.45),
+              clearProps: "transform",
+            },
+            "-=0.35"
+          );
+
+          // 6) CTA links: stagger scale + bounce
+          tl.from(
+            [emailRef.current, linkedinRef.current],
+            {
+              scale: 0.85,
+              y: 14,
+              autoAlpha: 0,
+              duration: dur(0.5),
+              stagger: { each: 0.12 },
+              ease: "back.out(2.2)",
+              clearProps: "transform",
+            },
+            "-=0.28"
+          );
+
+          return () => tl.kill();
+        }
+      );
+
+      return () => mm.revert();
+    },
+    { scope: sectionRef }
+  );
+
+  /* ── CTA hover / press micro-animations (contextSafe) ── */
+  const makeCTAHandlers = (
+    ref: React.RefObject<HTMLAnchorElement>,
+    contextSafe: <T extends (...args: never[]) => unknown>(fn: T) => T,
+  ) => {
+    const xTo = gsap.quickTo(ref.current, "x", { duration: 0.3, ease: "power3" });
+    const yTo = gsap.quickTo(ref.current, "y", { duration: 0.3, ease: "power3" });
 
     return {
-      onMouseEnter: () => {
-        if (hoverTween) hoverTween.kill();
-        hoverTween = gsap.to(ref.current, {
-          scale: 1.06,
-          y: -5,
-          duration: 0.18,
-          ease: "power1.out",
-        });
-      },
-      onMouseLeave: () => {
-        if (hoverTween) hoverTween.reverse();
-      },
-      onPointerDown: () => {
+      onMouseMove: contextSafe((e: React.MouseEvent<HTMLAnchorElement>) => {
+        const rect = (e.currentTarget as HTMLAnchorElement).getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        xTo(x * 0.2);
+        yTo(y * 0.2 - 3);
+      }),
+      onMouseLeave: contextSafe(() => {
+        xTo(0);
+        yTo(0);
         gsap.to(ref.current, {
-          scale: 0.97,
-          y: 4,
-          duration: 0.1,
-          ease: "power1.inOut",
-          yoyo: true,
-          repeat: 1,
+          scale: 1,
+          duration: 0.22,
+          ease: "power2.inOut",
+          overwrite: "auto",
         });
-      },
-      onFocus: () => {
+      }),
+      onMouseEnter: contextSafe(() => {
         gsap.to(ref.current, {
-          scale: 1.04,
-          y: -4,
-          duration: 0.18,
-          ease: "power1.out",
+          scale: 1.08,
+          duration: 0.2,
+          ease: "power2.out",
+          overwrite: "auto",
         });
-      },
-      onBlur: () => {
+      }),
+      onPointerDown: contextSafe(() => {
+        gsap.to(ref.current, {
+          scale: 0.95,
+          duration: 0.07,
+          ease: "power1.in",
+          overwrite: "auto",
+        });
+      }),
+      onPointerUp: contextSafe(() => {
+        gsap.to(ref.current, {
+          scale: 1.05,
+          duration: 0.15,
+          ease: "back.out(3)",
+          overwrite: "auto",
+        });
+      }),
+      onFocus: contextSafe(() => {
+        gsap.to(ref.current, {
+          scale: 1.05,
+          y: -3,
+          duration: 0.2,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }),
+      onBlur: contextSafe(() => {
         gsap.to(ref.current, {
           scale: 1,
           y: 0,
-          duration: 0.15,
-          ease: "power1.inOut",
+          duration: 0.18,
+          ease: "power2.inOut",
+          overwrite: "auto",
         });
-      },
+      }),
     };
   };
 
-  const emailHandlers = makeCTAHandlers(emailRef);
-  const linkedinHandlers = makeCTAHandlers(linkedinRef);
+  const { contextSafe } = useGSAP({ scope: sectionRef });
+  const emailHandlers = makeCTAHandlers(emailRef, contextSafe);
+  const linkedinHandlers = makeCTAHandlers(linkedinRef, contextSafe);
 
   return (
     <section
@@ -146,33 +250,42 @@ const HeroSection = memo(() => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Introduction"
     >
-      <picture>
-        <source
-          type="image/avif"
-          srcSet="/assets/hero-bg-400w.avif 400w, /assets/hero-bg-800w.avif 800w, /assets/hero-bg-1200w.avif 1200w, /assets/hero-bg-1600w.avif 1600w"
-          sizes="100vw"
-        />
-        <source
-          type="image/webp"
-          srcSet="/assets/hero-bg-400w.webp 400w, /assets/hero-bg-800w.webp 800w, /assets/hero-bg-1200w.webp 1200w, /assets/hero-bg-1600w.webp 1600w"
-          sizes="100vw"
-        />
-        <source
-          type="image/jpeg"
-          srcSet="/assets/hero-bg-400w.jpg 400w, /assets/hero-bg-800w.jpg 800w, /assets/hero-bg-1200w.jpg 1200w, /assets/hero-bg-1600w.jpg 1600w"
-          sizes="100vw"
-        />
-        <img
-          src="/assets/hero-bg-1200w.jpg"
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          width="1600"
-          height="900"
-          className="absolute inset-0 w-full h-full object-cover object-center -z-10"
-        />
-      </picture>
-      {/* Stronger overlays for readability */}
+      {/* Parallax bg wrapper */}
+      <div
+        ref={bgImgRef}
+        className="absolute inset-0 -z-10 will-change-transform"
+        style={{ willChange: "transform" }}
+      >
+        <picture>
+          <source
+            type="image/avif"
+            srcSet="/assets/hero-bg-400w.avif 400w, /assets/hero-bg-800w.avif 800w, /assets/hero-bg-1200w.avif 1200w, /assets/hero-bg-1600w.avif 1600w"
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcSet="/assets/hero-bg-400w.webp 400w, /assets/hero-bg-800w.webp 800w, /assets/hero-bg-1200w.webp 1200w, /assets/hero-bg-1600w.webp 1600w"
+            sizes="100vw"
+          />
+          <source
+            type="image/jpeg"
+            srcSet="/assets/hero-bg-400w.jpg 400w, /assets/hero-bg-800w.jpg 800w, /assets/hero-bg-1200w.jpg 1200w, /assets/hero-bg-1600w.jpg 1600w"
+            sizes="100vw"
+          />
+          <img
+            src="/assets/hero-bg-1200w.jpg"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            width="1600"
+            height="900"
+            className="w-full h-full object-cover object-center"
+            style={{ transform: "scale(1.15)" }}
+          />
+        </picture>
+      </div>
+
+      {/* Overlays */}
       <div className="absolute inset-0 bg-gradient-to-b from-background/52 via-background/78 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/62 via-transparent to-background/62" />
 
@@ -219,7 +332,7 @@ const HeroSection = memo(() => {
               ref={taglineRef}
               className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-3 uppercase"
             >
-              DevOps / SRE Engineer · Auckland, NZ
+              {TAGLINE}
             </p>
             <h1
               ref={headlineRef}
@@ -247,7 +360,7 @@ const HeroSection = memo(() => {
             </p>
 
             {/* CTA links */}
-            <div ref={ctaRowRef} className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <a
                 ref={emailRef}
                 href="mailto:yamoshi454@gmail.com"
