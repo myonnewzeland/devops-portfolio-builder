@@ -11,14 +11,14 @@
 
 @layer base {
   :root {
-    --background: 210 20% 96%;
+    --background: 210 15% 98%;
     --foreground: 215 28% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 24% 18%;
+    --card: 210 18% 100%;
+    --card-foreground: 215 22% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 24% 18%;
+    --popover: 210 18% 100%;
+    --popover-foreground: 215 22% 14%;
 
     --primary: 210 93% 54%;
     --primary-foreground: 0 0% 100%;
@@ -26,17 +26,17 @@
     --secondary: 221 76% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 90%;
-    --muted-foreground: 215 15% 40%;
+    --muted: 210 15% 93%;
+    --muted-foreground: 215 10% 38%;
 
-    --accent: 221 76% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 20% 93%;
+    --accent-foreground: 215 10% 18%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 85%;
-    --input: 210 20% 88%;
+    --border: 210 12% 88%;
+    --input: 210 12% 90%;
     --ring: 210 93% 54%;
 
     --radius: 0.75rem;
@@ -44,16 +44,15 @@
     --docker-blue: 210 93% 54%;
     --k8s-blue: 221 76% 55%;
     --docker-dark: 200 19% 27%;
-    --surface-elevated: 210 20% 93%;
+    --surface-elevated: 210 15% 95%;
 
-    /* Background pattern opacities — light mode: very subtle so pattern doesn't dominate */
-    --pattern-circuit-opacity: 0.18;
-    --pattern-dot1-opacity: 0.07;
-    --pattern-dot2-opacity: 0.05;
-    --pattern-line-opacity: 0.04;
-    --pattern-diag-opacity: 0.025;
-    --scan-line-opacity: 0.015;
-    --glow-opacity: 0.035;
+    --pattern-circuit-opacity: 0.10;
+    --pattern-dot1-opacity: 0.04;
+    --pattern-dot2-opacity: 0.03;
+    --pattern-line-opacity: 0.025;
+    --pattern-diag-opacity: 0.015;
+    --scan-line-opacity: 0.008;
+    --glow-opacity: 0.025;
   }
 
   .dark {
