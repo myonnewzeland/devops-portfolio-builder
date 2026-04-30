@@ -1,80 +1,64 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { Award, GraduationCap, Languages } from "lucide-react";
+import { Award, GraduationCap, Languages, ArrowRight } from "lucide-react";
+
+const cards = [
+  {
+    icon: GraduationCap,
+    title: "Education",
+    subtitle: "B.Sc. Systems Engineering",
+    body: "UVEG, Mexico — Graduated 2024.",
+    link: { href: "#about", label: "About me" },
+  },
+  {
+    icon: Award,
+    title: "Certifications",
+    subtitle: "Cloud, DevOps & Security",
+    body: "AWS Cloud Practitioner · Oracle Cloud Foundations · IBM Cloud & DevOps Essentials · Linux Essentials (LPI) · Cisco Cyber Threat Management · SMCE Scrum Master.",
+    link: { href: "#experience", label: "See applied work" },
+  },
+  {
+    icon: Languages,
+    title: "Languages",
+    subtitle: "Spanish & English",
+    body: "Spanish — Native. English — Advanced / Professional working proficiency.",
+    link: { href: "mailto:yamoshi454@gmail.com", label: "Talk to me" },
+  },
+];
 
 const CertsSection = memo(() => {
   return (
-    <section className="py-24 px-6" id="certs">
-      <div className="container max-w-4xl">
+    <section className="py-20 px-6" id="certs">
+      <div className="max-w-[1152px] mx-auto">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
-            ▸ Diploma · Certifications
-          </p>
-          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-10 tracking-tight">
-            Education &amp; Achievements
+          <h2 className="text-2xl md:text-[28px] font-bold text-center tracking-tight">
+            <span className="text-primary">Verified credentials</span>{" "}
+            <span className="text-white">backing the work:</span>
           </h2>
         </AnimateSection>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-          <AnimateCard className="card-anime p-6">
-            <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 w-fit mb-4">
-              <GraduationCap size={20} className="text-docker-blue" />
-            </div>
-            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
-              Education
-            </h3>
-            <p className="text-sm font-body text-card-foreground">B.Sc. Systems Engineering</p>
-            <p className="text-xs font-body text-muted-foreground">UVEG, Mexico</p>
-            <span className="inline-block mt-3 px-2.5 py-1 text-[10px] font-display tracking-wider uppercase rounded-md border border-docker-blue/30 bg-docker-blue/10 text-docker-blue">
-              ✓ Graduated 2024
-            </span>
-          </AnimateCard>
-
-          <AnimateCard className="card-anime p-6">
-            <div className="p-2 rounded-md bg-k8s-blue/10 border border-k8s-blue/30 w-fit mb-4">
-              <Award size={20} className="text-k8s-blue" />
-            </div>
-            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
-              Certifications
-            </h3>
-            <ul className="space-y-1.5 text-sm font-body text-card-foreground">
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> AWS Cloud Practitioner (Foundational)
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> Oracle Cloud Foundations
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> IBM Cloud & DevOps Essentials
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> Linux Essentials (LPI)
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> Cisco Cyber Threat Management
-              </li>
-              <li className="flex gap-2">
-                <span className="text-docker-blue">✦</span> SMCE – Scrum Master
-              </li>
-            </ul>
-          </AnimateCard>
-
-          <AnimateCard className="card-anime p-6">
-            <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30 w-fit mb-4">
-              <Languages size={20} className="text-docker-blue" />
-            </div>
-            <h3 className="font-display text-xs tracking-wider text-foreground uppercase mb-3">
-              Languages
-            </h3>
-            <ul className="space-y-1.5 text-sm font-body text-card-foreground">
-              <li className="flex gap-2">
-                <span className="text-docker-blue">★</span> Spanish – Native
-              </li>
-              <li className="flex gap-2">
-                <span className="text-k8s-blue">★</span> English – Advanced / Professional
-              </li>
-            </ul>
-          </AnimateCard>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
+          {cards.map((c) => (
+            <AnimateCard key={c.title} className="card-anime p-6 flex flex-col">
+              <div
+                className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                style={{ background: "hsl(var(--primary) / 0.12)" }}
+              >
+                <c.icon size={22} className="text-primary" />
+              </div>
+              <h3 className="text-lg font-bold text-white">{c.title}</h3>
+              <p className="text-sm text-primary mt-1">{c.subtitle}</p>
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed flex-1">
+                {c.body}
+              </p>
+              <a
+                href={c.link.href}
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+              >
+                {c.link.label} <ArrowRight size={14} />
+              </a>
+            </AnimateCard>
+          ))}
         </StaggerContainer>
       </div>
     </section>
@@ -82,5 +66,4 @@ const CertsSection = memo(() => {
 });
 
 CertsSection.displayName = "CertsSection";
-
 export default CertsSection;
