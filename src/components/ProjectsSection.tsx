@@ -162,12 +162,15 @@ const ProjectsSection = memo(() => {
     <section className="py-24 px-6" id="projects">
       <div className="container max-w-5xl">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
-            プロジェクト // Projects
+          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
+            ▸ Learning Path · Projects
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-            PROJECTS
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-3 tracking-tight">
+            Hands-on Projects
           </h2>
+          <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mb-10">
+            Real production-grade work — open source, self-hosted, and shipped. Each card is a chapter in the syllabus.
+          </p>
         </AnimateSection>
 
         <StaggerContainer className="space-y-8 mt-8">

@@ -124,11 +124,11 @@ const SkillsSection = memo(() => {
     <section className="py-24 px-6" id="skills">
       <div className="container max-w-6xl">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
-            Skills
+          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
+            ▸ Course Dashboard · Skills
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-4 neon-underline inline-block pb-2">
-            TECHNICAL STACK
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4 tracking-tight">
+            Technical Stack
           </h2>
           <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mt-6 leading-relaxed">
             My core focus is building <strong className="text-foreground">automated, observable, cost-efficient cloud platforms</strong>.

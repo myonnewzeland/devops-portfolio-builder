@@ -7,11 +7,11 @@ const CertsSection = memo(() => {
     <section className="py-24 px-6" id="certs">
       <div className="container max-w-4xl">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.3em] text-k8s-blue text-glow-k8s mb-2 uppercase">
-            資格 // Certifications
+          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
+            ▸ Diploma · Certifications
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-            ACHIEVEMENTS UNLOCKED
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-10 tracking-tight">
+            Education &amp; Achievements
           </h2>
         </AnimateSection>
 
