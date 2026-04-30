@@ -137,169 +137,94 @@
 }
 
 @layer utilities {
-  /* ===== TEXT GLOW — neon in dark, clean gradient text in light ===== */
-  .text-glow-docker {
-    text-shadow: none;
-  }
-  .dark .text-glow-docker {
-    text-shadow: 0 0 10px hsl(var(--docker-blue) / 0.6), 0 0 40px hsl(var(--docker-blue) / 0.3), 0 0 80px hsl(var(--docker-blue) / 0.1);
-  }
+  /* ===== PLATZI-STYLE UTILITIES ===== */
 
+  /* Legacy text-glow utilities — kept as no-ops so existing markup doesn't break */
+  .text-glow-docker,
   .text-glow-k8s {
     text-shadow: none;
   }
-  .dark .text-glow-k8s {
-    text-shadow: 0 0 10px hsl(var(--k8s-blue) / 0.6), 0 0 40px hsl(var(--k8s-blue) / 0.3);
-  }
 
-  /* ===== CARDS — clean shadow in light, glow in dark ===== */
+  /* Cards — flat, dark, subtle border, gentle hover */
   .card-anime {
-    @apply transition-all duration-300 border border-border rounded-lg;
-    background: hsl(var(--card));
-    backdrop-filter: blur(8px);
-    box-shadow: 0 1px 3px 0 hsl(var(--foreground) / 0.06), 0 1px 2px -1px hsl(var(--foreground) / 0.06);
+    @apply transition-colors duration-200 border rounded-xl;
+    background: hsl(var(--card));                       /* #1A1A1A */
+    border-color: hsl(var(--border) / 0.08);            /* rgba(255,255,255,0.08) */
   }
   .card-anime:hover {
-    border-color: hsl(var(--docker-blue) / 0.35);
-    box-shadow: 0 4px 12px hsl(var(--docker-blue) / 0.08), 0 2px 4px hsl(var(--foreground) / 0.04);
-    transform: translateY(-2px);
-  }
-  .dark .card-anime:hover {
-    border-color: hsl(var(--docker-blue));
-    box-shadow: 0 0 20px hsl(var(--docker-blue) / 0.15), 0 0 40px hsl(var(--docker-blue) / 0.05), inset 0 1px 0 hsl(var(--docker-blue) / 0.1);
-    transform: translateY(-2px);
+    background: hsl(0 0% 12%);                          /* #1F1F1F */
+    border-color: hsl(var(--border) / 0.14);
   }
 
-  /* ===== NEON UNDERLINE — subtle in light, glowing in dark ===== */
-  .neon-underline {
-    position: relative;
-  }
-  .neon-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, hsl(var(--docker-blue)), hsl(var(--k8s-blue)), transparent);
-    box-shadow: none;
-    opacity: 0.7;
-    animation: neon-flicker 3s ease-in-out infinite;
-  }
-  .dark .neon-underline::after {
-    box-shadow: 0 0 12px hsl(var(--docker-blue) / 0.7), 0 0 30px hsl(var(--docker-blue) / 0.3);
-    opacity: 1;
-  }
-
-  /* ===== GRADIENT TEXT (Platzi: solid white headings with green accent) ===== */
+  /* Headline accent: white text, green first letter accent (kept for compat) */
   .gradient-text {
     color: #ffffff;
-    background: none;
     -webkit-text-fill-color: #ffffff;
+    background: none;
     font-weight: 800;
-    letter-spacing: -0.01em;
-  }
-  .gradient-text::first-letter {
-    color: hsl(var(--primary));
+    letter-spacing: -0.02em;
   }
 
-  /* ===== BADGES — clean in light, cyberpunk in dark ===== */
-  .badge-docker {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-blue) / 0.25);
-    background: hsl(var(--docker-blue) / 0.06);
-    color: hsl(var(--docker-blue));
-  }
-  .dark .badge-docker {
-    border-color: hsl(var(--docker-blue) / 0.3);
-    background: hsl(var(--docker-blue) / 0.08);
-  }
-
-  .badge-k8s {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--k8s-blue) / 0.25);
-    background: hsl(var(--k8s-blue) / 0.06);
-    color: hsl(var(--k8s-blue));
-  }
-  .dark .badge-k8s {
-    border-color: hsl(var(--k8s-blue) / 0.3);
-    background: hsl(var(--k8s-blue) / 0.08);
-  }
-
+  /* Pill-style tech badges: muted neutral surface, white text */
+  .badge-docker,
+  .badge-k8s,
   .badge-dark {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-dark) / 0.25);
-    background: hsl(var(--docker-dark) / 0.06);
-    color: hsl(var(--docker-dark));
-  }
-  .dark .badge-dark {
-    border-color: hsl(var(--docker-dark) / 0.5);
-    background: hsl(var(--docker-dark) / 0.3);
-    color: hsl(0 0% 90%);
+    @apply px-2.5 py-1 text-xs rounded-md border inline-flex items-center;
+    border-color: hsl(var(--border) / 0.08);
+    background: hsl(0 0% 12%);
+    color: hsl(0 0% 88%);
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   }
 
+  /* Rank chips: subtle, only S-rank gets the green accent */
   .rank-s {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-blue) / 0.3);
-    background: hsl(var(--docker-blue) / 0.08);
-    color: hsl(var(--docker-blue));
+    @apply px-2.5 py-1 text-[10px] tracking-wider rounded-md border uppercase;
+    border-color: hsl(var(--primary) / 0.4);
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    font-weight: 600;
   }
-  .rank-a {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--k8s-blue) / 0.3);
-    background: hsl(var(--k8s-blue) / 0.08);
-    color: hsl(var(--k8s-blue));
-  }
+  .rank-a,
   .rank-b {
-    @apply px-2.5 py-1 text-xs font-mono rounded-md border;
-    border-color: hsl(var(--docker-dark) / 0.25);
-    background: hsl(var(--docker-dark) / 0.06);
-    color: hsl(var(--docker-dark));
-  }
-  .dark .rank-b {
-    border-color: hsl(var(--docker-dark) / 0.6);
-    background: hsl(var(--docker-dark) / 0.3);
-    color: hsl(0 0% 90%);
+    @apply px-2.5 py-1 text-[10px] tracking-wider rounded-md border uppercase;
+    border-color: hsl(var(--border) / 0.1);
+    background: hsl(0 0% 12%);
+    color: hsl(0 0% 70%);
+    font-weight: 600;
   }
 
-  /* ===== SECTION DIVIDER ===== */
+  /* Section divider — almost invisible hairline */
   .section-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--docker-blue) / 0.2), hsl(var(--k8s-blue) / 0.2), transparent);
-  }
-  .dark .section-divider {
-    background: linear-gradient(90deg, transparent, hsl(var(--docker-blue) / 0.3), hsl(var(--k8s-blue) / 0.3), transparent);
-    box-shadow: 0 0 8px hsl(var(--docker-blue) / 0.15);
+    background: hsl(var(--border) / 0.08);
   }
 
-  /* ===== CYBER BACKGROUND PATTERNS ===== */
-  .cyber-grid {
-    background-image:
-      linear-gradient(hsl(var(--docker-blue) / 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.5) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: var(--pattern-line-opacity, 0.05);
-  }
-
-  .circuit-pattern {
-    background-image:
-      radial-gradient(circle at 25px 25px, hsl(var(--docker-blue)) 2px, transparent 2px),
-      radial-gradient(circle at 75px 75px, hsl(var(--k8s-blue)) 1.5px, transparent 1.5px),
-      linear-gradient(90deg, hsl(var(--docker-blue) / 0.5) 1px, transparent 1px),
-      linear-gradient(hsl(var(--docker-blue) / 0.5) 1px, transparent 1px);
-    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
-    opacity: var(--pattern-circuit-opacity, 0.25);
-  }
-
+  /* Cyber/scan utilities reduced to no-ops to prevent leftover effects */
+  .cyber-grid,
+  .circuit-pattern,
   .scan-line {
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      hsl(var(--docker-blue) / 0.6) 2px,
-      hsl(var(--docker-blue) / 0.6) 4px
-    );
-    opacity: var(--scan-line-opacity, 0.02);
+    background: transparent;
+    opacity: 0;
+  }
+
+  /* Hero radial green glow — Platzi signature */
+  .platzi-hero-glow {
+    background: radial-gradient(circle at 70% 30%, hsl(var(--primary) / 0.12) 0%, transparent 50%);
+  }
+
+  /* Logo "P" mark */
+  .platzi-p {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
   }
 }
 
