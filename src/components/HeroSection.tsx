@@ -336,9 +336,9 @@ const HeroSection = memo(() => {
             </p>
             <h1
               ref={headlineRef}
-              className="text-3xl md:text-5xl lg:text-6xl font-display font-black mb-4 gradient-text leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-display font-black mb-4 text-white leading-tight tracking-tight"
             >
-              Cloud, FinOps &amp; Observability
+              Cloud, FinOps <span className="text-primary">&amp;</span> Observability
             </h1>
             <p
               ref={bodyRef}
@@ -359,23 +359,23 @@ const HeroSection = memo(() => {
               </span>
             </p>
 
-            {/* CTA links */}
+            {/* CTA links — Platzi style: solid green primary + ghost white */}
             <div className="flex flex-wrap justify-center gap-3">
               <a
                 ref={emailRef}
                 href="mailto:yamoshi454@gmail.com"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-docker-blue"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 text-sm font-semibold shadow-md shadow-primary/20 transition-colors"
                 style={{ willChange: "transform" }}
                 {...emailHandlers}
               >
-                <Mail size={16} /> Email
+                <Mail size={16} /> Get in touch
               </a>
               <a
                 ref={linkedinRef}
                 href="https://www.linkedin.com/in/luis-fernando-navarrete-estrada-151878183"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg card-anime text-sm font-body text-card-foreground hover:text-k8s-blue"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/30 bg-transparent text-white hover:border-white hover:bg-white/5 text-sm font-semibold transition-colors"
                 style={{ willChange: "transform" }}
                 {...linkedinHandlers}
               >
