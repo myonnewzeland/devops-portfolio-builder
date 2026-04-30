@@ -2,52 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== PLATZI BRAND IDENTITY =====
-   #121f3d Background (deep dark blue) = 222 53% 16%
-   #1a2a52 Surface elevated = 224 51% 21%
-   #98CA3F Platzi Green (primary)      = 81 56% 52%
-   #EFF3F8 Body text (light gray)      = 213 32% 95%
-   #FFFFFF Headings white
-   12px radius
+/* ===== PLATZI BRAND IDENTITY (platzi.com 2025) =====
+   #141414 Background                  = 0 0% 8%
+   #1A1A1A Surface (cards)             = 0 0% 10%
+   #1F1F1F Surface hover               = 0 0% 12%
+   #0F0F0F Footer / deepest            = 0 0% 6%
+   #0AE98A Platzi Green (primary)      = 152 92% 48%
+   #FFFFFF Text primary                = 0 0% 100%
+   #888888 Text muted                  = 0 0% 53%
+   rgba(255,255,255,0.08) Borders
+   12px radius, Inter font
 */
 
 @layer base {
   :root {
-    --background: 222 53% 16%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 100%;
 
-    --card: 224 51% 21%;
-    --card-foreground: 213 32% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 224 51% 21%;
-    --popover-foreground: 213 32% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 81 56% 52%;
-    --primary-foreground: 222 53% 12%;
+    --primary: 152 92% 48%;
+    --primary-foreground: 0 0% 8%;
 
     --secondary: 0 0% 100%;
-    --secondary-foreground: 222 53% 16%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 222 30% 24%;
-    --muted-foreground: 213 20% 75%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 53%;
 
-    --accent: 81 56% 52%;
-    --accent-foreground: 222 53% 12%;
+    --accent: 152 92% 48%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 28%;
-    --input: 222 30% 28%;
-    --ring: 81 56% 52%;
+    --border: 0 0% 100%;          /* used with /8 opacity = rgba(255,255,255,0.08) */
+    --input: 0 0% 12%;
+    --ring: 152 92% 48%;
 
     --radius: 0.75rem;
 
-    /* Platzi-mapped legacy tokens (kept so existing classes still work) */
-    --docker-blue: 81 56% 52%;       /* primary accent → Platzi green */
-    --k8s-blue: 0 0% 100%;           /* secondary → white (ghost) */
-    --docker-dark: 222 30% 28%;
-    --surface-elevated: 224 51% 21%;
+    /* Legacy tokens remapped to Platzi system so existing components inherit the theme */
+    --docker-blue: 152 92% 48%;      /* primary accent → Platzi green #0AE98A */
+    --k8s-blue: 0 0% 100%;           /* secondary → white */
+    --docker-dark: 0 0% 12%;
+    --surface-elevated: 0 0% 10%;
 
     --pattern-circuit-opacity: 0.08;
     --pattern-dot1-opacity: 0.03;
@@ -59,40 +62,40 @@
   }
 
   .dark {
-    --background: 222 53% 12%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 100%;
 
-    --card: 222 45% 17%;
-    --card-foreground: 213 32% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 45% 17%;
-    --popover-foreground: 213 32% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 81 56% 52%;
-    --primary-foreground: 222 53% 12%;
+    --primary: 152 92% 48%;
+    --primary-foreground: 0 0% 8%;
 
     --secondary: 0 0% 100%;
-    --secondary-foreground: 222 53% 12%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 222 30% 20%;
-    --muted-foreground: 213 18% 70%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 53%;
 
-    --accent: 81 56% 52%;
-    --accent-foreground: 222 53% 12%;
+    --accent: 152 92% 48%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 30% 26%;
-    --input: 222 30% 26%;
-    --ring: 81 56% 52%;
+    --border: 0 0% 100%;
+    --input: 0 0% 12%;
+    --ring: 152 92% 48%;
 
     --radius: 0.75rem;
 
-    --docker-blue: 81 56% 52%;
+    --docker-blue: 152 92% 48%;
     --k8s-blue: 0 0% 100%;
-    --docker-dark: 222 30% 28%;
-    --surface-elevated: 222 45% 17%;
+    --docker-dark: 0 0% 12%;
+    --surface-elevated: 0 0% 10%;
 
     --pattern-circuit-opacity: 0.18;
     --pattern-dot1-opacity: 0.12;
@@ -106,7 +109,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border) / 0.08);
   }
 
   body {
@@ -118,7 +121,7 @@
   }
 
   ::selection {
-    background: hsl(81 56% 52% / 0.35);
+    background: hsl(152 92% 48% / 0.35);
   }
 
   ::-webkit-scrollbar {
