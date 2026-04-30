@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import TechIcon from "./TechIcon";
 import {
   Server,
   Activity,
@@ -12,151 +11,73 @@ import {
   Cpu,
   DollarSign,
   AlertTriangle,
+  ChevronRight,
 } from "lucide-react";
 
-const coreStack = [
-  {
-    icon: Cloud,
-    title: "Cloud Platforms",
-    skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker"],
-    color: "docker" as const,
-  },
-  {
-    icon: Activity,
-    title: "Observability & SRE",
-    skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "Loki", "OpenTelemetry"],
-    color: "docker" as const,
-  },
-  {
-    icon: GitBranch,
-    title: "IaC & CI/CD",
-    skills: ["Terraform", "Ansible", "GitHub Actions", "GitOps", "Jenkins", "Harness.io"],
-    color: "k8s" as const,
-  },
-  {
-    icon: DollarSign,
-    title: "FinOps",
-    skills: ["FOCUS Data Models", "Multi-Cloud Cost Gov.", "Spot / CUDs", "Right-Sizing", "Showback", "Tagging Policy"],
-    color: "k8s" as const,
-  },
+const groups = [
+  { icon: Cloud, title: "Cloud Platforms", skills: ["AWS", "Azure", "GCP", "Kubernetes", "OpenShift", "Docker"] },
+  { icon: Activity, title: "Observability & SRE", skills: ["Prometheus", "Grafana", "Datadog", "CloudWatch", "Loki", "OpenTelemetry"] },
+  { icon: GitBranch, title: "IaC & CI/CD", skills: ["Terraform", "Ansible", "GitHub Actions", "GitOps", "Jenkins", "Harness.io"] },
+  { icon: DollarSign, title: "FinOps", skills: ["FOCUS Models", "Multi-Cloud Cost Gov.", "Spot / CUDs", "Right-Sizing", "Showback", "Tagging Policy"] },
+  { icon: Terminal, title: "Scripting & Dev", skills: ["Python", "Bash", "PowerShell", "SQL", "Java Spring Boot", "Node.js"] },
+  { icon: Database, title: "Databases", skills: ["PostgreSQL", "MySQL", "BigQuery", "Redis", "DragonflyDB", "DynamoDB"] },
+  { icon: Shield, title: "Networking & Security", skills: ["VPC Design", "DNS", "Load Balancing", "Tailscale/WireGuard", "Cloudflare", "Firewalls"] },
+  { icon: Server, title: "Linux & Sysadmin", skills: ["Ubuntu", "Debian", "RHEL", "Performance Tuning", "Log Analysis"] },
+  { icon: AlertTriangle, title: "SRE Practices", skills: ["Incident Management", "On-Call Rotations", "Runbooks/SOPs", "Capacity Planning", "Post-Mortems"] },
+  { icon: Cpu, title: "Edge / IoT", skills: ["NVIDIA Jetson", "Docker on Edge", "Caddy + MagicDNS", "Device Telemetry", "Jenkins Edge CI/CD"] },
 ];
-
-const supportingSkills = [
-  {
-    icon: Terminal,
-    title: "Scripting & Dev",
-    skills: ["Python", "Bash", "PowerShell", "SQL", "Java Spring Boot", "Node.js"],
-    color: "docker" as const,
-  },
-  {
-    icon: Database,
-    title: "Databases",
-    skills: ["PostgreSQL", "MySQL", "BigQuery", "Redis", "DragonflyDB", "DynamoDB"],
-    color: "k8s" as const,
-  },
-  {
-    icon: Shield,
-    title: "Networking & Security",
-    skills: ["VPC Design", "DNS", "Load Balancing", "Tailscale/WireGuard", "Cloudflare", "Firewalls"],
-    color: "k8s" as const,
-  },
-  {
-    icon: Server,
-    title: "Linux & Sysadmin",
-    skills: ["Ubuntu", "Debian", "RHEL", "Performance Tuning", "Log Analysis"],
-    color: "docker" as const,
-  },
-  {
-    icon: AlertTriangle,
-    title: "SRE Practices",
-    skills: ["Incident Management", "On-Call Rotations", "Runbooks/SOPs", "Capacity Planning", "Post-Mortems"],
-    color: "k8s" as const,
-  },
-  {
-    icon: Cpu,
-    title: "Edge / IoT",
-    skills: ["NVIDIA Jetson", "Docker on Edge", "Caddy + MagicDNS", "Device Telemetry", "Jenkins Edge CI/CD"],
-    color: "docker" as const,
-  },
-];
-
-const SkillGroup = ({ group }: { group: typeof coreStack[0] }) => (
-  <AnimateCard className="card-anime p-6">
-    <div className="flex items-center gap-3 mb-4">
-      <div
-        className={`p-2 rounded-md ${
-          group.color === "docker"
-            ? "bg-docker-blue/10 border border-docker-blue/30"
-            : "bg-k8s-blue/10 border border-k8s-blue/30"
-        }`}
-      >
-        <group.icon
-          size={18}
-          className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"}
-        />
-      </div>
-      <h3 className="font-display text-xs tracking-wider text-foreground uppercase">
-        {group.title}
-      </h3>
-    </div>
-    <div className="flex flex-wrap gap-2">
-      {group.skills.map((skill) => (
-        <span
-          key={skill}
-          className={`inline-flex items-center gap-1.5 ${
-            group.color === "docker" ? "badge-docker" : "badge-k8s"
-          }`}
-        >
-          <TechIcon
-            name={skill}
-            size={12}
-            className={group.color === "docker" ? "text-docker-blue" : "text-k8s-blue"}
-          />
-          {skill}
-        </span>
-      ))}
-    </div>
-  </AnimateCard>
-);
 
 const SkillsSection = memo(() => {
   return (
-    <section className="py-24 px-6" id="skills">
-      <div className="container max-w-6xl">
+    <section className="py-20 px-6" id="skills">
+      <div className="max-w-[1152px] mx-auto">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
-            ▸ Course Dashboard · Skills
-          </p>
-          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4 tracking-tight">
-            Technical Stack
+          <h2 className="text-3xl md:text-[32px] font-bold text-center text-white tracking-tight">
+            Every skill set you need to ship reliable cloud
           </h2>
-          <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mt-6 leading-relaxed">
-            My core focus is building <strong className="text-foreground">automated, observable, cost-efficient cloud platforms</strong>.
-            I combine IaC, CI/CD, FinOps governance and SRE practices to deliver reliable systems at scale.
+          <p className="text-base md:text-lg text-muted-foreground text-center mt-3">
+            in <span className="text-primary font-semibold">10 specialized areas</span>
           </p>
         </AnimateSection>
 
-        {/* Core Stack */}
-        <div className="mt-10 mb-4">
-          <p className="font-display text-[10px] tracking-[0.2em] text-docker-blue uppercase mb-4">
-            ▸ Core Stack
-          </p>
-        </div>
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {coreStack.map((group) => (
-            <SkillGroup key={group.title} group={group} />
-          ))}
-        </StaggerContainer>
-
-        {/* Supporting Skills */}
-        <div className="mt-12 mb-4">
-          <p className="font-display text-[10px] tracking-[0.2em] text-muted-foreground uppercase mb-4">
-            ▸ Supporting Skills
-          </p>
-        </div>
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {supportingSkills.map((group) => (
-            <SkillGroup key={group.title} group={group} />
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+          {groups.map((g) => (
+            <AnimateCard
+              key={g.title}
+              className="card-anime p-5 group cursor-default"
+              style={{ minHeight: 120 }}
+            >
+              <div className="flex items-start gap-4">
+                <div
+                  className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+                  style={{ background: "hsl(var(--primary) / 0.12)" }}
+                >
+                  <g.icon size={20} className="text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-[18px] font-semibold text-white truncate">
+                      {g.title}
+                    </h3>
+                    <ChevronRight
+                      size={16}
+                      className="text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {g.skills.length} learning paths
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {g.skills.slice(0, 4).map((s) => (
+                      <span key={s} className="badge-docker">{s}</span>
+                    ))}
+                    {g.skills.length > 4 && (
+                      <span className="badge-docker">+{g.skills.length - 4}</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </AnimateCard>
           ))}
         </StaggerContainer>
       </div>
@@ -165,5 +86,4 @@ const SkillsSection = memo(() => {
 });
 
 SkillsSection.displayName = "SkillsSection";
-
 export default SkillsSection;

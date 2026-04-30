@@ -1,119 +1,66 @@
 import { memo } from "react";
 import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import {
-  Wrench,
-  ShieldCheck,
-  DollarSign,
-  Users,
-  Zap,
-  FileText,
-  HeartHandshake,
-  MessagesSquare,
-} from "lucide-react";
+import { Check } from "lucide-react";
 
-const howIWork = [
-  {
-    icon: ShieldCheck,
-    title: "Incident Management",
-    text: "I run structured incident response — SEV classification, war-rooms, root-cause analysis and blameless post-mortems. I write and maintain runbooks so the team can resolve issues faster next time.",
-  },
-  {
-    icon: Wrench,
-    title: "Infrastructure as Code",
-    text: "Every resource lives in Terraform or Ansible — versioned, reviewed, and deployed through CI/CD. No manual changes, no drift, no surprises.",
-  },
-  {
-    icon: DollarSign,
-    title: "FinOps Governance",
-    text: "I build cost visibility from day one: tagging policies, showback dashboards, right-sizing automation, and Savings Plans/Spot governance that deliver 35–50% savings.",
-  },
-  {
-    icon: Users,
-    title: "Cross-Team Collaboration",
-    text: "I embed with dev and security teams — shifting left on security, building golden paths for deployments, and bridging the gap between velocity and reliability.",
-  },
-];
-
-const whyHireMe = [
-  { icon: Zap, text: "Proven impact: up to 50% cloud cost reduction and 99.9%+ uptime for banking & enterprise platforms." },
-  { icon: FileText, text: "Strong documentation culture: runbooks, SOPs, architecture decision records and post-mortems." },
-  { icon: HeartHandshake, text: "Ownership mindset: I take end-to-end responsibility from design through on-call." },
-  { icon: MessagesSquare, text: "Clear communicator: I translate technical decisions into business impact for stakeholders." },
+const features = [
+  "Structured incident response — SEV classification, war-rooms, blameless post-mortems and runbooks the team can actually use.",
+  "Every resource in Terraform or Ansible — versioned, reviewed, deployed via CI/CD. No manual changes, no drift.",
+  "FinOps governance from day one: tagging, showback, right-sizing automation, Savings Plans/Spot — 35–50% savings.",
+  "I embed with dev and security teams — golden paths, shift-left security, bridging velocity and reliability.",
+  "Up to 50% cloud cost reduction and 99.9%+ uptime delivered for banking & enterprise platforms.",
+  "Strong documentation culture: runbooks, SOPs, ADRs and post-mortems that survive after I'm gone.",
+  "Ownership mindset — end-to-end responsibility from architecture through on-call.",
 ];
 
 const AboutSection = memo(() => (
-  <section className="py-24 px-6 bg-surface-elevated" id="about">
-    <div className="container max-w-5xl">
-      <AnimateSection>
-        <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
-          ▸ Method · About
-        </p>
-        <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4 tracking-tight">
-          How I Work
-        </h2>
-        <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mt-6 leading-relaxed">
-          I approach infrastructure as a product — with clear SLOs, cost accountability, and continuous improvement.
-          Here's what that looks like in practice:
-        </p>
-      </AnimateSection>
-
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-        {howIWork.map((item) => (
-          <AnimateCard key={item.title} className="card-anime p-6">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 rounded-md bg-docker-blue/10 border border-docker-blue/30">
-                <item.icon size={18} className="text-docker-blue" />
-              </div>
-              <h3 className="font-display text-xs tracking-wider text-foreground uppercase">
-                {item.title}
-              </h3>
-            </div>
-            <p className="text-sm font-body text-card-foreground leading-relaxed">
-              {item.text}
-            </p>
-          </AnimateCard>
-        ))}
-      </StaggerContainer>
-
-      {/* Why Hire Me */}
-      <div className="mt-16">
+  <section className="py-20 px-6" id="about">
+    <div className="max-w-[1152px] mx-auto">
+      <div className="grid lg:grid-cols-2 lg:gap-16 items-start">
+        {/* Left: Authority headline */}
         <AnimateSection>
-          <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-8 tracking-tight">
-            Why Hire Me
-          </h3>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            <span className="text-primary">I'm the authority</span>
+            <br />
+            <span className="text-white">
+              you want running your cloud platform in NZ
+            </span>
+          </h2>
+
+          <p className="text-base md:text-lg text-muted-foreground mt-6 leading-relaxed">
+            I learned SRE, FinOps and large-scale cloud by fixing real
+            production issues and paying for real cloud bills. It took years and
+            a lot of mistakes — and I share that experience here so NZ companies
+            can use it from day one.
+          </p>
+
+          <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
+            Based in Auckland on a valid NZ work visa. Open to long-term roles,
+            sponsorship, remote and hybrid.
+          </p>
         </AnimateSection>
-        <StaggerContainer className="space-y-4">
-          {whyHireMe.map((item) => (
-            <AnimateCard key={item.text} className="card-anime px-6 py-4 flex items-start gap-4">
-              <div className="p-2 rounded-md bg-k8s-blue/10 border border-k8s-blue/30 shrink-0">
-                <item.icon size={16} className="text-k8s-blue" />
-              </div>
-              <p className="text-sm font-body text-card-foreground leading-relaxed">
-                {item.text}
-              </p>
+
+        {/* Right: feature list with green checks */}
+        <StaggerContainer className="mt-10 lg:mt-0 space-y-3">
+          {features.map((text) => (
+            <AnimateCard
+              key={text}
+              className="flex items-start gap-3 px-5 py-4 rounded-xl border bg-card hover:bg-[hsl(0_0%_12%)] transition-colors"
+              style={{ borderColor: "hsl(0 0% 100% / 0.08)" }}
+            >
+              <span
+                className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
+                style={{ background: "hsl(var(--primary) / 0.15)" }}
+              >
+                <Check size={14} className="text-primary" strokeWidth={3} />
+              </span>
+              <p className="text-sm text-white/90 leading-relaxed">{text}</p>
             </AnimateCard>
           ))}
         </StaggerContainer>
-      </div>
-
-      {/* Why I Share This */}
-      <div className="mt-16">
-        <AnimateSection>
-          <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-8 tracking-tight">
-            Why I Share This
-          </h3>
-          <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl leading-relaxed">
-            I learned SRE, FinOps and large‑scale cloud by fixing real production issues 
-            and paying for real cloud bills. It took me years and a lot of mistakes. 
-            I share my playbooks and projects here so NZ companies can use that 
-            experience from day one.
-          </p>
-        </AnimateSection>
       </div>
     </div>
   </section>
 ));
 
 AboutSection.displayName = "AboutSection";
-
 export default AboutSection;

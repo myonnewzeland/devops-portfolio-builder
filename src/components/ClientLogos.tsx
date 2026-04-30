@@ -1,39 +1,34 @@
 import { memo } from "react";
-import { AnimateSection, StaggerContainer, AnimateCard } from "./AnimateOnScroll";
-import { Landmark, Server } from "lucide-react";
 
-const clients = [
-  { name: "IBM", icon: Server },
-  { name: "Citi", icon: Landmark },
-  { name: "Banorte", icon: Landmark },
-  { name: "Santander", icon: Landmark },
-];
+const clients = ["IBM", "Citi", "Banorte", "Santander", "Campari", "NextEra"];
 
 const ClientLogos = memo(() => (
   <section className="py-16 px-6">
-    <div className="container max-w-4xl">
-      <AnimateSection>
-        <p className="font-display text-xs tracking-[0.3em] text-muted-foreground text-center mb-8 uppercase">
-          Trusted by global enterprises
-        </p>
-      </AnimateSection>
-      <StaggerContainer className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
-        {clients.map((client) => (
-          <AnimateCard
-            key={client.name}
-            className="flex flex-col items-center gap-3 opacity-60 hover:opacity-100 transition-opacity duration-300"
+    <div className="max-w-[1152px] mx-auto text-center">
+      <p className="text-2xl md:text-3xl font-bold text-white">
+        <span className="text-primary">5+ years</span> trusted by global enterprises
+        across banking, energy and SaaS.
+      </p>
+      <div className="mt-10 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-50">
+        {clients.map((name) => (
+          <span
+            key={name}
+            className="text-sm md:text-base font-bold tracking-widest uppercase text-white grayscale"
           >
-            <client.icon size={32} className="text-muted-foreground" />
-            <span className="font-display text-[11px] font-bold tracking-widest text-muted-foreground uppercase">
-              {client.name}
-            </span>
-          </AnimateCard>
+            {name}
+          </span>
         ))}
-      </StaggerContainer>
+      </div>
+      <a
+        href="mailto:yamoshi454@gmail.com"
+        className="mt-10 inline-flex items-center px-8 py-3 rounded-lg border bg-transparent text-primary text-sm font-semibold hover:bg-primary/5 transition-colors"
+        style={{ borderColor: "hsl(var(--primary))" }}
+      >
+        Book a discovery call
+      </a>
     </div>
   </section>
 ));
 
 ClientLogos.displayName = "ClientLogos";
-
 export default ClientLogos;
