@@ -2,102 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #2496ED Docker Blue = 210 93% 54%
-   #326CE5 K8s Blue = 221 76% 55%
-   #394D54 Docker Dark = 200 19% 27%
-   #0D1117 Background = 215 28% 7%
-   #161B22 Card = 215 24% 11%
+/* ===== PLATZI BRAND IDENTITY =====
+   #121f3d Background (deep dark blue) = 222 53% 16%
+   #1a2a52 Surface elevated = 224 51% 21%
+   #98CA3F Platzi Green (primary)      = 81 56% 52%
+   #EFF3F8 Body text (light gray)      = 213 32% 95%
+   #FFFFFF Headings white
+   12px radius
 */
 
 @layer base {
   :root {
-    --background: 210 15% 98%;
-    --foreground: 215 28% 12%;
+    --background: 222 53% 16%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 12%;
+    --card: 224 51% 21%;
+    --card-foreground: 213 32% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 12%;
+    --popover: 224 51% 21%;
+    --popover-foreground: 213 32% 95%;
 
-    --primary: 210 93% 54%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 81 56% 52%;
+    --primary-foreground: 222 53% 12%;
 
-    --secondary: 221 76% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 222 53% 16%;
 
-    --muted: 210 15% 94%;
-    --muted-foreground: 215 10% 42%;
+    --muted: 222 30% 24%;
+    --muted-foreground: 213 20% 75%;
 
-    --accent: 210 20% 94%;
-    --accent-foreground: 215 10% 18%;
+    --accent: 81 56% 52%;
+    --accent-foreground: 222 53% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 12% 88%;
-    --input: 210 12% 90%;
-    --ring: 210 93% 54%;
+    --border: 222 30% 28%;
+    --input: 222 30% 28%;
+    --ring: 81 56% 52%;
 
     --radius: 0.75rem;
 
-    --docker-blue: 210 93% 54%;
-    --k8s-blue: 221 76% 55%;
-    --docker-dark: 200 19% 27%;
-    --surface-elevated: 0 0% 100%;
+    /* Platzi-mapped legacy tokens (kept so existing classes still work) */
+    --docker-blue: 81 56% 52%;       /* primary accent → Platzi green */
+    --k8s-blue: 0 0% 100%;           /* secondary → white (ghost) */
+    --docker-dark: 222 30% 28%;
+    --surface-elevated: 224 51% 21%;
 
     --pattern-circuit-opacity: 0.08;
     --pattern-dot1-opacity: 0.03;
     --pattern-dot2-opacity: 0.02;
-    --pattern-line-opacity: 0.03;
+    --pattern-line-opacity: 0.04;
     --pattern-diag-opacity: 0.015;
-    --scan-line-opacity: 0.005;
-    --glow-opacity: 0.015;
+    --scan-line-opacity: 0.01;
+    --glow-opacity: 0.04;
   }
 
   .dark {
-    --background: 215 28% 7%;
-    --foreground: 210 20% 93%;
+    --background: 222 53% 12%;
+    --foreground: 0 0% 100%;
 
-    --card: 215 24% 11%;
-    --card-foreground: 210 20% 88%;
+    --card: 222 45% 17%;
+    --card-foreground: 213 32% 95%;
 
-    --popover: 215 24% 11%;
-    --popover-foreground: 210 20% 88%;
+    --popover: 222 45% 17%;
+    --popover-foreground: 213 32% 95%;
 
-    --primary: 210 93% 54%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 81 56% 52%;
+    --primary-foreground: 222 53% 12%;
 
-    --secondary: 221 76% 55%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 222 53% 12%;
 
-    --muted: 215 20% 15%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 222 30% 20%;
+    --muted-foreground: 213 18% 70%;
 
-    --accent: 221 76% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 81 56% 52%;
+    --accent-foreground: 222 53% 12%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 210 30% 18%;
-    --input: 215 20% 18%;
-    --ring: 210 93% 54%;
+    --border: 222 30% 26%;
+    --input: 222 30% 26%;
+    --ring: 81 56% 52%;
 
     --radius: 0.75rem;
 
-    --docker-blue: 210 93% 54%;
-    --k8s-blue: 221 76% 55%;
-    --docker-dark: 200 19% 27%;
-    --surface-elevated: 215 22% 13%;
+    --docker-blue: 81 56% 52%;
+    --k8s-blue: 0 0% 100%;
+    --docker-dark: 222 30% 28%;
+    --surface-elevated: 222 45% 17%;
 
-    --pattern-circuit-opacity: 0.32;
+    --pattern-circuit-opacity: 0.18;
     --pattern-dot1-opacity: 0.12;
     --pattern-dot2-opacity: 0.08;
-    --pattern-line-opacity: 0.06;
+    --pattern-line-opacity: 0.05;
     --pattern-diag-opacity: 0.04;
-    --scan-line-opacity: 0.02;
-    --glow-opacity: 0.05;
+    --scan-line-opacity: 0.015;
+    --glow-opacity: 0.06;
   }
 }
 
@@ -115,7 +118,7 @@
   }
 
   ::selection {
-    background: hsl(210 93% 54% / 0.3);
+    background: hsl(81 56% 52% / 0.35);
   }
 
   ::-webkit-scrollbar {
