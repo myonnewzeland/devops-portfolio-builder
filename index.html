@@ -44,31 +44,17 @@
   <meta name="twitter:image:alt" content="Portrait of Luis Fernando Navarrete, Site Reliability Engineer and DevOps Engineer based in Auckland, New Zealand." />
 
   <style>
-    @font-face {
-      font-family: "Alata";
-      src: url("/fonts/alata-latin-400.woff2") format("woff2");
-      font-display: swap;
-      font-weight: 400;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: "Josefin Sans";
-      src: url("/fonts/josefin-sans-latin-200.woff2") format("woff2");
-      font-display: swap;
-      font-weight: 200;
-      font-style: normal;
-    }
-
     html,
     body {
       margin: 0;
       min-width: 320px;
+      background-color: #121f3d;
     }
   </style>
 
-  <link rel="preload" href="/fonts/alata-latin-400.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/josefin-sans-latin-200.woff2" as="font" type="font/woff2" crossorigin />
+  <!-- Inter font (Platzi-style typography) -->
+  <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800,900&display=swap" />
 
   <!-- Critical asset preloads -->
   <link rel="preload" href="/assets/hero-bg-800w.avif" as="image" type="image/avif" fetchpriority="high"
@@ -80,7 +66,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="theme-color" content="#121f3d" />
   <meta name="color-scheme" content="dark light" />
 
   <!-- Schema.org structured data -->

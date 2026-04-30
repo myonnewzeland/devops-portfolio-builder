@@ -45,11 +45,11 @@ const AboutSection = memo(() => (
   <section className="py-24 px-6 bg-surface-elevated" id="about">
     <div className="container max-w-5xl">
       <AnimateSection>
-        <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
-          About
+        <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
+          ▸ Method · About
         </p>
-        <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-4 neon-underline inline-block pb-2">
-          HOW I WORK
+        <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4 tracking-tight">
+          How I Work
         </h2>
         <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mt-6 leading-relaxed">
           I approach infrastructure as a product — with clear SLOs, cost accountability, and continuous improvement.
@@ -78,8 +78,8 @@ const AboutSection = memo(() => (
       {/* Why Hire Me */}
       <div className="mt-16">
         <AnimateSection>
-          <h3 className="text-2xl md:text-3xl font-display font-bold gradient-text mb-8 neon-underline inline-block pb-2">
-            WHY HIRE ME
+          <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-8 tracking-tight">
+            Why Hire Me
           </h3>
         </AnimateSection>
         <StaggerContainer className="space-y-4">
@@ -99,8 +99,8 @@ const AboutSection = memo(() => (
       {/* Why I Share This */}
       <div className="mt-16">
         <AnimateSection>
-          <h3 className="text-2xl md:text-3xl font-display font-bold gradient-text mb-8 neon-underline inline-block pb-2">
-            WHY I SHARE THIS
+          <h3 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-8 tracking-tight">
+            Why I Share This
           </h3>
           <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl leading-relaxed">
             I learned SRE, FinOps and large‑scale cloud by fixing real production issues 

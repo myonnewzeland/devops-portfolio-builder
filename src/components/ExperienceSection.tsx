@@ -74,12 +74,15 @@ const ExperienceSection = memo(() => {
     <section className="py-24 px-6 bg-surface-elevated" id="experience">
       <div className="container max-w-4xl">
         <AnimateSection>
-          <p className="font-display text-xs tracking-[0.3em] text-docker-blue text-glow-docker mb-2 uppercase">
-            経験 // Experience
+          <p className="font-display text-xs tracking-[0.25em] text-primary mb-2 uppercase font-semibold">
+            ▸ Syllabus · Experience
           </p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold gradient-text mb-14 neon-underline inline-block pb-2">
-            COMPLETED MISSIONS
+          <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-3 tracking-tight">
+            Career Path
           </h2>
+          <p className="text-sm md:text-base font-body text-muted-foreground max-w-2xl mb-10">
+            From freelance Linux servers to FinOps governance for Fortune 500 banks — the modules that built this profile.
+          </p>
         </AnimateSection>
 
         <StaggerContainer className="space-y-8 mt-8">
